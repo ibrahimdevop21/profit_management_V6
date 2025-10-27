@@ -1,0 +1,150 @@
+---
+import Button from '~/components/ui/Button.astro';
+
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+  images = [], // Array of images for carousel
+
+  id,
+  bg = await Astro.slots.render('bg'),
+  responsive = false, // New prop to control responsive text sizing
+} = Astro.props;
+---
+
+<section class="relative h-screen not-prose bg-gradient-to-br from-takai-blue via-takai-blue to-blue-900 text-white overflow-hidden flex items-center justify-center" {...id ? { id } : {}}>
+  <!-- Background Image Carousel -->
+  {
+    (images.length > 0 || image) && (
+      <div class="absolute inset-0 z-0">
+        {images.length > 0 ? (
+          <div class="hero-carousel absolute inset-0 w-full h-full">
+            {images.map((img: any, index: number) => (
+              <img
+                class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+                src={img.src}
+                alt={img.alt || `Hero background ${index + 1}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                data-carousel-item={index}
+                style="z-index: 1;"
+              />
+            ))}
+          </div>
+        ) : (
+          typeof image === 'string' ? (
+            <Fragment set:html={image} />
+          ) : (
+            <img
+              class="w-full h-full object-cover"
+              src={(image as any).src}
+              alt={(image as any).alt || 'Hero background'}
+              loading="eager"
+            />
+          )
+        )}
+        <!-- Dark overlay for text readability -->
+        <div class="absolute inset-0 bg-gradient-to-br from-takai-blue/70 via-takai-blue/50 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+      </div>
+    )
+  }
+  
+  <div class="absolute inset-0 pointer-events-none z-10" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+  <div class="relative z-20 text-center max-w-5xl mx-auto px-6 sm:px-8">
+    <div class="space-y-6 sm:space-y-8 md:space-y-10">
+        {
+          title && (
+            <div class="space-y-3 sm:space-y-4">
+              <h1
+                class={`${responsive 
+                  ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl' 
+                  : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
+                } font-noto-serif-jp font-black leading-tight tracking-wide bg-gradient-to-r from-[#C9A227] to-white text-transparent bg-clip-text opacity-0 animate-fadeIn ${responsive ? '' : 'whitespace-nowrap'}`}
+                style="font-weight: 900 !important;"
+                set:html={title}
+              />
+              {
+                tagline && (
+                  <p
+                    class="text-sm sm:text-base text-white/90 font-medium tracking-widest uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                    set:html={tagline}
+                  />
+                )
+              }
+            </div>
+          )
+        }
+        {
+          subtitle && (
+            <p
+              class="text-lg sm:text-xl md:text-2xl text-white/80 mb-8 sm:mb-10 md:mb-12 tracking-wide opacity-0 animate-fadeIn-delay"
+              set:html={subtitle}
+            />
+          )
+        }
+          {
+            actions && (
+              <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-4 opacity-0 animate-fadeIn-delay max-w-sm sm:max-w-none mx-auto">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="w-full sm:w-auto sm:flex-initial">
+                      <Button {...(action || {})} class={`w-full sm:w-auto ${action.class || ''}`} />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+    </div>
+    {content && <Fragment set:html={content} />}
+  </div>
+</section>
+
+<script>
+  // Hero image carousel functionality
+  function initHeroCarousel() {
+    const carousel = document.querySelector('.hero-carousel');
+    if (!carousel) return;
+    
+    const images = carousel.querySelectorAll('[data-carousel-item]');
+    if (images.length <= 1) return;
+    
+    let currentIndex = 0;
+    
+    function showNextImage() {
+      // Hide current image
+      images[currentIndex].classList.remove('opacity-100');
+      images[currentIndex].classList.add('opacity-0');
+      
+      // Move to next image
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      // Show next image
+      images[currentIndex].classList.remove('opacity-0');
+      images[currentIndex].classList.add('opacity-100');
+    }
+    
+    // Change image every 4 seconds
+    setInterval(showNextImage, 4000);
+  }
+  
+  // Initialize when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroCarousel);
+  } else {
+    initHeroCarousel();
+  }
+</script>

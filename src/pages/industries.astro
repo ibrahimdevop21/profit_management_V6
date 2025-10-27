@@ -1,0 +1,240 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+
+import { PAGE_METADATA } from '~/utils/metadata';
+---
+
+<Layout metadata={PAGE_METADATA.industries}>
+
+  <!-- Major Industries -->
+  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Major Industry Sectors</h2>
+        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto">
+          Each partnership demonstrates our ability to adapt proven methodologies to specific industry challenges and deliver measurable results.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Medical Industries -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:medical-cross" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Medical Industries</h3>
+          <p class="text-profit-text font-body mb-4">Specialized consulting for pharmaceutical and healthcare companies with complex regulatory requirements.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>Hikma Pharma</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>EUP Pharma</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>UPM Pharmaceuticals</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food & Agriculture -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:plant" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Food & Agriculture</h3>
+          <p class="text-profit-text font-body mb-4">Comprehensive profitability solutions for food processing and agricultural businesses.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>El Hegen Egypt</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>Donia Sweets</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>Alam Farms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manufacturing & Engineering -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:building-factory" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Manufacturing & Engineering</h3>
+          <p class="text-profit-text font-body mb-4">Advanced cost management and operational efficiency for manufacturing companies.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>MISR El HEGAZ Group</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>AGAMY Metal Industries</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Estate -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:building-skyscraper" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Real Estate</h3>
+          <p class="text-profit-text font-body mb-4">Strategic financial planning and investment analysis for real estate development projects.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>Wahat MISR El HEGAZ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Industries -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:briefcase" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Service Industries</h3>
+          <p class="text-profit-text font-body mb-4">Diverse expertise across various service sector organizations and creative industries.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>Clean Egg</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>Penta Studio</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology & Innovation -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:cpu" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">Technology & Innovation</h3>
+          <p class="text-profit-text font-body mb-4">Supporting tech companies and innovative startups with financial strategy and growth planning.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>Digital Transformation</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>ERP Implementation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Expertise -->
+  <Content
+    title="Industry-Specific Expertise"
+    tagline="Specialized Knowledge"
+    subtitle="Our deep understanding of industry-specific challenges enables us to deliver targeted solutions that address your unique operational and financial requirements."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'Regulatory Compliance',
+        description: 'Navigate complex regulatory environments while maintaining profitability and operational efficiency.',
+      },
+      {
+        title: 'Supply Chain Optimization',
+        description: 'Streamline supply chain operations to reduce costs and improve margins across manufacturing and distribution.',
+      },
+      {
+        title: 'Digital Transformation',
+        description: 'Implement technology solutions that enhance productivity while delivering measurable ROI.',
+      },
+      {
+        title: 'Market Analysis',
+        description: 'Comprehensive market research and competitive analysis to identify profit opportunities.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/industry-expertise.webp',
+      alt: 'Industry-specific consulting expertise and knowledge',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Success Stories -->
+  <section class="py-20 bg-gradient-to-br from-profit-navy/5 to-profit-gold/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Success Stories</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+          Real results from real companies across diverse industries, demonstrating the power of strategic profit management.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <div class="text-4xl font-bold text-profit-gold mb-2">35%</div>
+          <div class="text-lg font-semibold text-profit-navy font-heading mb-2">Profit Increase</div>
+          <div class="text-profit-text font-body text-sm">Manufacturing company achieved 35% profit increase through cost optimization and operational efficiency improvements.</div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <div class="text-4xl font-bold text-profit-gold mb-2">28%</div>
+          <div class="text-lg font-semibold text-profit-navy font-heading mb-2">Cost Reduction</div>
+          <div class="text-profit-text font-body text-sm">Food processing company reduced operational costs by 28% while maintaining quality standards.</div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <div class="text-4xl font-bold text-profit-gold mb-2">42%</div>
+          <div class="text-lg font-semibold text-profit-navy font-heading mb-2">ROI Improvement</div>
+          <div class="text-profit-text font-body text-sm">Real estate developer improved project ROI by 42% through strategic financial planning and resource allocation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Transform Your Industry Performance?"
+    subtitle="Join companies across 60+ industries who have achieved sustainable profit growth with our proven methodologies."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Consultation',
+        href: '/contact',
+        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
+      },
+      {
+        text: 'Explore Our Services',
+        href: '/services',
+      },
+    ]}
+  />
+</Layout>

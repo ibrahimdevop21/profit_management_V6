@@ -1,0 +1,273 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+
+import { PAGE_METADATA } from '~/utils/metadata';
+---
+
+<Layout metadata={PAGE_METADATA.team}>
+
+  <!-- Leadership -->
+  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Leadership Excellence</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+          Led by Dr. Mohamed Amria, a pioneer in profit management across the Middle East with 26+ years of hands-on industry experience.
+        </p>
+      </div>
+
+      <!-- Dr. Mohamed Amria Profile -->
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div class="grid md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-1">
+              <div class="w-48 h-56 mx-auto rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/images/team/Dr_mohame_amria.png" 
+                  alt="Dr. Mohamed Amria - Founder & Managing Director"
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="md:col-span-2">
+              <h3 class="text-2xl md:text-3xl font-bold text-profit-navy font-heading mb-2">Dr. Mohamed Amria</h3>
+              <p class="text-profit-gold font-semibold text-lg mb-4">Founder & Managing Director</p>
+              <p class="text-profit-text font-body mb-6">
+                PhD in Auditing & Fraud Detection from Ain Shams University, MSc in Target Costing & Integrated Statistical Models. 
+                Over 26 years in profitability management across industrial and service sectors throughout the Middle East.
+              </p>
+              
+              <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-profit-light p-4 rounded-lg">
+                  <h4 class="font-semibold text-profit-navy font-heading mb-2">Academic Excellence</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1">
+                    <li>• PhD Auditing & Fraud Detection</li>
+                    <li>• MSc Target Costing</li>
+                    <li>• Statistical Models Expert</li>
+                  </ul>
+                </div>
+                <div class="bg-profit-light p-4 rounded-lg">
+                  <h4 class="font-semibold text-profit-navy font-heading mb-2">Industry Impact</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1">
+                    <li>• 60+ Industries Served</li>
+                    <li>• 200+ Companies Guided</li>
+                    <li>• Middle East Leadership</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Expertise -->
+  <Features
+    title="Our Team Expertise"
+    subtitle="Multidisciplinary professionals with specialized knowledge across finance, operations, and strategic management."
+    columns={3}
+    classes={{
+      title: 'text-profit-navy font-heading',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'PhD Holders',
+        description: 'Advanced academic credentials in accounting, finance, auditing, and business management from leading universities.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Certified Accountants',
+        description: 'Professional certifications and ongoing education in accounting standards, financial analysis, and regulatory compliance.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'Industry Specialists',
+        description: 'Deep sector expertise across manufacturing, healthcare, food processing, real estate, and service industries.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'ERP Consultants',
+        description: 'Technical expertise in enterprise resource planning systems, digital transformation, and process automation.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'Financial Analysts',
+        description: 'Advanced skills in financial modeling, cost analysis, budget planning, and performance measurement systems.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'Training Specialists',
+        description: 'Professional development experts who build internal capabilities and transfer knowledge effectively.',
+        icon: 'tabler:users',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Global Collaboration -->
+  <Content
+    title="Global Standards, Local Insight"
+    tagline="International Excellence"
+    subtitle="Our team collaborates with U.S. experts to ensure global best practices while maintaining deep understanding of regional market dynamics and business culture."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'U.S. Expert Network',
+        description: 'Regular collaboration with American consulting professionals and academic institutions for knowledge exchange.',
+      },
+      {
+        title: 'International Standards',
+        description: 'Implementation of global best practices in financial management, auditing, and business process optimization.',
+      },
+      {
+        title: 'Continuous Learning',
+        description: 'Ongoing professional development through international conferences, certifications, and research partnerships.',
+      },
+      {
+        title: 'Cultural Adaptation',
+        description: 'Ability to adapt global methodologies to local business cultures and regulatory environments.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/global-collaboration.webp',
+      alt: 'International collaboration and knowledge sharing in consulting',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Team Values -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Our Values</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+          The principles that guide our work and define our commitment to client success and professional excellence.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:target" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Precision</h3>
+          <p class="text-profit-text font-body text-sm">Every analysis, recommendation, and implementation is executed with meticulous attention to detail.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:shield-check" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Integrity</h3>
+          <p class="text-profit-text font-body text-sm">Honest, transparent communication and ethical business practices in all client relationships.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:bulb" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Innovation</h3>
+          <p class="text-profit-text font-body text-sm">Continuous improvement of methodologies and adoption of new technologies for better results.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Partnership</h3>
+          <p class="text-profit-text font-body text-sm">Long-term collaborative relationships focused on sustainable success and mutual growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Development -->
+  <Content
+    isReversed
+    title="Continuous Professional Development"
+    tagline="Excellence Through Learning"
+    subtitle="We invest continuously in training to merge academic excellence with practical industry insight, ensuring our team stays at the forefront of profit management innovation."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'Advanced Certifications',
+        description: 'Regular pursuit of professional certifications in accounting, auditing, ERP systems, and management consulting.',
+      },
+      {
+        title: 'Research & Development',
+        description: 'Active participation in academic research and development of new profit management methodologies.',
+      },
+      {
+        title: 'Industry Conferences',
+        description: 'Regular attendance at international conferences to stay current with global trends and best practices.',
+      },
+      {
+        title: 'Knowledge Sharing',
+        description: 'Internal training programs and knowledge sharing sessions to ensure team-wide expertise development.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/professional-development.webp',
+      alt: 'Continuous learning and professional development in consulting',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Work With Our Expert Team"
+    subtitle="Experience the difference that comes from working with seasoned professionals who combine academic rigor with practical expertise."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Meet Our Team',
+        href: '/contact',
+        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
+      },
+      {
+        text: 'Learn About Our Approach',
+        href: '/about',
+      },
+    ]}
+  />
+</Layout>

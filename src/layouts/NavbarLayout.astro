@@ -1,0 +1,42 @@
+---
+import Navbar from '~/components/Navbar.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const { 
+  title = 'Profit Management Consulting & Training',
+  description = 'Professional business consulting and training services for sustainable profit growth',
+  currentPath = '/'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content={description} />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  
+  <!-- Tailwind CSS (assuming it's configured in your Astro project) -->
+</head>
+
+<body class="bg-white">
+  <!-- Navbar Component -->
+  <Navbar currentPath={currentPath} />
+  
+  <!-- Main Content -->
+  <main class="pt-16">
+    <slot />
+  </main>
+
+  <!-- Flowbite JavaScript -->
+  <script>
+    import 'flowbite';
+  </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import { PAGE_METADATA } from '~/utils/metadata';
+---
+
+<Layout metadata={PAGE_METADATA.about}>
+
+  <!-- Mission & Goals -->
+  <Features
+    id="mission"
+    title="Mission & Goals"
+    subtitle="We aim to help organizations achieve sustainable profitability and operational excellence"
+    columns={3}
+    classes={{
+      title: 'text-profit-navy font-heading',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'Increase Efficiency',
+        description: 'Optimize operational processes and eliminate waste to maximize profitability across all business functions.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Data-Driven Solutions',
+        description: 'Provide practical, evidence-based recommendations that deliver measurable and sustainable results.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'Strategic Guidance',
+        description: 'Support strategic decisions and long-term planning with comprehensive financial analysis and market insights.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Innovation Support',
+        description: 'Guide digital transformation initiatives and technology adoption to enhance competitive advantage.',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'Leadership Development',
+        description: 'Develop consultants and finance leaders with advanced profit management capabilities and methodologies.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Sustainable Growth',
+        description: 'Build internal capabilities that ensure long-term profitability and operational excellence.',
+        icon: 'tabler:plant',
+      },
+    ]}
+  />
+
+  <!-- Company Story - COMMENTED OUT FOR FUTURE USE -->
+  <!--
+  <Content
+    isReversed
+    title="Our Story"
+    subtitle="A legacy of protection and innovation"
+    items={[
+      {
+        title: 'Founded on Excellence',
+        description: 'TAKAI was established with a vision to create the world\'s most advanced paint protection films.',
+      },
+      {
+        title: 'Technology Leadership',
+        description: 'Our research and development team continuously innovates to stay ahead of industry trends.',
+      },
+      {
+        title: 'Global Reach',
+        description: 'Today, TAKAI products protect vehicles in markets around the world through our distributor network.',
+      },
+    ]}
+  />
+  -->
+
+  <!-- Founder Section -->
+  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6">Leadership Excellence</h2>
+        <p class="text-xl text-profit-text font-body max-w-3xl mx-auto">
+          Led by Dr. Mohamed Amria, a pioneer in profit management across the Middle East with 26+ years of hands-on industry experience
+        </p>
+      </div>
+      
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Education & Credentials -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-profit-navy/10 hover:border-profit-navy/30">
+          <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:school" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Academic Excellence</h3>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6">
+            PhD in Auditing & Fraud Detection from Ain Shams University, MSc in Target Costing & Integrated Statistical Models.
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>PhD Auditing & Fraud Detection</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>MSc Target Costing</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>Statistical Models Expert</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industry Experience -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-profit-gold/20 hover:border-profit-gold/40">
+          <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:briefcase" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Industry Pioneer</h3>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6">
+            Over 26 years in profitability management across industrial and service sectors throughout the Middle East.
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>60+ Industries Served</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>200+ Companies Guided</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span>Middle East Leadership</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Standards -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-profit-navy/20 hover:border-profit-navy/40">
+          <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-indigo-700 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:world" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Global Collaboration</h3>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6">
+            Collaborates with U.S. experts to ensure global best practices and cutting-edge methodologies.
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>International Standards</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>U.S. Expert Network</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-profit-text">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span>Best Practice Innovation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team & Expertise - COMMENTED OUT FOR FUTURE USE -->
+  <!--
+  <Content
+    title="Our Team"
+    subtitle="Expertise you can trust"
+    items={[
+      {
+        title: 'Materials Scientists',
+        description: 'PhD-level researchers developing next-generation polymer technologies.',
+      },
+      {
+        title: 'Manufacturing Engineers',
+        description: 'Process experts ensuring consistent quality and efficient production.',
+      },
+      {
+        title: 'Technical Support',
+        description: 'Experienced professionals providing installation training and customer support.',
+      },
+    ]}
+  />
+  -->
+
+  <!-- Our Approach -->
+  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6">Our Approach</h2>
+        <p class="text-xl text-profit-text font-body max-w-3xl mx-auto">
+          Profit Management applies 11 core mechanisms—from cost control to ERP integration—built around one principle: <strong>Profit as Precision</strong>
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <!-- Academic Rigor -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-profit-navy/10 hover:border-profit-navy/30 text-center flex flex-col h-full">
+          <div class="mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:book" class="w-10 h-10 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Academic Rigor</h3>
+            <div class="w-16 h-1 bg-gradient-to-r from-profit-gold to-profit-navy mx-auto mb-4 rounded-full"></div>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6 flex-grow">
+            Research-based methodologies combining theoretical frameworks with practical implementation strategies.
+          </p>
+          <div class="bg-profit-navy/5 rounded-lg p-4 mt-auto">
+            <p class="text-sm font-medium text-profit-navy/90">PhD-Led Research</p>
+          </div>
+        </div>
+
+        <!-- Real-World Experience -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-profit-gold/20 hover:border-profit-gold/40 text-center flex flex-col h-full">
+          <div class="mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:tools" class="w-10 h-10 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Practical Implementation</h3>
+            <div class="w-16 h-1 bg-gradient-to-r from-profit-gold to-profit-navy mx-auto mb-4 rounded-full"></div>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6 flex-grow">
+            Hands-on experience across 60+ industries with proven track record of measurable profit improvements.
+          </p>
+          <div class="bg-profit-gold/10 rounded-lg p-4 mt-auto">
+            <p class="text-sm font-medium text-profit-navy/90">26+ Years Experience</p>
+          </div>
+        </div>
+
+        <!-- Team Excellence -->
+        <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-profit-navy/20 hover:border-profit-navy/40 text-center md:col-span-2 lg:col-span-1 flex flex-col h-full">
+          <div class="mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-profit-navy to-indigo-700 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="tabler:users" class="w-10 h-10 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-2xl font-bold text-profit-navy font-heading mb-3">Expert Team</h3>
+            <div class="w-16 h-1 bg-gradient-to-r from-profit-gold to-profit-navy mx-auto mb-4 rounded-full"></div>
+          </div>
+          <p class="text-profit-text font-body leading-relaxed mb-6 flex-grow">
+            Multidisciplinary team of PhD holders, certified accountants, and industry specialists with continuous training.
+          </p>
+          <div class="bg-profit-navy/10 rounded-lg p-4 mt-auto">
+            <p class="text-sm font-medium text-profit-navy/90">Certified Professionals</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <Content
+    title="Our Team"
+    tagline="People Behind the Profit"
+    subtitle="A multidisciplinary team of accountants, auditors, and business strategists with over 26 years of field experience"
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+  >
+    <Fragment slot="content">
+      <p class="text-profit-text font-body text-lg mb-8">
+        Our consultants include PhD holders, certified accountants, and industry specialists trained in both financial science and operational systems. The team collaborates with U.S. experts to ensure global best practices.
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20">
+          <h4 class="text-xl font-semibold text-profit-navy font-heading mb-3">Academic Excellence</h4>
+          <p class="text-profit-text font-body">PhD holders and certified professionals with advanced degrees in accounting, finance, and business management.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20">
+          <h4 class="text-xl font-semibold text-profit-navy font-heading mb-3">Industry Expertise</h4>
+          <p class="text-profit-text font-body">Specialists with hands-on experience across 60+ industries and proven track records in profit optimization.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20">
+          <h4 class="text-xl font-semibold text-profit-navy font-heading mb-3">Global Standards</h4>
+          <p class="text-profit-text font-body">Continuous training and collaboration with international experts to maintain cutting-edge methodologies.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20">
+          <h4 class="text-xl font-semibold text-profit-navy font-heading mb-3">Practical Focus</h4>
+          <p class="text-profit-text font-body">Real-world experience implementing profit management systems in diverse organizational environments.</p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Transform Your Profitability?"
+    subtitle="Let's discuss how our expertise can help your organization achieve sustainable profit growth"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Consultation',
+        href: '/contact',
+        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
+      },
+      {
+        text: 'Explore Our Services',
+        href: '/services',
+      },
+    ]}
+  />
+</Layout>

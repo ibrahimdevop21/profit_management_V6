@@ -1,0 +1,73 @@
+---
+import Layout from './Layout.astro';
+import { getLangFromUrl } from '~/utils/i18n';
+
+export interface Props {
+  metadata?: any;
+}
+
+const { metadata } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const isRTL = currentLang === 'ar';
+---
+
+<Layout metadata={metadata}>
+  <div dir={isRTL ? 'rtl' : 'ltr'} lang={currentLang} class={isRTL ? 'rtl-layout' : 'ltr-layout'}>
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  /* RTL Layout Styles */
+  .rtl-layout {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .rtl-layout .flex {
+    flex-direction: row-reverse;
+  }
+
+  .rtl-layout .text-left {
+    text-align: right;
+  }
+
+  .rtl-layout .text-right {
+    text-align: left;
+  }
+
+  .rtl-layout .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .rtl-layout .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  /* Arabic font support */
+  .rtl-layout {
+    font-family: 'Inter', 'Noto Sans Arabic', 'Arial', sans-serif;
+  }
+
+  .rtl-layout h1, 
+  .rtl-layout h2, 
+  .rtl-layout h3, 
+  .rtl-layout h4, 
+  .rtl-layout h5, 
+  .rtl-layout h6 {
+    font-family: 'Inter', 'Noto Sans Arabic', 'Arial', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Adjust spacing for Arabic text */
+  .rtl-layout p {
+    line-height: 1.8;
+  }
+
+  .rtl-layout .nav-link {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+</style>

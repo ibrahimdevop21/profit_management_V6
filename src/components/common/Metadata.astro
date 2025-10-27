@@ -1,0 +1,91 @@
+---
+import merge from 'lodash.merge';
+import { AstroSeo } from '@astrolib/seo';
+
+import type { Props as AstroSeoProps } from '@astrolib/seo';
+
+import { SITE, METADATA } from '~/config';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+// Using Profit Management stacked logo from public folder
+const defaultOgImageUrl = '/profit-stacked.svg';
+
+export interface Props extends MetaData {
+  dontUseTitleTemplate?: boolean;
+}
+
+const {
+  title,
+  ignoreTitleTemplate = false,
+  canonical = String(getCanonical(String(Astro.url.pathname))),
+  robots = {},
+  description,
+  openGraph = {},
+  twitter = {},
+} = Astro.props;
+
+// Process OpenGraph images - use default Profit Management logo or custom images if provided
+const processedOpenGraphImages = openGraph?.images?.length 
+  ? openGraph.images 
+  : [{
+      url: defaultOgImageUrl,
+      width: 1200,
+      height: 630,
+      alt: 'Profit Management Consulting & Training | Profit as Precision',
+    }];
+
+const seoProps: AstroSeoProps = merge(
+  {
+    title: '',
+    titleTemplate: '%s',
+    canonical: canonical,
+    noindex: true,
+    nofollow: true,
+    description: undefined,
+    openGraph: {
+      url: canonical,
+      site_name: SITE?.name,
+      images: processedOpenGraphImages,
+      locale: 'en',
+      type: 'website',
+    },
+    twitter: {
+      cardType: 'summary_large_image',
+    },
+  },
+  {
+    title: METADATA?.title?.default,
+    titleTemplate: METADATA?.title?.template,
+    noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
+    nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
+    description: METADATA?.description,
+    openGraph: {
+      ...METADATA?.openGraph,
+      images: processedOpenGraphImages, // Always use processed images
+    },
+    twitter: {
+      ...METADATA?.twitter,
+      cardType: 'summary_large_image', // Always use large image card
+    },
+  },
+  {
+    title: title,
+    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
+    canonical: canonical,
+    noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
+    nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
+    description: description,
+    openGraph: { 
+      url: canonical, 
+      ...openGraph,
+      images: openGraph?.images?.length ? openGraph.images : processedOpenGraphImages,
+    },
+    twitter: {
+      ...twitter,
+      cardType: 'summary_large_image', // Ensure Twitter always uses large image
+    },
+  }
+);
+---
+
+<AstroSeo {...seoProps} />

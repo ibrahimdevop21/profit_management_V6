@@ -1,0 +1,213 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+
+import { PAGE_METADATA } from '~/utils/metadata';
+---
+
+<Layout metadata={PAGE_METADATA.why}>
+
+  <!-- Key Differentiators -->
+  <Features
+    title="What Sets Us Apart"
+    subtitle="Our unique combination of academic excellence, practical experience, and proven methodologies delivers results that last."
+    columns={3}
+    classes={{
+      title: 'text-profit-navy font-heading',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: '26+ Years Experience',
+        description: 'Led by Dr. Mohamed Amria with over two decades of hands-on experience in profit management across the Middle East.',
+        icon: 'tabler:calendar-stats',
+      },
+      {
+        title: '60+ Industries Served',
+        description: 'Proven methodologies adapted to diverse sectors from pharmaceuticals to manufacturing, real estate to food processing.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Academic Excellence',
+        description: 'PhD-level expertise in auditing, fraud detection, and target costing with continuous research and development.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Global Standards',
+        description: 'Collaboration with U.S. experts ensures international best practices while maintaining local market insight.',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'Measurable Results',
+        description: 'Average 25% profit increase with comprehensive tracking and performance monitoring throughout engagements.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Sustainable Solutions',
+        description: 'Build internal capabilities so profitability becomes a sustained competitive advantage, not a temporary improvement.',
+        icon: 'tabler:plant',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Common Business Challenges -->
+  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">When Your Business Faces</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+          We are the partner of choice when your business encounters these critical challenges that impact long-term profitability and growth.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:trending-down" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Rising Revenues, Shrinking Margins</h3>
+          <p class="text-profit-text font-body text-sm">Sales are growing but profits are declining due to hidden costs and inefficiencies.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:question-mark" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Lack of Real-Time Data</h3>
+          <p class="text-profit-text font-body text-sm">Critical business decisions made without comprehensive financial visibility and insights.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:coins" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">High Operational Costs</h3>
+          <p class="text-profit-text font-body text-sm">Operational expenses consuming profits with low efficiency and unclear cost structures.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Skills Gaps</h3>
+          <p class="text-profit-text font-body text-sm">Internal team lacks advanced financial management and ERP system expertise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Promise -->
+  <Content
+    isReversed
+    title="Our Promise"
+    tagline="Guaranteed Results"
+    subtitle="We diagnose root causes, implement data-driven solutions, and build internal capability so profitability becomes a sustained result—not a temporary win."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'Comprehensive Analysis',
+        description: 'Deep dive into your financial performance, operational processes, and market position to identify all profit leakage points.',
+      },
+      {
+        title: 'Tailored Solutions',
+        description: 'Custom methodologies designed for your specific industry, company size, and organizational culture.',
+      },
+      {
+        title: 'Knowledge Transfer',
+        description: 'Extensive training and capability building so your team can maintain and improve results independently.',
+      },
+      {
+        title: 'Ongoing Support',
+        description: 'Continued guidance during implementation and transition periods to ensure sustainable success.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/our-promise.webp',
+      alt: 'Professional commitment to sustainable profit growth and business success',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Methodology -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Our 11-Point Methodology</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+          Profit Management applies 11 core mechanisms—from cost control to ERP integration—built around one principle: <strong>Profit as Precision</strong>.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {[
+          'Financial Analysis', 'Cost Control', 'Budget Management', 'Performance Monitoring',
+          'ERP Integration', 'Process Optimization', 'Resource Allocation', 'Risk Assessment',
+          'Strategic Planning', 'Training & Development', 'Continuous Improvement'
+        ].map((item, index) => (
+          <div class="bg-gradient-to-br from-profit-navy/5 to-profit-gold/5 p-6 rounded-xl text-center">
+            <div class="w-12 h-12 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-white font-bold text-lg">{index + 1}</span>
+            </div>
+            <h3 class="text-sm font-semibold text-profit-navy font-heading">{item}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <Stats
+    isDark={false}
+    stats={[
+      { title: 'Average Profit Increase', amount: '25%' },
+      { title: 'Client Retention Rate', amount: '94%' },
+      { title: 'Industries Served', amount: '60+' },
+      { title: 'Years of Experience', amount: '26+' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Stats>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Experience the Difference?"
+    subtitle="Join hundreds of successful companies who have transformed their profitability with our proven methodologies and expert guidance."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Consultation',
+        href: '/contact',
+        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
+      },
+      {
+        text: 'Learn About Our Team',
+        href: '/team',
+      },
+    ]}
+  />
+</Layout>

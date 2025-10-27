@@ -1,0 +1,39 @@
+---
+import Navbar from '~/components/Navbar.astro';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface ActionLink extends Link {
+  type?: string;
+}
+
+interface MenuLink extends Link {
+  links?: Array<Link>;
+}
+
+export interface Props {
+  links?: Array<MenuLink>;
+  actions?: Array<ActionLink>;
+  isSticky?: boolean;
+  position?: string;
+}
+
+const {
+  links = [],
+  actions = [],
+  isSticky = false,
+  position = 'center',
+} = Astro.props;
+
+// Calculate current path to determine active links
+const currentPath = new URL(Astro.request.url).pathname;
+---
+
+<Navbar currentPath={currentPath} />
+
+

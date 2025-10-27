@@ -1,0 +1,67 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, getAlternateLanguage, getLocalizedPath, useTranslations } from '~/utils/i18n';
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+const alternateLang = getAlternateLanguage(currentLang);
+const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '') || '/';
+const alternateUrl = getLocalizedPath(currentPath, alternateLang);
+
+interface Props {
+  variant?: 'desktop' | 'mobile';
+}
+
+const { variant = 'desktop' } = Astro.props;
+---
+
+<div class={`language-switcher ${variant === 'mobile' ? 'mobile' : 'desktop'}`}>
+  <a
+    href={alternateUrl}
+    class={`
+      flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ease-in-out
+      ${variant === 'mobile' 
+        ? 'text-[#0D3B66] hover:text-[#C9A227] w-full justify-center' 
+        : 'text-[#0D3B66] hover:text-[#C9A227] bg-white/80 hover:bg-[#C9A227]/20 backdrop-blur-sm'
+      }
+    `}
+    aria-label={t('lang.switch')}
+    title={t('lang.switch')}
+  >
+    <Icon 
+      name="tabler:language" 
+      class="w-4 h-4" 
+    />
+    <span class="font-medium text-sm">
+      {alternateLang.toUpperCase()}
+    </span>
+  </a>
+</div>
+
+<style>
+  .language-switcher.desktop {
+    position: relative;
+  }
+  
+  .language-switcher.desktop a {
+    border: 1px solid rgba(233, 216, 166, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .language-switcher.desktop a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: rgba(201, 162, 39, 0.6);
+  }
+  
+  .language-switcher.mobile a {
+    border: 1px solid rgba(201, 162, 39, 0.2);
+  }
+  
+  .language-switcher.mobile a:hover {
+    border-color: rgba(201, 162, 39, 0.4);
+    background: rgba(201, 162, 39, 0.1);
+    transform: translateY(-1px);
+  }
+</style>

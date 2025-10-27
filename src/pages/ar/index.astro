@@ -1,0 +1,78 @@
+---
+import RTLLayout from '~/layouts/RTLLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { useTranslations } from '~/utils/i18n';
+
+const t = useTranslations('ar');
+
+const metadata = {
+  title: 'إدارة الربح للاستشارات والتدريب | الربح كدقة',
+  description: 'شركة استشارية رائدة تمكن المؤسسات من تحقيق نمو مربح مستدام من خلال التميز المالي والتشغيلي والرقمي.',
+  canonical: '/ar',
+};
+---
+
+<RTLLayout metadata={metadata}>
+
+  <!-- Features Section -->
+  <Features
+    id="features"
+    tagline="خدماتنا الأساسية"
+    title="حلول شاملة لإدارة الربح"
+    subtitle="نقدم مجموعة متكاملة من الخدمات الاستشارية والتدريبية المصممة لتعزيز الأداء المالي وتحقيق النمو المستدام."
+    items={[
+      {
+        title: 'الاستشارات المالية',
+        description: 'تحليل شامل للأداء المالي وتطوير استراتيجيات لتحسين الربحية.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'إدارة التكاليف',
+        description: 'تحسين هياكل التكلفة وتطوير أنظمة مراقبة فعالة للتكاليف.',
+        icon: 'tabler:calculator',
+      },
+      {
+        title: 'التدريب المتخصص',
+        description: 'برامج تدريبية متقدمة في الإدارة المالية وتحليل الربحية.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'دراسات الجدوى',
+        description: 'تقييم شامل للمشاريع الاستثمارية وتحليل العائد المتوقع.',
+        icon: 'tabler:file-analytics',
+      },
+      {
+        title: 'تكامل أنظمة ERP',
+        description: 'تطبيق وتكامل أنظمة تخطيط موارد المؤسسة لتحسين الكفاءة.',
+        icon: 'tabler:network',
+      },
+      {
+        title: 'الاستشارات الرقمية',
+        description: 'تحويل رقمي للعمليات المالية وتطوير حلول تقنية مبتكرة.',
+        icon: 'tabler:device-desktop',
+      },
+    ]}
+  />
+
+  <!-- Call to Action -->
+  <CallToAction
+    actions={[
+      {
+        text: 'ابدأ رحلتك معنا',
+        href: '/ar/contact',
+        icon: 'tabler:arrow-left',
+        class: 'bg-profit-gold text-profit-navy hover:bg-yellow-500 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      جاهز لتحويل أعمالك؟
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      انضم إلى أكثر من 100 شركة حققت نموًا استثنائيًا في الربحية مع خبرتنا التي تمتد لأكثر من 26 عامًا.
+    </Fragment>
+  </CallToAction>
+</RTLLayout>
