@@ -29,32 +29,34 @@ const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 ---
 
-<footer class="executive-footer relative not-prose mt-16">
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div
-    class="relative max-w-7xl mx-auto px-6 sm:px-8 text-[#0D3B66] intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-  >
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+<footer class="bg-charcoal relative not-prose">
+  <div class="border-t border-gray-light/20"></div>
+  <div class="relative max-w-7xl mx-auto px-6 md:px-12 text-white py-12 md:py-16">
+    
+    <!-- Main Footer Content Grid -->
+    <div class="grid grid-cols-12 gap-8 md:gap-12 mb-12">
+      
+      <!-- Brand Column -->
       <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
+        <div class="mb-6">
           <a class="inline-block" href="/">
             <img
               src="/profit-horizintal.svg"
               alt="Profit Management Consulting & Training"
-              class="h-8 w-auto"
+              class="h-10 w-auto"
               loading="lazy"
               width={200}
               height={40}
             />
           </a>
         </div>
-        <div class="text-sm text-[#0D3B66]/70 flex gap-1">
+        <div class="text-sm text-gray-400 flex flex-wrap gap-2">
           {
             secondaryLinks.map(({ text, href }, index) => (
               <>
-                {index !== 0 ? ' · ' : ''}
+                {index !== 0 ? <span class="text-gray-600">·</span> : ''}
                 <a
-                  class="text-[#0D3B66]/70 hover:text-[#C9A227] hover:underline transition-all duration-300 ease-in-out"
+                  class="text-gray-400 hover:text-gold transition-all duration-300 ease-in-out"
                   href={href}
                   set:html={text}
                 />
@@ -63,16 +65,18 @@ const t = useTranslations(currentLang);
           }
         </div>
       </div>
+
+      <!-- Navigation Links -->
       {
         links.map(({ title, links }) => (
           <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="text-[#C9A227] font-semibold mb-3 text-sm uppercase tracking-wide">{title}</div>
+            <h3 class="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">{title}</h3>
             {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm space-y-2">
+              <ul class="text-sm space-y-3">
                 {links.map(({ text, href, ariaLabel }) => (
                   <li>
                     <a
-                      class="text-[#0D3B66]/70 hover:text-[#C9A227] hover:underline transition-all duration-300 ease-in-out hover:translate-x-1"
+                      class="text-gray-300 hover:text-gold transition-all duration-300 ease-in-out inline-block"
                       href={href}
                       aria-label={ariaLabel}
                     >
@@ -86,91 +90,74 @@ const t = useTranslations(currentLang);
         ))
       }
     </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-[#0D3B66]/70 hover:bg-[#C9A227]/20 hover:text-[#C9A227] hover:shadow-lg hover:shadow-[#C9A227]/20 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#C9A227]/20 rounded-md text-sm p-2.5 inline-flex items-center transition-all duration-300 ease-in-out"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
 
-      <div class="text-sm mr-4 text-[#0D3B66]/70">
-        <Fragment set:html={footNote} />
+    <!-- Bottom Bar: Social Links & Copyright -->
+    <div class="pt-8 border-t border-gray-light/10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        
+        <!-- Copyright Text -->
+        <div class="text-sm text-gray-400 order-2 md:order-1">
+          <Fragment set:html={footNote} />
+        </div>
+
+        <!-- Social Links -->
+        {
+          socialLinks?.length ? (
+            <ul class="flex gap-2 order-1 md:order-2">
+              {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+                <li>
+                  <a
+                    class="text-gray-400 hover:bg-gold/20 hover:text-gold hover:shadow-lg hover:shadow-gold/20 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-gold/20 rounded-lg text-sm p-2.5 inline-flex items-center transition-all duration-300 ease-in-out"
+                    aria-label={ariaLabel}
+                    href={href}
+                  >
+                    {icon && <Icon name={icon} class="w-5 h-5" />}
+                    <Fragment set:html={text} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            ''
+          )
+        }
       </div>
     </div>
+
   </div>
 </footer>
 
 <style>
-  /* Executive Footer Styling */
-  .executive-footer {
-    background: linear-gradient(135deg, #ffffff 0%, #f9e6b1 50%, #ffffff 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(249, 230, 177, 0.4);
-    box-shadow: 
-      0 -4px 20px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    position: relative;
-  }
-
-  .executive-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(201, 162, 39, 0.4) 50%, 
-      transparent 100%
-    );
+  /* Premium Consulting Footer Styling */
+  footer {
+    background: #1C1C1E;
   }
 
   /* RTL Support for Footer */
-  [dir="rtl"] .executive-footer {
+  [dir="rtl"] footer {
     text-align: right;
   }
   
-  [dir="rtl"] .executive-footer .flex {
+  [dir="rtl"] footer .flex {
     flex-direction: row-reverse;
   }
   
-  [dir="rtl"] .executive-footer .grid {
+  [dir="rtl"] footer .grid {
     direction: rtl;
   }
 
-  [dir="rtl"] .executive-footer {
-    background: linear-gradient(-135deg, #ffffff 0%, #f9e6b1 50%, #ffffff 100%);
-  }
-
-  /* Executive hover effects */
-  .executive-footer a:hover {
+  /* Professional hover effects */
+  footer a:hover {
     transform: translateY(-1px);
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 
   /* Professional link styling */
-  .executive-footer a {
+  footer a {
     position: relative;
   }
 
-  .executive-footer a::after {
+  footer a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -181,21 +168,13 @@ const t = useTranslations(currentLang);
     transition: width 0.3s ease-in-out;
   }
 
-  .executive-footer a:hover::after {
+  footer a:hover::after {
     width: 100%;
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .executive-footer {
-      margin-top: 2rem;
-      border-radius: 1.5rem 1.5rem 0 0;
-    }
-  }
-
   /* Professional typography */
-  .executive-footer h3,
-  .executive-footer .font-semibold {
+  footer h3,
+  footer .font-semibold {
     letter-spacing: 0.025em;
   }
 </style>

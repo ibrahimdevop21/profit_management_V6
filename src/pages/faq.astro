@@ -1,76 +1,66 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
+import AccordionFAQ from '~/components/widgets/AccordionFAQ.astro';
 import { PAGE_METADATA } from '~/utils/metadata';
 ---
 
 <Layout metadata={PAGE_METADATA.faq}>
-  <section class="py-12">
-    <div class="mx-auto max-w-3xl space-y-6">
-      <h1 class="text-4xl font-bold text-center text-takai-blue">Frequently Asked Questions</h1>
-      <p class="text-center text-lg text-gray-700">
-        Get clear answers about TAKAI's Japanese paint protection and heat-control films — how they work, how to maintain them, and why thousands of car owners trust TAKAI to protect their vehicles.
-      </p>
 
-      <!-- FAQ Items -->
-      <div class="divide-y divide-takai-gold/40">
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">Why choose TAKAI over other protection films?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            TAKAI films are developed and manufactured in Japan under strict automotive standards. Every layer — from adhesive to top-coat — is engineered for clarity, UV resistance, and long-term durability. The result: perfect protection without altering your car's color, sensors, or warranty.
-          </p>
-        </details>
+  <!-- FAQ Section -->
+  <div class="section-padding">
+    <AccordionFAQ
+      title="Frequently Asked Questions"
+      subtitle="Find answers to common questions about our profit management consulting services, methodologies, and client engagement process."
+      tagline="FAQ"
+      classes={{
+        container: 'container-premium',
+        title: 'section-title text-navy',
+        tagline: 'section-tagline',
+        subtitle: 'section-subtitle'
+      }}
+    items={[
+      {
+        title: 'What is Profit Management Consulting?',
+        description: 'Profit Management Consulting is a specialized approach that combines financial analysis, operational optimization, and strategic planning to help organizations maximize profitability. We use proven methodologies to identify profit opportunities and implement sustainable improvements.',
+      },
+      {
+        title: 'How long does a typical consulting engagement last?',
+        description: 'Our consulting engagements typically range from 3-12 months, depending on the scope and complexity of your challenges. We work closely with your team to establish realistic timelines and milestones that ensure measurable progress throughout the project.',
+      },
+      {
+        title: 'Do you work with small and medium-sized businesses?',
+        description: 'Yes, we provide tailored solutions for organizations of all sizes. Our flexible engagement models and scalable methodologies allow us to deliver value to small businesses, mid-market companies, and large enterprises across various industries.',
+      },
+      {
+        title: 'What industries do you serve?',
+        description: 'We have extensive experience across 60+ industries including medical, food processing, manufacturing, real estate, retail, technology, and financial services. Our team adapts proven methodologies to meet the unique challenges of each sector.',
+      },
+      {
+        title: 'How do you measure success and ROI?',
+        description: 'We establish clear, measurable objectives at the project outset and track progress using key performance indicators. Our clients typically see 15-40% improvements in profitability, with detailed reporting and analysis provided throughout the engagement.',
+      },
+      {
+        title: 'What makes your approach different?',
+        description: 'Our approach combines academic rigor with practical experience. Led by Dr. Mohamed Amria with 26+ years of expertise, we apply research-based methodologies while collaborating with U.S. experts to ensure global best practices.',
+      },
+      {
+        title: 'Do you provide training for internal teams?',
+        description: 'Absolutely. We believe in building internal capabilities to ensure sustainable results. Our training programs cover financial analysis, profit management techniques, and strategic decision-making to empower your team long after our engagement ends.',
+      },
+      {
+        title: 'How quickly can we expect to see results?',
+        description: 'While comprehensive transformation takes time, many clients see initial improvements within 30-60 days. We focus on quick wins early in the engagement while building the foundation for long-term sustainable profit growth.',
+      },
+      {
+        title: 'What information do you need to get started?',
+        description: 'We typically require access to financial statements, operational data, and key performance metrics. During our initial consultation, we\'ll discuss specific data requirements and ensure confidentiality through appropriate agreements.',
+      },
+      {
+        title: 'How do we begin working together?',
+        description: 'Contact us for an initial consultation where we\'ll discuss your challenges and objectives. We\'ll then provide a customized proposal outlining our approach, timeline, and expected outcomes tailored to your specific needs.',
+      },
+    ]}
+    />
+  </div>
 
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">How long does TAKAI film last?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            TAKAI Premium films come with a <strong>10-year warranty</strong>, while TAKAI Premium Plus carries a <strong>15-year warranty</strong>. These warranties cover yellowing, cracking, bubbling, and peeling — ensuring your investment remains visually flawless.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">Does installation require removing car parts?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            No. TAKAI films are designed for <strong>precision fit without disassembly</strong>. Our advanced templates and edge-wrapping techniques keep factory sensors, trims, and seals intact — preserving both aesthetics and manufacturer warranty.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">Can the film repair itself from scratches?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            Yes. Minor swirls and micro-scratches <strong>self-heal under sunlight or gentle heat</strong>, thanks to TAKAI's nanotechnology-infused top-coat. Your car maintains a fresh, high-gloss finish year after year.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">What's the difference between TAKAI Premium and TAKAI Premium Plus?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            <strong>TAKAI Premium:</strong> Ideal for daily-driven vehicles seeking gloss and impact resistance.<br/>
-            <strong>TAKAI Premium Plus:</strong> A next-generation film designed for <strong>electric and high-performance cars</strong>, offering superior heat rejection and enhanced elasticity for complex curves.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">How should I care for the film after installation?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            You can wash your car normally after 7 days. Use neutral pH car shampoo and soft microfiber towels. Avoid harsh chemicals or automatic brushes. TAKAI films are compatible with ceramic coatings for added ease of maintenance.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">Can TAKAI film be removed or replaced later?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            Yes — professional installers can remove it without leaving residue or damaging the paint. This makes it ideal for leased vehicles or resale preparation.
-          </p>
-        </details>
-
-        <details class="py-6 group">
-          <summary class="text-xl font-semibold text-takai-blue cursor-pointer hover:text-takai-gold">Where can I install TAKAI products?</summary>
-          <p class="mt-2 text-gray-700 leading-relaxed">
-            TAKAI films are installed exclusively by <strong>authorized partners</strong> trained to Japanese standards. Visit the "Find Installer" section to locate your nearest certified workshop.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
 </Layout>

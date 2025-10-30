@@ -1,0 +1,280 @@
+---
+import RTLLayout from '~/layouts/RTLLayout.astro';
+import Features from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import { useTranslations } from '~/utils/i18n';
+
+const t = useTranslations('ar');
+
+const metadata = {
+  title: 'من نحن - إدارة الربح للاستشارات والتدريب',
+  description: 'تعرف على فريقنا وخبرتنا في إدارة الربحية والاستشارات المالية. بقيادة الدكتور محمد عمرية مع أكثر من 26 عامًا من الخبرة.',
+  canonical: '/ar/about',
+};
+---
+
+<RTLLayout metadata={metadata}>
+
+  <!-- Leadership -->
+  <section class="pt-32 pb-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('about.leadership')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          بقيادة الدكتور محمد عمرية، رائد إدارة الربح في الشرق الأوسط مع أكثر من 26 عامًا من الخبرة العملية في الصناعة.
+        </p>
+      </div>
+
+      <!-- Dr. Mohamed Amria Profile -->
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div class="grid md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-1">
+              <div class="w-48 h-56 mx-auto rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/images/team/Dr_mohame_amria.png" 
+                  alt="الدكتور محمد عمرية - المؤسس والمدير العام"
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="md:col-span-2">
+              <h3 class="text-2xl md:text-3xl font-bold text-profit-navy font-heading mb-2">الدكتور محمد عمرية</h3>
+              <p class="text-profit-gold font-semibold text-lg mb-4">المؤسس والمدير العام</p>
+              <p class="text-profit-text font-body mb-6 leading-relaxed">
+                دكتوراه في المراجعة وكشف الاحتيال من جامعة عين شمس، ماجستير في التكلفة المستهدفة والنماذج الإحصائية المتكاملة. 
+                أكثر من 26 عامًا في إدارة الربحية عبر القطاعات الصناعية والخدمية في جميع أنحاء الشرق الأوسط.
+              </p>
+              
+              <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-profit-light p-4 rounded-lg">
+                  <h4 class="font-semibold text-profit-navy font-heading mb-2">التميز الأكاديمي</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1 leading-relaxed">
+                    <li>• دكتوراه المراجعة وكشف الاحتيال</li>
+                    <li>• ماجستير التكلفة المستهدفة</li>
+                    <li>• خبير النماذج الإحصائية</li>
+                  </ul>
+                </div>
+                <div class="bg-profit-light p-4 rounded-lg">
+                  <h4 class="font-semibold text-profit-navy font-heading mb-2">التأثير الصناعي</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1 leading-relaxed">
+                    <li>• أكثر من 60 قطاعًا</li>
+                    <li>• أكثر من 200 شركة</li>
+                    <li>• قيادة الشرق الأوسط</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Expertise -->
+  <Features
+    title={t('about.teamExpertise')}
+    subtitle="متخصصون متعددو التخصصات بمعرفة متخصصة عبر المالية والعمليات والإدارة الاستراتيجية."
+    columns={3}
+    classes={{
+      title: 'text-profit-navy font-heading',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'حملة الدكتوراه',
+        description: 'مؤهلات أكاديمية متقدمة في المحاسبة والمالية والمراجعة وإدارة الأعمال من الجامعات الرائدة.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'محاسبون معتمدون',
+        description: 'شهادات مهنية وتعليم مستمر في معايير المحاسبة والتحليل المالي والامتثال التنظيمي.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'متخصصون في الصناعة',
+        description: 'خبرة قطاعية عميقة عبر التصنيع والرعاية الصحية وتجهيز الأغذية والعقارات وصناعات الخدمات.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'استشاريو ERP',
+        description: 'خبرة تقنية في أنظمة تخطيط موارد المؤسسة والتحول الرقمي وأتمتة العمليات.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'محللون ماليون',
+        description: 'مهارات متقدمة في النمذجة المالية وتحليل التكلفة وتخطيط الميزانية وأنظمة قياس الأداء.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'متخصصو التدريب',
+        description: 'خبراء التطوير المهني الذين يبنون القدرات الداخلية وينقلون المعرفة بفعالية.',
+        icon: 'tabler:users',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Global Collaboration -->
+  <Content
+    title={t('about.globalStandards')}
+    tagline="التميز الدولي"
+    subtitle="يتعاون فريقنا مع خبراء أمريكيين لضمان أفضل الممارسات العالمية مع الحفاظ على فهم عميق لديناميكيات السوق الإقليمية وثقافة الأعمال."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'شبكة الخبراء الأمريكيين',
+        description: 'تعاون منتظم مع المهنيين الاستشاريين الأمريكيين والمؤسسات الأكاديمية لتبادل المعرفة.',
+      },
+      {
+        title: 'المعايير الدولية',
+        description: 'تطبيق أفضل الممارسات العالمية في الإدارة المالية والمراجعة وتحسين العمليات التجارية.',
+      },
+      {
+        title: 'التعلم المستمر',
+        description: 'التطوير المهني المستمر من خلال المؤتمرات الدولية والشهادات والشراكات البحثية.',
+      },
+      {
+        title: 'التكيف الثقافي',
+        description: 'القدرة على تكييف المنهجيات العالمية مع ثقافات الأعمال المحلية والبيئات التنظيمية.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/global-collaboration.webp',
+      alt: 'التعاون الدولي وتبادل المعرفة في الاستشارات',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Team Values -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('about.ourValues')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          المبادئ التي توجه عملنا وتحدد التزامنا بنجاح العملاء والتميز المهني.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:target" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.precision')}</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">يتم تنفيذ كل تحليل وتوصية وتطبيق بعناية دقيقة للتفاصيل.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:shield-check" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.integrity')}</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">التواصل الصادق والشفاف والممارسات التجارية الأخلاقية في جميع علاقات العملاء.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:bulb" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.innovation')}</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">التحسين المستمر للمنهجيات واعتماد التقنيات الجديدة لتحقيق نتائج أفضل.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.partnership')}</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">علاقات تعاونية طويلة المدى تركز على النجاح المستدام والنمو المتبادل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Development -->
+  <Content
+    isReversed
+    title="التطوير المهني المستمر"
+    tagline="التميز من خلال التعلم"
+    subtitle="نستثمر باستمرار في التدريب لدمج التميز الأكاديمي مع البصيرة الصناعية العملية، مما يضمن بقاء فريقنا في المقدمة في ابتكار إدارة الربح."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+    items={[
+      {
+        title: 'الشهادات المتقدمة',
+        description: 'السعي المنتظم للحصول على شهادات مهنية في المحاسبة والمراجعة وأنظمة ERP والاستشارات الإدارية.',
+      },
+      {
+        title: 'البحث والتطوير',
+        description: 'المشاركة النشطة في البحث الأكاديمي وتطوير منهجيات جديدة لإدارة الربح.',
+      },
+      {
+        title: 'المؤتمرات الصناعية',
+        description: 'الحضور المنتظم للمؤتمرات الدولية للبقاء على اطلاع بالاتجاهات العالمية وأفضل الممارسات.',
+      },
+      {
+        title: 'تبادل المعرفة',
+        description: 'برامج التدريب الداخلي وجلسات تبادل المعرفة لضمان تطوير الخبرة على مستوى الفريق.',
+      },
+    ]}
+    classes={{
+      items: {
+        title: 'text-profit-navy font-semibold',
+        description: 'text-profit-text font-body'
+      }
+    }}
+    image={{
+      src: '/images/professional-development.webp',
+      alt: 'التعلم المستمر والتطوير المهني في الاستشارات',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="اعمل مع فريقنا الخبير"
+    subtitle="اختبر الفرق الذي يأتي من العمل مع محترفين متمرسين يجمعون بين الدقة الأكاديمية والخبرة العملية."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'تعرف على فريقنا',
+        href: '/ar/contact',
+        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
+      },
+      {
+        text: 'تعلم عن منهجيتنا',
+        href: '/ar/about',
+      },
+    ]}
+  />
+</RTLLayout>

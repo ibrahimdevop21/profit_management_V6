@@ -1,194 +1,132 @@
 ---
+// Updated mobile navigation - Oct 30, 2025
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations, getAlternateLanguage } from '~/utils/i18n';
+import MobileNavigation from '~/components/MobileNavigation.astro';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
+const url = new URL(Astro.request.url);
+const currentLang = getLangFromUrl(url);
+const t = useTranslations(currentLang);
+const alternateLang = getAlternateLanguage(currentLang);
+
+// Language switcher shows TARGET language (not current)
+const targetLangDisplay = alternateLang === 'ar' 
+  ? { flag: '🇪🇬', text: 'العربية', code: 'AR' }
+  : { flag: '🇬🇧', text: 'English', code: 'EN' };
+
+// Generate alternate URL
+const alternateUrl = alternateLang === 'en' 
+  ? currentPath.replace('/ar', '') || '/'
+  : '/ar' + currentPath;
 ---
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[#ffffff] via-[#faedc6] to-[#ffffff] bg-[length:200%_200%] animate-gradientSlide bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-b border-[#E9D8A6]/50">
+<nav class="fixed top-0 left-0 w-full z-50 bg-charcoal shadow-premium-sm border-b border-gray-light/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       
       <!-- Logo Section -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-3">
+        <a href="/" class="flex items-center">
           <img 
             src="/profit-horizintal.svg" 
             alt="Profit Management Logo" 
             class="h-8 w-auto"
           />
-          <span class="text-xl font-bold text-[#0D3B66] hidden sm:block">
-            Profit Management
-          </span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <ul class="flex items-center space-x-8 font-medium text-[#0D3B66]">
-          
+      <div class="hidden md:flex items-center justify-center flex-1">
+        <ul class="flex items-center space-x-8 font-medium text-white">
           <!-- Home -->
           <li>
             <a 
-              href="/" 
-              class={`hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg ${
-                currentPath === '/' ? 'text-[#C9A227] font-semibold' : ''
+              href={currentLang === 'ar' ? '/ar' : '/'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/' || currentPath === '/ar' ? 'text-gold font-semibold' : 'text-white'
               }`}
             >
-              Home
+              {t('nav.home')}
             </a>
           </li>
 
           <!-- About -->
           <li>
             <a 
-              href="/about" 
-              class={`hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg ${
-                currentPath === '/about' ? 'text-[#C9A227] font-semibold' : ''
+              href={currentLang === 'ar' ? '/ar/about' : '/about'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/about' || currentPath === '/ar/about' ? 'text-gold font-semibold' : 'text-white'
               }`}
             >
-              About
+              {t('nav.about')}
             </a>
           </li>
 
-          <!-- Services Dropdown -->
-          <li class="relative">
-            <button 
-              id="servicesDropdownButton" 
-              data-dropdown-toggle="servicesDropdown" 
-              class="flex items-center hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg"
-              type="button"
+          <!-- Services -->
+          <li>
+            <a 
+              href={currentLang === 'ar' ? '/ar/services' : '/services'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/services' || currentPath === '/ar/services' ? 'text-gold font-semibold' : 'text-white'
+              }`}
             >
-              Services
-              <Icon name="tabler:chevron-down" class="w-4 h-4 ml-1" />
-            </button>
-            
-            <!-- Services Dropdown Menu -->
-            <div 
-              id="servicesDropdown" 
-              class="z-10 hidden bg-white rounded-lg shadow-lg divide-y divide-gray-100 w-64"
-            >
-              <ul class="py-2 text-sm text-[#0D3B66]">
-                <li>
-                  <a 
-                    href="/services#profit-growth" 
-                    class="block px-4 py-3 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                  >
-                    <div class="font-medium">Corporate Profit Growth</div>
-                    <div class="text-xs text-gray-500 mt-1">Strategic profitability analysis</div>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services#transformation" 
-                    class="block px-4 py-3 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                  >
-                    <div class="font-medium">Business Transformation</div>
-                    <div class="text-xs text-gray-500 mt-1">Operational excellence programs</div>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services#decision-support" 
-                    class="block px-4 py-3 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                  >
-                    <div class="font-medium">Strategic Decision Support</div>
-                    <div class="text-xs text-gray-500 mt-1">Data-driven insights</div>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services#training" 
-                    class="block px-4 py-3 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                  >
-                    <div class="font-medium">Training & Development</div>
-                    <div class="text-xs text-gray-500 mt-1">Professional skill enhancement</div>
-                  </a>
-                </li>
-              </ul>
-            </div>
+              {t('nav.services')}
+            </a>
           </li>
 
           <!-- Industries -->
           <li>
             <a 
-              href="/industries" 
-              class={`hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg ${
-                currentPath === '/industries' ? 'text-[#C9A227] font-semibold' : ''
+              href={currentLang === 'ar' ? '/ar/industries' : '/industries'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/industries' || currentPath === '/ar/industries' ? 'text-gold font-semibold' : 'text-white'
               }`}
             >
-              Industries
+              {t('nav.industries')}
             </a>
           </li>
 
           <!-- Why Choose Us -->
           <li>
             <a 
-              href="/why" 
-              class={`hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg ${
-                currentPath === '/why' ? 'text-[#C9A227] font-semibold' : ''
+              href={currentLang === 'ar' ? '/ar/why' : '/why'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/why' || currentPath === '/ar/why' ? 'text-gold font-semibold' : 'text-white'
               }`}
             >
-              Why Choose Us
+              {t('nav.why')}
             </a>
           </li>
 
           <!-- Contact -->
           <li>
             <a 
-              href="/contact" 
-              class={`hover:text-[#C9A227] transition-all duration-300 px-3 py-2 rounded-lg ${
-                currentPath === '/contact' ? 'text-[#C9A227] font-semibold' : ''
+              href={currentLang === 'ar' ? '/ar/contact' : '/contact'} 
+              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
+                currentPath === '/contact' || currentPath === '/ar/contact' ? 'text-gold font-semibold' : 'text-white'
               }`}
             >
-              Contact
+              {t('nav.contact')}
             </a>
           </li>
         </ul>
+      </div>
 
-        <!-- Language Dropdown -->
-        <div class="relative">
-          <button 
-            id="languageDropdownButton" 
-            data-dropdown-toggle="languageDropdown" 
-            class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/60 hover:bg-[#C9A227]/20 text-[#0D3B66] hover:text-[#C9A227] transition-all duration-300 border border-[#E9D8A6]/40"
-            type="button"
-          >
-            <Icon name="tabler:world" class="w-4 h-4" />
-            <span class="font-medium text-sm">EN</span>
-            <Icon name="tabler:chevron-down" class="w-3 h-3" />
-          </button>
-          
-          <!-- Language Dropdown Menu -->
-          <div 
-            id="languageDropdown" 
-            class="z-10 hidden bg-white rounded-lg shadow-lg divide-y divide-gray-100 w-32"
-          >
-            <ul class="py-2 text-sm text-[#0D3B66]">
-              <li>
-                <a 
-                  href="/" 
-                  class="flex items-center px-4 py-2 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                >
-                  <span class="mr-2">🇺🇸</span>
-                  English
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/ar" 
-                  class="flex items-center px-4 py-2 hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
-                >
-                  <span class="mr-2">🇪🇬</span>
-                  العربية
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <!-- Language Toggle -->
+      <div class="hidden md:flex">
+        <a 
+          href={alternateUrl}
+          class="flex items-center space-x-2 px-3 py-2 rounded-lg text-white hover:text-gold hover:bg-white/10 transition-all duration-300"
+          title={`Switch to ${targetLangDisplay.text}`}
+        >
+          <span class="text-base">{targetLangDisplay.flag}</span>
+          <span class="font-medium text-sm">{targetLangDisplay.code}</span>
+        </a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -196,194 +134,64 @@ const { currentPath = '/' } = Astro.props;
         <button 
           data-collapse-toggle="mobile-menu" 
           type="button" 
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-[#0D3B66] rounded-lg hover:bg-gray-100 hover:text-[#C9A227] transition-all duration-300"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-white rounded-lg hover:bg-white/10 hover:text-gold transition-all duration-300"
           aria-controls="mobile-menu" 
           aria-expanded="false"
+          id="mobile-menu-button"
         >
           <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
+          <div class="w-5 h-5 flex flex-col justify-center items-center">
+            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out"></span>
+            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out mt-1"></span>
+            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out mt-1"></span>
+          </div>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="hidden md:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-[#E9D8A6]/40">
-        
-        <!-- Mobile Navigation Links -->
-        <a 
-          href="/" 
-          class={`block px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300 ${
-            currentPath === '/' ? 'text-[#C9A227] font-semibold bg-gray-50' : ''
-          }`}
-        >
-          Home
-        </a>
-        
-        <a 
-          href="/about" 
-          class={`block px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300 ${
-            currentPath === '/about' ? 'text-[#C9A227] font-semibold bg-gray-50' : ''
-          }`}
-        >
-          About
-        </a>
-
-        <!-- Mobile Services Dropdown -->
-        <div class="relative">
-          <button 
-            data-dropdown-toggle="mobileServicesDropdown" 
-            class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300"
-            type="button"
-          >
-            Services
-            <Icon name="tabler:chevron-down" class="w-4 h-4" />
-          </button>
-          
-          <div 
-            id="mobileServicesDropdown" 
-            class="hidden mt-2 ml-4 space-y-1"
-          >
-            <a 
-              href="/services#profit-growth" 
-              class="block px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              Corporate Profit Growth
-            </a>
-            <a 
-              href="/services#transformation" 
-              class="block px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              Business Transformation
-            </a>
-            <a 
-              href="/services#decision-support" 
-              class="block px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              Strategic Decision Support
-            </a>
-            <a 
-              href="/services#training" 
-              class="block px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              Training & Development
-            </a>
-          </div>
-        </div>
-
-        <a 
-          href="/industries" 
-          class={`block px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300 ${
-            currentPath === '/industries' ? 'text-[#C9A227] font-semibold bg-gray-50' : ''
-          }`}
-        >
-          Industries
-        </a>
-        
-        <a 
-          href="/why" 
-          class={`block px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300 ${
-            currentPath === '/why' ? 'text-[#C9A227] font-semibold bg-gray-50' : ''
-          }`}
-        >
-          Why Choose Us
-        </a>
-        
-        <a 
-          href="/contact" 
-          class={`block px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300 ${
-            currentPath === '/contact' ? 'text-[#C9A227] font-semibold bg-gray-50' : ''
-          }`}
-        >
-          Contact
-        </a>
-
-        <!-- Mobile Language Dropdown -->
-        <div class="pt-2 border-t border-gray-200">
-          <button 
-            data-dropdown-toggle="mobileLanguageDropdown" 
-            class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 transition-all duration-300"
-            type="button"
-          >
-            <div class="flex items-center space-x-2">
-              <Icon name="tabler:world" class="w-4 h-4" />
-              <span>Language</span>
-            </div>
-            <Icon name="tabler:chevron-down" class="w-4 h-4" />
-          </button>
-          
-          <div 
-            id="mobileLanguageDropdown" 
-            class="hidden mt-2 ml-4 space-y-1"
-          >
-            <a 
-              href="/" 
-              class="flex items-center px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              <span class="mr-2">🇺🇸</span>
-              English
-            </a>
-            <a 
-              href="/ar" 
-              class="flex items-center px-3 py-2 text-sm text-[#0D3B66] hover:text-[#C9A227] hover:bg-gray-100 rounded-lg transition-all duration-300"
-            >
-              <span class="mr-2">🇪🇬</span>
-              العربية
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </nav>
 
+<!-- Mobile Navigation Component -->
+<MobileNavigation currentPath={currentPath} />
+
 <style>
-  @keyframes gradientSlide {
-    0% { 
-      background-position: 0% 50%; 
-    }
-    100% { 
-      background-position: 100% 50%; 
-    }
-  }
-  
-  .animate-gradientSlide {
-    animation: gradientSlide 18s ease-in-out infinite alternate;
+  /* Premium navbar styling */
+  nav {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
-  /* Ensure dropdowns appear above other content */
-  [data-dropdown-toggle] + div {
-    position: absolute;
-    top: 100%;
-    margin-top: 0.5rem;
-  }
-
-  /* Right-align language dropdown */
-  #languageDropdown {
-    right: 0;
-  }
-
-  /* Mobile dropdown positioning */
-  #mobileServicesDropdown,
-  #mobileLanguageDropdown {
-    position: static;
-    box-shadow: none;
-    background: transparent;
-    border: none;
-    margin-top: 0.5rem;
-  }
 
   /* Smooth transitions for all interactive elements */
   nav a,
   nav button {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 
-  /* Active link styling */
-  nav a.active {
-    color: #C9A227;
-    font-weight: 600;
+  /* Remove old active link styling - using dynamic classes instead */
+
+
+  /* Hover effects for desktop links */
+  @media (min-width: 768px) {
+    nav ul li a:hover {
+      transform: translateY(-1px);
+    }
   }
+
+  /* Hamburger menu animation */
+  .hamburger-active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+
+  .hamburger-active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .hamburger-active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
 </style>
+

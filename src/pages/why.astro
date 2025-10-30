@@ -12,166 +12,268 @@ import { PAGE_METADATA } from '~/utils/metadata';
 <Layout metadata={PAGE_METADATA.why}>
 
   <!-- Key Differentiators -->
-  <Features
-    title="What Sets Us Apart"
-    subtitle="Our unique combination of academic excellence, practical experience, and proven methodologies delivers results that last."
-    columns={3}
-    classes={{
-      title: 'text-profit-navy font-heading',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: '26+ Years Experience',
-        description: 'Led by Dr. Mohamed Amria with over two decades of hands-on experience in profit management across the Middle East.',
-        icon: 'tabler:calendar-stats',
-      },
-      {
-        title: '60+ Industries Served',
-        description: 'Proven methodologies adapted to diverse sectors from pharmaceuticals to manufacturing, real estate to food processing.',
-        icon: 'tabler:building',
-      },
-      {
-        title: 'Academic Excellence',
-        description: 'PhD-level expertise in auditing, fraud detection, and target costing with continuous research and development.',
-        icon: 'tabler:school',
-      },
-      {
-        title: 'Global Standards',
-        description: 'Collaboration with U.S. experts ensures international best practices while maintaining local market insight.',
-        icon: 'tabler:world',
-      },
-      {
-        title: 'Measurable Results',
-        description: 'Average 25% profit increase with comprehensive tracking and performance monitoring throughout engagements.',
-        icon: 'tabler:trending-up',
-      },
-      {
-        title: 'Sustainable Solutions',
-        description: 'Build internal capabilities so profitability becomes a sustained competitive advantage, not a temporary improvement.',
-        icon: 'tabler:plant',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white"></div>
-    </Fragment>
-  </Features>
+  <section class="relative pt-32 pb-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-[#C9A227]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h1 class="text-5xl md:text-6xl font-bold text-profit-navy font-heading mb-8 leading-tight">
+          What Sets Us <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Apart</span>
+        </h1>
+        <p class="text-2xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          Our unique combination of academic excellence, practical experience, and proven methodologies delivers results that last.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 26+ Years Experience -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:calendar-stats" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">26+ Years Experience</h3>
+            <p class="text-profit-text font-body leading-relaxed">Led by Dr. Mohamed Amria with over two decades of hands-on experience in profit management across the Middle East.</p>
+          </div>
+        </div>
+
+        <!-- 60+ Industries Served -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:building" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">60+ Industries Served</h3>
+            <p class="text-profit-text font-body leading-relaxed">Proven methodologies adapted to diverse sectors from pharmaceuticals to manufacturing, real estate to food processing.</p>
+          </div>
+        </div>
+
+        <!-- Academic Excellence -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:school" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">Academic Excellence</h3>
+            <p class="text-profit-text font-body leading-relaxed">PhD-level expertise in auditing, fraud detection, and target costing with continuous research and development.</p>
+          </div>
+        </div>
+
+        <!-- Global Standards -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:world" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">Global Standards</h3>
+            <p class="text-profit-text font-body leading-relaxed">Collaboration with U.S. experts ensures international best practices while maintaining local market insight.</p>
+          </div>
+        </div>
+
+        <!-- Measurable Results -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:trending-up" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">Measurable Results</h3>
+            <p class="text-profit-text font-body leading-relaxed">Average 25% profit increase with comprehensive tracking and performance monitoring throughout engagements.</p>
+          </div>
+        </div>
+
+        <!-- Sustainable Solutions -->
+        <div class="group relative bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:plant" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">Sustainable Solutions</h3>
+            <p class="text-profit-text font-body leading-relaxed">Build internal capabilities so profitability becomes a sustained competitive advantage, not a temporary improvement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Common Business Challenges -->
-  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">When Your Business Faces</h2>
-        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
+  <section class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-[#C9A227]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight">When Your Business <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Faces</span></h2>
+        <p class="text-xl text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
           We are the partner of choice when your business encounters these critical challenges that impact long-term profitability and growth.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div class="group bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
             <Icon name="tabler:trending-down" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Rising Revenues, Shrinking Margins</h3>
-          <p class="text-profit-text font-body text-sm">Sales are growing but profits are declining due to hidden costs and inefficiencies.</p>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">Rising Revenues, Shrinking Margins</h3>
+          <p class="text-profit-text font-body leading-relaxed">Sales are growing but profits are declining due to hidden costs and inefficiencies.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div class="group bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
             <Icon name="tabler:question-mark" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Lack of Real-Time Data</h3>
-          <p class="text-profit-text font-body text-sm">Critical business decisions made without comprehensive financial visibility and insights.</p>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">Lack of Real-Time Data</h3>
+          <p class="text-profit-text font-body leading-relaxed">Critical business decisions made without comprehensive financial visibility and insights.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div class="group bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
             <Icon name="tabler:coins" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">High Operational Costs</h3>
-          <p class="text-profit-text font-body text-sm">Operational expenses consuming profits with low efficiency and unclear cost structures.</p>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">High Operational Costs</h3>
+          <p class="text-profit-text font-body leading-relaxed">Operational expenses consuming profits with low efficiency and unclear cost structures.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div class="group bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
             <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Skills Gaps</h3>
-          <p class="text-profit-text font-body text-sm">Internal team lacks advanced financial management and ERP system expertise.</p>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">Skills Gaps</h3>
+          <p class="text-profit-text font-body leading-relaxed">Internal team lacks advanced financial management and ERP system expertise.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Our Promise -->
-  <Content
-    isReversed
-    title="Our Promise"
-    tagline="Guaranteed Results"
-    subtitle="We diagnose root causes, implement data-driven solutions, and build internal capability so profitability becomes a sustained result—not a temporary win."
-    classes={{
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: 'Comprehensive Analysis',
-        description: 'Deep dive into your financial performance, operational processes, and market position to identify all profit leakage points.',
-      },
-      {
-        title: 'Tailored Solutions',
-        description: 'Custom methodologies designed for your specific industry, company size, and organizational culture.',
-      },
-      {
-        title: 'Knowledge Transfer',
-        description: 'Extensive training and capability building so your team can maintain and improve results independently.',
-      },
-      {
-        title: 'Ongoing Support',
-        description: 'Continued guidance during implementation and transition periods to ensure sustainable success.',
-      },
-    ]}
-    classes={{
-      items: {
-        title: 'text-profit-navy font-semibold',
-        description: 'text-profit-text font-body'
-      }
-    }}
-    image={{
-      src: '/images/our-promise.webp',
-      alt: 'Professional commitment to sustainable profit growth and business success',
-      width: 800,
-      height: 600,
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Content>
+  <section class="relative py-24 bg-gradient-to-b from-white via-blue-50/30 to-white ">
+    <div class="absolute top-0 right-1/4 w-64 h-64 bg-gradient-to-r from-[#C9A227]/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Content Side -->
+        <div class="order-2 lg:order-1">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#C9A227]/20 to-amber-600/20 rounded-full mb-6">
+            <span class="text-sm font-bold text-[#C9A227] uppercase tracking-wide">Guaranteed Results</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight">
+            Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Promise</span>
+          </h2>
+          <p class="text-xl text-profit-text font-body mb-10 leading-relaxed">
+            We diagnose root causes, implement data-driven solutions, and build internal capability so profitability becomes a sustained result—not a temporary win.
+          </p>
+
+          <div class="space-y-6">
+            <!-- Comprehensive Analysis -->
+            <div class="group flex gap-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-white/30 transition-all duration-500 hover:scale-105">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+                  <Icon name="tabler:chart-dots" class="w-6 h-6 text-white stroke-[1.5]" />
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-profit-navy font-heading mb-2 group-hover:text-[#C9A227] transition-colors duration-300">Comprehensive Analysis</h3>
+                <p class="text-profit-text font-body leading-relaxed">Deep dive into your financial performance, operational processes, and market position to identify all profit leakage points.</p>
+              </div>
+            </div>
+
+            <!-- Tailored Solutions -->
+            <div class="group flex gap-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-white/30 transition-all duration-500 hover:scale-105">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+                  <Icon name="tabler:settings" class="w-6 h-6 text-white stroke-[1.5]" />
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-profit-navy font-heading mb-2 group-hover:text-[#C9A227] transition-colors duration-300">Tailored Solutions</h3>
+                <p class="text-profit-text font-body leading-relaxed">Custom methodologies designed for your specific industry, company size, and organizational culture.</p>
+              </div>
+            </div>
+
+            <!-- Knowledge Transfer -->
+            <div class="group flex gap-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-white/30 transition-all duration-500 hover:scale-105">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+                  <Icon name="tabler:bulb" class="w-6 h-6 text-white stroke-[1.5]" />
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-profit-navy font-heading mb-2 group-hover:text-[#C9A227] transition-colors duration-300">Knowledge Transfer</h3>
+                <p class="text-profit-text font-body leading-relaxed">Extensive training and capability building so your team can maintain and improve results independently.</p>
+              </div>
+            </div>
+
+            <!-- Ongoing Support -->
+            <div class="group flex gap-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-white/30 transition-all duration-500 hover:scale-105">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+                  <Icon name="tabler:headset" class="w-6 h-6 text-white stroke-[1.5]" />
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-profit-navy font-heading mb-2 group-hover:text-[#C9A227] transition-colors duration-300">Ongoing Support</h3>
+                <p class="text-profit-text font-body leading-relaxed">Continued guidance during implementation and transition periods to ensure sustainable success.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Side -->
+        <div class="order-1 lg:order-2">
+          <div class="relative group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#C9A227]/20 to-profit-navy/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+            <div class="relative bg-white rounded-3xl p-4 shadow-2xl border border-white/30">
+              <img 
+                src="/images/our-promise.webp" 
+                alt="Professional commitment to sustainable profit growth and business success"
+                class="w-full h-auto rounded-2xl shadow-xl"
+                width="800"
+                height="600"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Methodology -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Our 11-Point Methodology</h2>
-        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto">
-          Profit Management applies 11 core mechanisms—from cost control to ERP integration—built around one principle: <strong>Profit as Precision</strong>.
+  <section class="relative py-24 bg-gradient-to-b from-white via-blue-50/30 to-white ">
+    <div class="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-r from-[#C9A227]/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">11-Point</span> Methodology</h2>
+        <p class="text-xl text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          Profit Management applies 11 core mechanisms—from cost control to ERP integration—built around one principle: <strong class="text-profit-navy">Profit as Precision</strong>.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[
-          'Financial Analysis', 'Cost Control', 'Budget Management', 'Performance Monitoring',
-          'ERP Integration', 'Process Optimization', 'Resource Allocation', 'Risk Assessment',
-          'Strategic Planning', 'Training & Development', 'Continuous Improvement'
+          { name: 'Financial Analysis', icon: 'tabler:chart-line' },
+          { name: 'Cost Control', icon: 'tabler:coin' },
+          { name: 'Budget Management', icon: 'tabler:calculator' },
+          { name: 'Performance Monitoring', icon: 'tabler:dashboard' },
+          { name: 'ERP Integration', icon: 'tabler:plug-connected' },
+          { name: 'Process Optimization', icon: 'tabler:settings' },
+          { name: 'Resource Allocation', icon: 'tabler:users-group' },
+          { name: 'Risk Assessment', icon: 'tabler:shield-check' },
+          { name: 'Strategic Planning', icon: 'tabler:target' },
+          { name: 'Training & Development', icon: 'tabler:certificate' },
+          { name: 'Continuous Improvement', icon: 'tabler:refresh' }
         ].map((item, index) => (
-          <div class="bg-gradient-to-br from-profit-navy/5 to-profit-gold/5 p-6 rounded-xl text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-white font-bold text-lg">{index + 1}</span>
+          <div class="group bg-white p-6 rounded-2xl text-center shadow-lg hover:shadow-2xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+            <div class="w-14 h-14 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-md">
+              <Icon name={item.icon} class="w-7 h-7 text-white stroke-[1.5]" />
             </div>
-            <h3 class="text-sm font-semibold text-profit-navy font-heading">{item}</h3>
+            <h3 class="text-sm font-bold text-profit-navy font-heading group-hover:text-[#C9A227] transition-colors duration-300">{item.name}</h3>
           </div>
         ))}
       </div>
@@ -179,35 +281,104 @@ import { PAGE_METADATA } from '~/utils/metadata';
   </section>
 
   <!-- Stats -->
-  <Stats
-    isDark={false}
-    stats={[
-      { title: 'Average Profit Increase', amount: '25%' },
-      { title: 'Client Retention Rate', amount: '94%' },
-      { title: 'Industries Served', amount: '60+' },
-      { title: 'Years of Experience', amount: '26+' },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Stats>
+  <section class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-[#C9A227]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-5xl md:text-6xl font-bold text-profit-navy font-heading mb-8 leading-tight">
+          Proven <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Results</span>
+        </h2>
+        <p class="text-2xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          Numbers that speak louder than words. Our track record of success.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Average Profit Increase -->
+        <div class="group relative bg-white rounded-3xl p-8 text-center shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:trending-up" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <div class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600 mb-3">25%</div>
+            <h3 class="text-lg font-bold text-profit-navy font-heading group-hover:text-[#C9A227] transition-colors duration-300">Average Profit Increase</h3>
+          </div>
+        </div>
+
+        <!-- Client Retention Rate -->
+        <div class="group relative bg-white rounded-3xl p-8 text-center shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:heart-handshake" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <div class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600 mb-3">94%</div>
+            <h3 class="text-lg font-bold text-profit-navy font-heading group-hover:text-[#C9A227] transition-colors duration-300">Client Retention Rate</h3>
+          </div>
+        </div>
+
+        <!-- Industries Served -->
+        <div class="group relative bg-white rounded-3xl p-8 text-center shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:building-community" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <div class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600 mb-3">60+</div>
+            <h3 class="text-lg font-bold text-profit-navy font-heading group-hover:text-[#C9A227] transition-colors duration-300">Industries Served</h3>
+          </div>
+        </div>
+
+        <!-- Years of Experience -->
+        <div class="group relative bg-white rounded-3xl p-8 text-center shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+              <Icon name="tabler:award" class="w-8 h-8 text-white stroke-[1.5]" />
+            </div>
+            <div class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600 mb-3">26+</div>
+            <h3 class="text-lg font-bold text-profit-navy font-heading group-hover:text-[#C9A227] transition-colors duration-300">Years of Experience</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Call to Action -->
-  <CallToAction
-    title="Ready to Experience the Difference?"
-    subtitle="Join hundreds of successful companies who have transformed their profitability with our proven methodologies and expert guidance."
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Book a Consultation',
-        href: '/contact',
-        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
-      },
-      {
-        text: 'Learn About Our Team',
-        href: '/team',
-      },
-    ]}
-  />
+  <section class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#C9A227]/10 to-profit-navy/10 rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+      <div class="bg-white rounded-3xl p-12 md:p-16 shadow-2xl border border-white/30">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight">
+          Ready to Experience the <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Difference?</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body mb-10 max-w-3xl mx-auto leading-relaxed">
+          Join hundreds of successful companies who have transformed their profitability with our proven methodologies and expert guidance.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="/contact" 
+            class="group relative bg-gradient-to-r from-[#C9A227] via-amber-500 to-[#C9A227] bg-size-200 hover:bg-pos-100 text-white font-bold px-10 py-4 rounded-xl shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 "
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <Icon name="tabler:calendar" class="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <span class="relative z-10">Book a Consultation</span>
+          </a>
+          
+          <a 
+            href="/about" 
+            class="group bg-white/80 hover:bg-white text-profit-navy font-semibold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl border border-gray-200 hover:border-[#C9A227] transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
+          >
+            <Icon name="tabler:users" class="w-6 h-6 group-hover:text-[#C9A227] transition-colors duration-300" />
+            <span>Learn About Our Team</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

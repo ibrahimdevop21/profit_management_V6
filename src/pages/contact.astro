@@ -1,224 +1,383 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Content from '~/components/widgets/Content.astro';
 import { Icon } from 'astro-icon/components';
 import { PAGE_METADATA } from '~/utils/metadata';
 ---
 
 <Layout metadata={PAGE_METADATA.contact}>
 
-  <!-- Contact Form Section -->
-  <section id="contact-form" class="py-20 bg-gradient-to-br from-profit-light to-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Get Started Today</h2>
-        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto">
-          Tell us about your business challenges and goals. We'll respond within 24 hours with a customized consultation plan.
+  <!-- Contact Form & FAQ Section -->
+  <section id="contact-form" class="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-amber-50 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-profit-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl md:text-6xl font-bold text-profit-navy font-heading mb-8 leading-tight">
+          Get Started <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">Today</span>
+        </h2>
+        <p class="text-2xl text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          Tell us about your business challenges and goals. We'll respond within 24 hours with a 
+          <span class="font-semibold text-profit-navy">customized consultation plan</span>.
         </p>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-        <form class="space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
+      <!-- Form and FAQ Grid -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        
+        <!-- Contact Form -->
+        <div class="group bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl hover:shadow-3xl p-8 md:p-12 h-fit border border-white/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2">
+          <div class="flex items-center mb-6">
+            <div class="w-8 h-8 bg-gradient-to-r from-profit-gold to-amber-500 rounded-xl flex items-center justify-center mr-3 group-hover:rotate-6 transition-transform duration-300">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </div>
             <div>
-              <label for="name" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Full Name *</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
+              <h3 class="text-lg font-bold text-profit-navy font-heading">Contact Form</h3>
+              <p class="text-xs text-profit-text">Quick & Easy</p>
+            </div>
+          </div>
+          <form class="space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Full Name *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+                  placeholder="Your full name"
+                >
+              </div>
+              <div>
+                <label for="company" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Company *</label>
+                <input 
+                  type="text" 
+                  id="company" 
+                  name="company" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+                  placeholder="Your company name"
+                >
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+                  placeholder="your@email.com"
+                >
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Phone Number</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone"
+                  class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+                  placeholder="+20 xxx xxx xxxx"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="industry" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Industry</label>
+              <select 
+                id="industry" 
+                name="industry"
+                class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+              >
+                <option value="">Select your industry</option>
+                <option value="medical">Medical & Pharmaceuticals</option>
+                <option value="food">Food & Agriculture</option>
+                <option value="manufacturing">Manufacturing & Engineering</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="technology">Technology & Innovation</option>
+                <option value="services">Service Industries</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="service" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Service Interest</label>
+              <select 
+                id="service" 
+                name="service"
+                class="w-full px-4 py-3 border border-gray-200/50 rounded-xl focus:border-[#C9A227] focus:ring-4 focus:ring-[#C9A227]/20 focus:outline-none transition-all duration-300 bg-white/30 hover:bg-white/50 hover:shadow-md"
+              >
+                <option value="">Select service of interest</option>
+                <option value="profit-growth">Corporate Profit Growth</option>
+                <option value="transformation">Business Transformation</option>
+                <option value="strategic-support">Strategic Decision Support</option>
+                <option value="training">Training & Development</option>
+                <option value="consultation">General Consultation</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Message *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="6" 
                 required
-                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-                placeholder="Your full name"
+                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors resize-vertical"
+                placeholder="Tell us about your business challenges, goals, and how we can help you achieve sustainable profit growth..."
+              ></textarea>
+            </div>
+
+            <div class="text-center">
+              <button 
+                type="submit"
+                class="relative bg-gradient-to-r from-[#C9A227] via-amber-500 to-[#C9A227] bg-size-200 hover:bg-pos-100 text-white font-bold px-10 py-4 rounded-xl shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 overflow-hidden group"
               >
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <svg class="w-5 h-5 relative z-10 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <span class="relative z-10">Send Message</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="group bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl hover:shadow-3xl p-8 md:p-12 h-fit border border-white/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2">
+          <div class="flex items-center mb-6">
+            <div class="w-8 h-8 bg-gradient-to-r from-profit-navy to-blue-600 rounded-xl flex items-center justify-center mr-3 group-hover:rotate-6 transition-transform duration-300">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
             </div>
             <div>
-              <label for="company" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Company *</label>
-              <input 
-                type="text" 
-                id="company" 
-                name="company" 
-                required
-                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-                placeholder="Your company name"
-              >
+              <h3 class="text-lg font-bold text-profit-navy font-heading">Frequently Asked Questions</h3>
+              <p class="text-xs text-profit-text">Everything you need to know</p>
             </div>
           </div>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="email" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Email Address *</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                required
-                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-                placeholder="your@email.com"
-              >
-            </div>
-            <div>
-              <label for="phone" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone"
-                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-                placeholder="+20 xxx xxx xxxx"
-              >
-            </div>
+          
+          <div class="accordion-container space-y-2 mt-4">
+            {[
+              {
+                title: 'What makes us different from other consulting firms?',
+                description:
+                  "We combine 26 years of hands-on experience with advanced profit management methodologies. Our approach focuses on sustainable capability building with proven results across 60+ industries.",
+              },
+              {
+                title: 'How long does a typical engagement take?',
+                description:
+                  'Engagements typically range from 3-12 months depending on scope and complexity. We use phased approaches with measurable milestones, ensuring early results while building long-term capabilities.',
+              },
+              {
+                title: 'Will consulting disrupt our operations?',
+                description:
+                  "No. Our methodologies integrate seamlessly with existing operations. We work alongside your team to implement improvements without disrupting critical functions.",
+              },
+              {
+                title: 'What results can we expect?',
+                description:
+                  "Clients typically see 15-30% improvement in profit margins within the first year. Results include enhanced cost control, improved efficiency, and sustainable growth systems.",
+              },
+              {
+                title: 'Do you work with companies in our industry?',
+                description:
+                  "Yes! We have successfully served clients across 60+ industries including medical, food & agriculture, manufacturing, real estate, and engineering sectors.",
+              },
+              {
+                title: 'How do we maintain improvements long-term?',
+                description:
+                  "We build internal capabilities through comprehensive training, establish robust systems, and provide ongoing support during transition periods.",
+              },
+              {
+                title: 'What is your pricing structure?',
+                description:
+                  "Our pricing is project-based and depends on scope, duration, and complexity. We provide transparent quotes after initial consultation with no hidden fees.",
+              },
+              {
+                title: 'Do you offer training programs?',
+                description:
+                  "Yes! We provide comprehensive training programs for finance teams, managers, and executives on profit management, cost control, and financial analysis.",
+              },
+              {
+                title: 'Can you work with small businesses?',
+                description:
+                  "Absolutely. We work with companies of all sizes, from startups to large corporations, adapting our methodologies to fit your business scale and budget.",
+              },
+              {
+                title: 'What makes your approach unique?',
+                description:
+                  "We combine academic rigor with practical experience, focusing on sustainable capability building rather than quick fixes. Our PhD-level expertise ensures world-class results.",
+              },
+              {
+                title: 'How quickly can we get started?',
+                description:
+                  "We can begin with an initial consultation within 48 hours of contact. Full project kickoff typically occurs within 1-2 weeks after agreement, depending on your schedule and requirements.",
+              },
+            ].map((item, index) => (
+              <div class="accordion-item bg-gradient-to-r from-white/40 to-blue-50/40 backdrop-blur-sm border border-white/40 rounded-2xl shadow-sm hover:shadow-lg hover:border-[#C9A227]/40 transition-all duration-300 hover:scale-[1.01] group/item">
+                <button 
+                  class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-profit-gold focus:ring-opacity-50 rounded-2xl  transition-all duration-200 group-hover/item:bg-white/70"
+                  data-accordion-target={`accordion-content-${index}`}
+                  aria-expanded="false"
+                  aria-controls={`accordion-content-${index}`}
+                >
+                  <h3 class="text-sm font-bold text-profit-navy pr-4 group-hover/item:text-[#C9A227] transition-colors duration-200">{item.title}</h3>
+                  <div class="accordion-icon flex-shrink-0 transition-transform duration-200">
+                    <svg class="w-5 h-5 text-profit-navy group-hover/item:text-[#C9A227] transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </div>
+                </button>
+                
+                <div 
+                  id={`accordion-content-${index}`}
+                  class="accordion-content overflow-hidden transition-all duration-300 ease-in-out max-h-0"
+                  aria-labelledby={`accordion-header-${index}`}
+                >
+                  <div class="px-6 pb-4 pt-0">
+                    <div class="border-t border-gradient-to-r from-gray-200 to-profit-gold/20 pt-4">
+                      <p class="text-sm text-profit-text leading-relaxed" set:html={item.description} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-
-          <div>
-            <label for="industry" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Industry</label>
-            <select 
-              id="industry" 
-              name="industry"
-              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-            >
-              <option value="">Select your industry</option>
-              <option value="medical">Medical & Pharmaceuticals</option>
-              <option value="food">Food & Agriculture</option>
-              <option value="manufacturing">Manufacturing & Engineering</option>
-              <option value="real-estate">Real Estate</option>
-              <option value="technology">Technology & Innovation</option>
-              <option value="services">Service Industries</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="service" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Service Interest</label>
-            <select 
-              id="service" 
-              name="service"
-              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
-            >
-              <option value="">Select service of interest</option>
-              <option value="profit-growth">Corporate Profit Growth</option>
-              <option value="transformation">Business Transformation</option>
-              <option value="strategic-support">Strategic Decision Support</option>
-              <option value="training">Training & Development</option>
-              <option value="consultation">General Consultation</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="message" class="block text-sm font-semibold text-profit-navy font-heading mb-2">Message *</label>
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="6" 
-              required
-              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors resize-vertical"
-              placeholder="Tell us about your business challenges, goals, and how we can help you achieve sustainable profit growth..."
-            ></textarea>
-          </div>
-
-          <div class="text-center">
-            <button 
-              type="submit"
-              class="bg-gradient-to-r from-profit-gold to-yellow-500 hover:from-yellow-500 hover:to-profit-gold text-black font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
-            >
-              <Icon name="tabler:send" class="w-5 h-5" />
-              Send Message
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Information -->
-  <section class="py-20 bg-white">
+  <section class="relative py-24 bg-gradient-to-b from-white via-blue-50/30 to-profit-navy/5 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-r from-profit-gold/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl"></div>
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">Multiple Ways to Reach Us</h2>
-        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto">
-          Choose the contact method that works best for you. We're here to help you achieve your profitability goals.
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight">
+          Multiple Ways to <span class="text-profit-gold">Reach Us</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          Choose the contact method that works best for you. We're here to help you achieve your 
+          <span class="font-semibold text-profit-navy">profitability goals</span>.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-profit-light p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="tabler:briefcase" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group bg-white/60 backdrop-blur-md p-8 rounded-3xl text-center hover:shadow-2xl hover:shadow-profit-gold/10 transition-all duration-500 border border-white/30 hover:scale-105 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-gradient-to-br from-profit-gold via-amber-500 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-profit-gold/25">
+            <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+            </svg>
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Consulting Inquiries</h3>
-          <p class="text-profit-text font-body text-sm">Strategic consulting, profit optimization, and business transformation services.</p>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-2 group-hover:text-[#C9A227] transition-colors duration-300">Consulting Inquiries</h3>
+          <p class="text-profit-text font-body leading-relaxed group-hover:text-profit-navy transition-colors duration-300">Strategic consulting, profit optimization, and business transformation services.</p>
         </div>
 
-        <div class="bg-profit-light p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="tabler:school" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group bg-white/60 backdrop-blur-md p-8 rounded-3xl text-center hover:shadow-2xl hover:shadow-profit-navy/10 transition-all duration-500 border border-white/30 hover:scale-105 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-gradient-to-br from-profit-navy via-blue-600 to-blue-700 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-profit-navy/25">
+            <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+            </svg>
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Training Programs</h3>
-          <p class="text-profit-text font-body text-sm">Professional development, financial training, and capability building programs.</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-3 group-hover:text-profit-navy transition-colors duration-300">Training Programs</h3>
+          <p class="text-profit-text font-body leading-relaxed group-hover:text-profit-navy transition-colors duration-300">Professional development, financial training, and capability building programs.</p>
         </div>
 
-        <div class="bg-profit-light p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="tabler:mail" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group bg-white/60 backdrop-blur-md p-8 rounded-3xl text-center hover:shadow-2xl hover:shadow-profit-gold/10 transition-all duration-500 border border-white/30 hover:scale-105 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-gradient-to-br from-profit-gold via-amber-500 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-profit-gold/25">
+            <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Email Support</h3>
-          <p class="text-profit-navy font-body font-semibold mb-2">info@profitmanagement.com</p>
-          <p class="text-profit-text font-body text-sm">Response within 24 hours</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">Email Support</h3>
+          <p class="text-profit-navy font-body font-semibold mb-2 group-hover:text-[#C9A227] transition-colors duration-300">info@profitmanagement.com</p>
+          <p class="text-profit-text font-body leading-relaxed group-hover:text-profit-navy transition-colors duration-300">Response within 24 hours</p>
         </div>
 
-        <div class="bg-profit-light p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="tabler:map-pin" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group bg-white/60 backdrop-blur-md p-8 rounded-3xl text-center hover:shadow-2xl hover:shadow-profit-navy/10 transition-all duration-500 border border-white/30 hover:scale-105 hover:-translate-y-2">
+          <div class="w-14 h-14 bg-gradient-to-br from-profit-navy via-blue-600 to-blue-800 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-profit-navy/25">
+            <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">Head Office</h3>
-          <p class="text-profit-navy font-body font-semibold mb-1">Profit Management Consulting & Training</p>
-          <p class="text-profit-text font-body text-sm">Cairo, Egypt</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-3 group-hover:text-profit-navy transition-colors duration-300">Head Office</h3>
+          <p class="text-profit-navy font-body font-semibold mb-2 group-hover:text-profit-navy transition-colors duration-300">Profit Management Consulting & Training</p>
+          <p class="text-profit-text font-body leading-relaxed group-hover:text-profit-navy transition-colors duration-300">Cairo, Egypt</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Why Contact Us -->
-  <Content
-    title="Why Start the Conversation?"
-    tagline="Your Success Journey"
-    subtitle="Every successful transformation begins with a conversation. Let us understand your challenges and show you how our proven methodologies can drive sustainable profit growth."
-    classes={{
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: 'Free Initial Consultation',
-        description: 'No-obligation discussion about your business challenges and potential solutions.',
-      },
-      {
-        title: 'Customized Approach',
-        description: 'Tailored recommendations based on your industry, company size, and specific needs.',
-      },
-      {
-        title: 'Proven Track Record',
-        description: 'Join 200+ companies across 60+ industries who have achieved measurable results.',
-      },
-      {
-        title: 'Expert Guidance',
-        description: '26+ years of experience with PhD-level expertise in profit management and business optimization.',
-      },
-    ]}
-    classes={{
-      items: {
-        title: 'text-profit-navy font-semibold',
-        description: 'text-profit-text font-body'
-      }
-    }}
-    image={{
-      src: '/images/consultation-meeting.webp',
-      alt: 'Professional business consultation and strategic planning session',
-      width: 800,
-      height: 600,
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Content>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-accordion-target');
+        if (!targetId) return;
+        
+        const content = document.getElementById(targetId);
+        const icon = this.querySelector('.accordion-icon svg');
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        if (!content) return;
+        
+        // Close all other accordion items
+        accordionHeaders.forEach(otherHeader => {
+          if (otherHeader !== this) {
+            const otherTargetId = otherHeader.getAttribute('data-accordion-target');
+            if (!otherTargetId) return;
+            
+            const otherContent = document.getElementById(otherTargetId);
+            const otherIcon = otherHeader.querySelector('.accordion-icon svg');
+            
+            if (otherContent) {
+              otherHeader.setAttribute('aria-expanded', 'false');
+              otherContent.classList.remove('expanded');
+              otherContent.style.maxHeight = '0px';
+            }
+            
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        // Toggle current accordion item
+        if (isExpanded) {
+          this.setAttribute('aria-expanded', 'false');
+          content.classList.remove('expanded');
+          content.style.maxHeight = '0px';
+          
+          if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+          }
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          content.classList.add('expanded');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          
+          if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  });
+</script>

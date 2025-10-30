@@ -1,0 +1,232 @@
+---
+import RTLLayout from '~/layouts/RTLLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import { Icon } from 'astro-icon/components';
+import { useTranslations } from '~/utils/i18n';
+
+const t = useTranslations('ar');
+
+const metadata = {
+  title: 'تواصل معنا - إدارة الربح للاستشارات والتدريب',
+  description: 'تواصل مع فريق خبراء إدارة الربح. سنرد خلال 24 ساعة بخطة استشارية مخصصة لتحديات وأهداف عملك.',
+  canonical: '/ar/contact',
+};
+---
+
+<RTLLayout metadata={metadata}>
+
+  <!-- Contact Form Section -->
+  <section id="contact-form" class="pt-32 pb-20 bg-gradient-to-br from-profit-light to-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('contact.title')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto leading-relaxed">
+          {t('contact.subtitle')}
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <form class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-semibold text-profit-navy font-heading mb-2">{t('contact.name')} *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+                placeholder="أدخل اسمك الكامل"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-profit-navy font-heading mb-2">{t('contact.email')} *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+                placeholder="your.email@company.com"
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="company" class="block text-sm font-semibold text-profit-navy font-heading mb-2">{t('contact.company')} *</label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                required
+                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+                placeholder="اسم شركتك"
+              />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-semibold text-profit-navy font-heading mb-2">{t('contact.phone')}</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+                placeholder="+20 XXX XXX XXXX"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="industry" class="block text-sm font-semibold text-profit-navy font-heading mb-2">القطاع الصناعي</label>
+            <select 
+              id="industry" 
+              name="industry"
+              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+            >
+              <option value="">اختر قطاعك الصناعي</option>
+              <option value="medical">الصناعات الطبية</option>
+              <option value="food">تجهيز الأغذية</option>
+              <option value="manufacturing">التصنيع</option>
+              <option value="real-estate">العقارات</option>
+              <option value="retail">التجزئة والتجارة</option>
+              <option value="technology">التكنولوجيا</option>
+              <option value="finance">الخدمات المالية</option>
+              <option value="education">التعليم</option>
+              <option value="other">أخرى</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="service" class="block text-sm font-semibold text-profit-navy font-heading mb-2">الخدمة المطلوبة</label>
+            <select 
+              id="service" 
+              name="service"
+              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors"
+            >
+              <option value="">اختر الخدمة المطلوبة</option>
+              <option value="profit-growth">نمو الأرباح المؤسسية</option>
+              <option value="transformation">التحول في الأعمال</option>
+              <option value="decision-support">دعم اتخاذ القرار الاستراتيجي</option>
+              <option value="training">التدريب والتطوير</option>
+              <option value="financial-analysis">التحليل المالي</option>
+              <option value="consultation">استشارة عامة</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-profit-navy font-heading mb-2">{t('contact.message')} *</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="6" 
+              required
+              class="w-full px-4 py-3 border border-profit-border rounded-lg focus:border-profit-gold focus:ring-2 focus:ring-profit-gold/20 focus:outline-none transition-colors resize-vertical"
+              placeholder="أخبرنا عن تحديات عملك وأهدافك. كلما كانت التفاصيل أكثر، كان بإمكاننا تقديم مساعدة أفضل."
+            ></textarea>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input 
+              type="checkbox" 
+              id="privacy" 
+              name="privacy" 
+              required
+              class="w-4 h-4 text-profit-gold border-profit-border rounded focus:ring-profit-gold focus:ring-2"
+            />
+            <label for="privacy" class="text-sm text-profit-text font-body">
+              أوافق على <a href="/ar/privacy" class="text-profit-gold hover:underline">سياسة الخصوصية</a> وأسمح بالتواصل معي لأغراض تجارية.
+            </label>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+          >
+            {t('contact.send')}
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <Content
+    title="معلومات التواصل"
+    tagline="تواصل مباشر"
+    subtitle="نحن هنا لمساعدتك. تواصل معنا عبر أي من الطرق التالية وسنرد عليك في أقرب وقت ممكن."
+    classes={{
+      title: 'text-profit-navy font-heading',
+      tagline: 'text-profit-gold',
+      subtitle: 'text-profit-text font-body'
+    }}
+  >
+    <Fragment slot="content">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-profit-gold/20">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:phone" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-2">الهاتف</h3>
+          <p class="text-profit-text font-body">{t('footer.phone')}</p>
+          <p class="text-sm text-profit-text mt-1">الأحد - الخميس: 9:00 - 17:00</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-profit-navy/20">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:mail" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-2">البريد الإلكتروني</h3>
+          <p class="text-profit-text font-body">{t('footer.email')}</p>
+          <p class="text-sm text-profit-text mt-1">نرد خلال 24 ساعة</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-profit-gold/20 md:col-span-2 lg:col-span-1">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:map-pin" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-2">العنوان</h3>
+          <p class="text-profit-text font-body">{t('footer.address')}</p>
+          <p class="text-sm text-profit-text mt-1">مواعيد بالحجز المسبق</p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-profit-light"></div>
+    </Fragment>
+  </Content>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">الأسئلة الشائعة</h2>
+        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto leading-relaxed">
+          إجابات على الأسئلة الأكثر شيوعاً حول خدماتنا وطريقة عملنا.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-profit-light to-white p-6 rounded-xl border border-profit-gold/20">
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">كم تستغرق مدة المشروع الاستشاري؟</h3>
+          <p class="text-profit-text font-body leading-relaxed">تختلف مدة المشروع حسب نطاق العمل وتعقيد التحديات. عادة ما تتراوح المشاريع من 3-12 شهراً، مع إمكانية التمديد حسب الحاجة.</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-profit-light to-white p-6 rounded-xl border border-profit-navy/20">
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">هل تقدمون خدمات للشركات الصغيرة؟</h3>
+          <p class="text-profit-text font-body leading-relaxed">نعم، نقدم حلولاً مخصصة للشركات من جميع الأحجام. لدينا باقات مرنة تناسب الشركات الصغيرة والمتوسطة والكبيرة.</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-profit-light to-white p-6 rounded-xl border border-profit-gold/20">
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">ما هي ضمانات النتائج؟</h3>
+          <p class="text-profit-text font-body leading-relaxed">نلتزم بتحقيق نتائج قابلة للقياس. نضع أهدافاً واضحة في بداية المشروع ونتابع التقدم بانتظام لضمان تحقيق التحسينات المطلوبة.</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-profit-light to-white p-6 rounded-xl border border-profit-navy/20">
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">هل تقدمون تدريباً للفرق الداخلية؟</h3>
+          <p class="text-profit-text font-body leading-relaxed">بالطبع، نؤمن بأهمية بناء القدرات الداخلية. نقدم برامج تدريبية شاملة لضمان استمرارية التحسينات بعد انتهاء المشروع.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</RTLLayout>

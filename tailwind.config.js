@@ -10,25 +10,76 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
-        secondary: 'var(--aw-color-secondary)',
-        accent: 'var(--aw-color-accent)',
-        default: 'var(--aw-color-text-default)',
-        muted: 'var(--aw-color-text-muted)',
-        profit: {
-          navy: '#0E1422',
+        // Premium Consulting Color Palette
+        primary: '#1A2E45',      // Deep Navy
+        accent: '#C9A227',       // Warm Gold
+        'accent-hover': '#A68B1F', // Darker Gold
+        
+        // Core Brand Colors
+        navy: '#1A2E45',         // Deep Navy for headings
+        gold: '#C9A227',         // Warm Gold accent
+        'gold-hover': '#A68B1F', // Gold hover state
+        'off-white': '#F9F9F9',  // Off-white background
+        charcoal: '#1C1C1E',     // Muted charcoal for nav/footer
+        gray: '#4B5563',         // Body text gray
+        'gray-light': '#E5E7EB', // Borders and dividers
+        'gray-bg': '#FAFAFA',    // Light background
+        
+        // Legacy support (will be phased out)
+        finance: {
+          charcoal: '#1A2E45',
           gold: '#C9A227',
-          light: '#F7F7F7',
-          text: '#1C1C1C',
-          bg: '#ffffff',
-          border: '#e5e5e5',
+          'gold-hover': '#A68B1F',
+          ivory: '#F9F9F9',
+          gray: '#4B5563',
+          sand: '#E5E7EB',
+          black: '#1C1C1E',
+        },
+        text: {
+          primary: '#1A2E45',
+          body: '#4B5563',
+          secondary: '#6B7280',
         },
       },
       fontFamily: {
-        sans: ['InterVariable', 'var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
         serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
-        heading: ['Montserrat', 'var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
-        body: ['InterVariable', 'var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        heading: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
+        body: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
+      },
+      fontWeight: {
+        'heading': '600',
+        'body': '400',
+        'medium': '500',
+      },
+      letterSpacing: {
+        'wide': '0.025em',
+      },
+      boxShadow: {
+        'premium': '0 4px 12px rgba(26, 46, 69, 0.08)',
+        'premium-sm': '0 2px 8px rgba(26, 46, 69, 0.05)',
+        'premium-md': '0 8px 24px rgba(26, 46, 69, 0.12)',
+        'premium-lg': '0 16px 40px rgba(26, 46, 69, 0.15)',
+        // Legacy support
+        'finance': '0 4px 12px rgba(26, 46, 69, 0.08)',
+        'finance-sm': '0 2px 8px rgba(26, 46, 69, 0.05)',
+        'finance-md': '0 8px 24px rgba(26, 46, 69, 0.12)',
+      },
+      borderRadius: {
+        'premium': '12px',
+        'premium-sm': '8px',
+        'premium-lg': '16px',
+      },
+      spacing: {
+        '18': '4.5rem',   // 72px
+        '22': '5.5rem',   // 88px
+        '26': '6.5rem',   // 104px
+        '30': '7.5rem',   // 120px
+        '34': '8.5rem',   // 136px
+        '38': '9.5rem',   // 152px
+        '42': '10.5rem',  // 168px
+        '46': '11.5rem',  // 184px
+        '50': '12.5rem',  // 200px
       },
 
       animation: {

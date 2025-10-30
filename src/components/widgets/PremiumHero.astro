@@ -1,0 +1,153 @@
+---
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+}
+
+const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+// Default values with translations
+const heroTitle = title || t('hero.title');
+const heroSubtitle = subtitle || t('hero.subtitle');
+const defaultPrimaryCTA = primaryCTA || {
+  text: t('common.bookConsultation'),
+  href: currentLang === 'ar' ? '/ar/contact' : '/contact'
+};
+const defaultSecondaryCTA = secondaryCTA || {
+  text: t('common.learnMore'),
+  href: currentLang === 'ar' ? '/ar/about' : '/about'
+};
+---
+
+<section class="relative bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="hero-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="10" cy="10" r="1" fill="#1A2E45"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-pattern)"/>
+    </svg>
+  </div>
+
+  <!-- Geometric Shapes -->
+  <div class="absolute top-20 right-10 w-32 h-32 bg-gold/5 rounded-full blur-xl"></div>
+  <div class="absolute bottom-20 left-10 w-24 h-24 bg-navy/5 rounded-full blur-lg"></div>
+  <div class="absolute top-1/2 right-1/4 w-16 h-16 bg-gold/10 transform rotate-45 blur-sm"></div>
+
+  <div class="container-premium relative">
+    <div class="section-padding">
+      <div class="max-w-4xl mx-auto text-center">
+        
+        <!-- Hero Title -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-6 leading-tight fade-in">
+          {heroTitle}
+        </h1>
+
+        <!-- Hero Subtitle -->
+        <p class="text-lg md:text-xl text-gray max-w-3xl mx-auto mb-10 leading-relaxed fade-in-delay">
+          {heroSubtitle}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-delay">
+          <a 
+            href={defaultPrimaryCTA.href}
+            class="btn btn-primary btn-lg"
+          >
+            {defaultPrimaryCTA.text}
+          </a>
+          
+          <a 
+            href={defaultSecondaryCTA.href}
+            class="btn btn-secondary btn-lg"
+          >
+            {defaultSecondaryCTA.text}
+          </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="mt-16 pt-8 border-t border-gray-light/50">
+          <p class="text-sm text-gray-light mb-6 uppercase tracking-wide font-medium">
+            {t('hero.trustIndicator')}
+          </p>
+          
+          <div class="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            <!-- Industry Icons/Stats -->
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-gray">60+ Industries</span>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-gray">26+ Years Experience</span>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-gray">15-40% Profit Growth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero specific animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeIn 0.8s ease-out forwards;
+  }
+
+  .fade-in-delay {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeIn 0.8s ease-out 0.3s forwards;
+  }
+
+  @keyframes heroFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+</style>

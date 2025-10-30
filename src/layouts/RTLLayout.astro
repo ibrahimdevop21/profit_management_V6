@@ -1,5 +1,5 @@
 ---
-import Layout from './Layout.astro';
+import PageLayout from './PageLayout.astro';
 import { getLangFromUrl } from '~/utils/i18n';
 
 export interface Props {
@@ -11,11 +11,11 @@ const currentLang = getLangFromUrl(Astro.url);
 const isRTL = currentLang === 'ar';
 ---
 
-<Layout metadata={metadata}>
+<PageLayout metadata={metadata}>
   <div dir={isRTL ? 'rtl' : 'ltr'} lang={currentLang} class={isRTL ? 'rtl-layout' : 'ltr-layout'}>
     <slot />
   </div>
-</Layout>
+</PageLayout>
 
 <style>
   /* RTL Layout Styles */
@@ -69,5 +69,25 @@ const isRTL = currentLang === 'ar';
   .rtl-layout .nav-link {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+  }
+
+  /* RTL Navbar adjustments */
+  .rtl-layout nav .flex {
+    flex-direction: row-reverse;
+  }
+
+  .rtl-layout nav .space-x-8 > * + * {
+    margin-left: 0;
+    margin-right: 2rem;
+  }
+
+  .rtl-layout nav .space-x-2 > * + * {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  .rtl-layout nav .space-x-3 > * + * {
+    margin-left: 0;
+    margin-right: 0.75rem;
   }
 </style>

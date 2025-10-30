@@ -39,16 +39,16 @@ html, body {
   text-align: right;
 }
 
-/* Base styles with Profit Management light theme */
+/* Base styles with Timeless Finance theme */
 body {
-  @apply bg-profit-bg text-profit-text;
+  @apply bg-gray-bg text-gray;
   font-family: theme('fontFamily.body');
   letter-spacing: 0.025em; /* Clean letter spacing for professional appearance */
 }
 
-/* Typography Styles - Professional Corporate Aesthetics - Light Theme */
+/* Typography Styles - Professional Corporate Aesthetics - Timeless Finance */
 h1, h2, h3, h4, h5, h6 {
-  @apply text-profit-navy font-bold tracking-wide;
+  @apply text-navy font-bold tracking-wide;
   font-family: theme('fontFamily.heading');
 }
 
@@ -57,16 +57,16 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl md:text-4xl text-profit-navy;
+  @apply text-3xl md:text-4xl text-navy;
 }
 
 h3 {
-  @apply text-2xl md:text-3xl text-profit-navy;
+  @apply text-2xl md:text-3xl text-navy;
 }
 
 /* Sub-headers and accents in gold */
 .text-accent, .subheader {
-  @apply text-profit-gold tracking-wide;
+  @apply text-gold tracking-wide;
 }
 
 /* Enhanced professional typography */
@@ -76,27 +76,27 @@ h3 {
 }
 
 .profit-headline {
-  @apply text-profit-navy font-bold tracking-wide leading-tight;
+  @apply text-navy font-bold tracking-wide leading-tight;
   font-family: theme('fontFamily.heading');
 }
 
 .profit-subheadline {
-  @apply text-profit-gold font-semibold tracking-normal;
+  @apply text-gold font-semibold tracking-normal;
 }
 
 .profit-body {
-  @apply text-profit-text tracking-normal leading-relaxed;
+  @apply text-text-body tracking-normal leading-relaxed;
   font-family: theme('fontFamily.body');
 }
 
 /* Navigation Active States */
 .aw-link-active {
-  @apply text-profit-gold relative;
+  @apply text-gold relative;
 }
 
 .aw-link-active::after {
   content: '';
-  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-profit-gold;
+  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-gold;
 }
 
 /* Links */
@@ -115,42 +115,42 @@ button:hover, .btn:hover {
 
 /* Primary button variant */
 .btn-primary {
-  @apply bg-profit-gold text-black hover:opacity-90;
+  @apply bg-gold text-white hover:opacity-90;
 }
 
 /* Secondary button variant */
 .btn-secondary {
-  @apply bg-profit-navy text-white border border-profit-gold hover:bg-profit-gold hover:text-black;
+  @apply bg-charcoal text-white border border-gold hover:bg-gold hover:text-white;
 }
 
 /* Sections */
 section {
-  @apply bg-profit-bg text-profit-text;
+  @apply bg-gray-bg text-gray;
 }
 
 /* Header styles */
 header {
-  @apply bg-profit-navy text-white;
+  @apply bg-charcoal text-white;
 }
 
 /* Navigation */
 nav a {
-  @apply text-white hover:text-profit-gold transition-colors duration-200;
+  @apply text-white hover:text-gold transition-colors duration-200;
 }
 
 /* Cards and containers */
 .card, .feature-card {
-  @apply bg-white border border-profit-border rounded-lg p-6 shadow-sm;
+  @apply bg-white border border-gray-light rounded-lg p-6 shadow-premium;
 }
 
 /* Form elements */
 input, textarea, select {
-  @apply bg-white border border-profit-border text-profit-text rounded-md px-4 py-2;
-  @apply focus:border-profit-gold focus:outline-none focus:ring-2 focus:ring-profit-gold/20;
+  @apply bg-white border border-gray-light text-gray rounded-md px-4 py-2;
+  @apply focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20;
 }
 
 input::placeholder, textarea::placeholder {
-  @apply text-gray-500;
+  @apply text-gray;
 }
 
 /* Professional precision - clean lines and spacing */
@@ -168,7 +168,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .premium-border {
-  @apply border border-profit-gold/30;
+  @apply border border-gold/30;
 }
 
 /* Text selection */
@@ -183,13 +183,13 @@ input::placeholder, textarea::placeholder {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100;
+  @apply bg-gray-light;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-profit-gold/50 rounded-full;
+  @apply bg-gold/50 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-profit-gold/70;
+  @apply bg-gold/70;
 }

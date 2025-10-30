@@ -1,0 +1,180 @@
+---
+import RTLLayout from '~/layouts/RTLLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { useTranslations } from '~/utils/i18n';
+
+const t = useTranslations('ar');
+
+const metadata = {
+  title: 'خدماتنا - إدارة الربح للاستشارات والتدريب',
+  description: 'خدمات استشارية شاملة في إدارة الربحية والتحول التجاري ودعم اتخاذ القرار الاستراتيجي والتدريب المتخصص.',
+  canonical: '/ar/services',
+};
+---
+
+<RTLLayout metadata={metadata}>
+
+  <section class="max-w-7xl mx-auto px-6 pt-28 pb-16">
+
+    <!-- Corporate Profit Growth Section -->
+    <div id="profit-growth" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('services.profitGrowth')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          تحليل استراتيجي للربحية وتطوير القيادات لتحديد الفرص عالية الهامش وتحسين الأداء المالي عبر جميع وظائف الأعمال.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:trending-up" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('services.profitAnalysis')}</h3>
+          <p class="text-profit-text font-body leading-relaxed">تحديد المنتجات والعملاء عالية الهامش من خلال التحليل المالي الشامل واستراتيجيات تجزئة السوق.</p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">تطوير القيادة</h3>
+          <p class="text-profit-text font-body leading-relaxed">بناء قدرات الإدارة العليا في اتخاذ القرارات المالية الاستراتيجية وإدارة الأداء المؤسسي.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:target" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">التخطيط الاستراتيجي</h3>
+          <p class="text-profit-text font-body leading-relaxed">تطوير استراتيجيات طويلة المدى لتحقيق النمو المستدام وتعزيز الميزة التنافسية في السوق.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Transformation Section -->
+    <div id="transformation" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('services.transformation')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          برامج التميز التشغيلي والتحول الرقمي المصممة لتحسين الكفاءة وخفض التكاليف وتعزيز القدرة التنافسية.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:settings" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">تحسين العمليات</h3>
+          <p class="text-profit-text font-body leading-relaxed">إعادة تصميم العمليات التجارية لتحقيق أقصى كفاءة وإنتاجية مع تقليل الهدر والتكاليف.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:device-desktop" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">التحول الرقمي</h3>
+          <p class="text-profit-text font-body leading-relaxed">تطبيق التقنيات الحديثة وأتمتة العمليات لتحسين الأداء وتعزيز الابتكار.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:chart-line" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('services.performanceManagement')}</h3>
+          <p class="text-profit-text font-body leading-relaxed">تطوير أنظمة قياس الأداء ومؤشرات الأداء الرئيسية لمراقبة التقدم وتحقيق الأهداف.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategic Decision Support Section -->
+    <div id="decision-support" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('services.decisionSupport')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          رؤى مدفوعة بالبيانات ونمذجة مالية متقدمة لدعم القرارات الاستراتيجية والتخطيط طويل المدى.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:file-analytics" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">تحليل البيانات المتقدم</h3>
+          <p class="text-profit-text font-body leading-relaxed">استخدام تقنيات التحليل المتقدمة لاستخراج رؤى قيمة من البيانات المالية والتشغيلية.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:calculator" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">النمذجة المالية</h3>
+          <p class="text-profit-text font-body leading-relaxed">بناء نماذج مالية متطورة لتقييم الاستثمارات والتنبؤ بالأداء المستقبلي.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:shield-check" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">إدارة المخاطر</h3>
+          <p class="text-profit-text font-body leading-relaxed">تحديد وتقييم وإدارة المخاطر المالية والتشغيلية لحماية الأصول وضمان الاستمرارية.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="tabler:presentation" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">التقارير التنفيذية</h3>
+          <p class="text-profit-text font-body leading-relaxed">إعداد تقارير شاملة ولوحات معلومات تفاعلية لدعم اتخاذ القرارات على مستوى الإدارة العليا.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Training & Development Section -->
+    <div id="training" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('services.training')}</h2>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          برامج تدريبية متخصصة لبناء القدرات الداخلية في إدارة الربحية والتحليل المالي والقيادة الاستراتيجية.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300 text-center">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:school" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">التدريب المالي</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">برامج متخصصة في التحليل المالي وإدارة الميزانية والتخطيط المالي.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300 text-center">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:users" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">تطوير القيادة</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">تنمية مهارات القيادة الاستراتيجية وإدارة الفرق عالية الأداء.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300 text-center">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:certificate" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">الشهادات المهنية</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">إعداد للحصول على الشهادات المهنية المعتمدة في المحاسبة والمالية.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300 text-center">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:presentation" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">ورش العمل</h3>
+          <p class="text-profit-text font-body text-sm leading-relaxed">ورش عمل تفاعلية لتطبيق المفاهيم النظرية على الحالات العملية.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</RTLLayout>

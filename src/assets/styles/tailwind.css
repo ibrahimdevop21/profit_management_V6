@@ -3,56 +3,64 @@
 @tailwind utilities;
 
 @layer components {
+  /* Premium Button System */
   .btn {
-    @apply font-semibold rounded-md px-6 py-3 tracking-wide transition-all duration-200 inline-flex items-center justify-center;
+    @apply inline-flex items-center justify-center font-medium text-center transition-all duration-200 cursor-pointer;
+    padding: 0.75rem 2rem;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
   }
   
   .btn-primary {
-    @apply bg-profit-gold text-black hover:opacity-90 hover:scale-105;
+    @apply bg-gold text-white border-gold;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-navy text-gold border-navy;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(26, 46, 69, 0.15);
   }
   
   .btn-secondary {
-    @apply bg-profit-navy text-white border border-profit-gold hover:bg-profit-gold hover:text-black;
+    @apply bg-transparent text-gold border-gold;
   }
   
-  .btn-tertiary {
-    @apply bg-transparent text-profit-gold border border-profit-gold hover:bg-profit-gold hover:text-black;
+  .btn-secondary:hover {
+    @apply bg-gold text-white;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201, 162, 39, 0.15);
+  }
+  
+  .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+  
+  .btn-sm {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8125rem;
   }
 }
 
 @layer utilities {
   .bg-page {
-    background-color: var(--aw-color-bg-page);
+    background-color: #FAFAFA;
   }
   .bg-dark {
-    background-color: var(--aw-color-bg-page-dark);
+    background-color: #1C1C1E;
   }
   .bg-light {
-    background-color: var(--aw-color-bg-page);
+    background-color: #F9F9F9;
   }
   .text-page {
-    color: var(--aw-color-text-page);
+    color: #4B5563;
   }
   .text-muted {
-    color: var(--aw-color-text-muted);
-  }
-}
-
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
-  }
-
-  .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
-  }
-
-  .btn-secondary {
-    @apply btn;
-  }
-
-  .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    color: #6B7280;
   }
 }
 
@@ -62,7 +70,7 @@
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
+  @apply bg-page md:bg-charcoal/90 border-b border-gray-light/20;
   box-shadow: none;
 }
 /* #header.scroll > div:last-child {
