@@ -35,29 +35,29 @@ const {
       alt: 'Biomed - Healthcare Solutions'
     },
     {
-      name: 'Egy Holland',
-      logo: '/images/partners/egyholland-removebg-preview.png',
-      alt: 'Egy Holland - International Partnership'
-    },
-    {
       name: 'El Agamy',
       logo: '/images/partners/elagamy-removebg-preview.png',
       alt: 'El Agamy - Business Solutions'
     },
     {
-      name: 'El Ahlyia',
-      logo: '/images/partners/elahlyia-removebg-preview.png',
-      alt: 'El Ahlyia - Financial Services'
-    },
-    {
-      name: 'Misr',
-      logo: '/images/partners/misr.png',
-      alt: 'Misr - Egyptian Enterprise'
-    },
-    {
       name: 'Riva Pharma',
       logo: '/images/partners/riva_phrma.png',
       alt: 'Riva Pharma - Pharmaceutical Solutions'
+    },
+    {
+      name: 'Hima',
+      logo: '/images/partners/hima.png',
+      alt: 'Hima - Business Partner'
+    },
+    {
+      name: 'Supakoto',
+      logo: '/images/partners/supakoto.png',
+      alt: 'Supakoto - Industrial Solutions'
+    },
+    {
+      name: 'Bona',
+      logo: '/images/partners/bona.png',
+      alt: 'Bona - Business Partner'
     }
   ],
   classes = {}
@@ -92,13 +92,13 @@ const {
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center">
       {partners.map((partner, index) => (
         <div 
-          class="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group"
+          class="flex items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group border border-gray-100"
           style={`animation-delay: ${index * 0.1}s`}
         >
           <img
             src={partner.logo}
             alt={partner.alt}
-            class="max-h-12 md:max-h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+            class="max-h-12 md:max-h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
             loading="lazy"
           />
         </div>
@@ -135,6 +135,56 @@ const {
   /* Hover effects */
   .group:hover {
     transform: translateY(-2px);
+  }
+
+  /* Ensure logos are always visible with proper contrast */
+  .group img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    filter: none !important;
+    background: transparent !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    z-index: 10 !important;
+    position: relative !important;
+  }
+
+  /* Force visibility for specific logos that might have issues */
+  img[src*="misr.png"],
+  img[src*="bona.png"],
+  img[src*="egyholland-removebg-preview.png"] {
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+    background-color: white !important;
+    border: 1px solid #e5e7eb !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    max-height: 48px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Specific fix for Misr logo container */
+  .group:has(img[src*="misr.png"]) {
+    background: white !important;
+    border: 2px solid #e5e7eb !important;
+    min-height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Specific fix for Egy Holland logo container */
+  .group:has(img[src*="egyholland-removebg-preview.png"]) {
+    background: white !important;
+    border: 2px solid #e5e7eb !important;
+    min-height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Responsive adjustments */
