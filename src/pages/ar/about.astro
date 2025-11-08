@@ -4,65 +4,70 @@ import Features from '~/components/widgets/Features3.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { Icon } from 'astro-icon/components';
-import { useTranslations } from '~/utils/i18n';
 
-const t = useTranslations('ar');
+import { PAGE_METADATA } from '~/utils/metadata';
 
 const metadata = {
-  title: 'من نحن - إدارة الربح للاستشارات والتدريب',
-  description: 'تعرف على فريقنا وخبرتنا في إدارة الربحية والاستشارات المالية. بقيادة الدكتور محمد عمرية مع أكثر من 26 عامًا من الخبرة.',
+  title: 'عن الشركة | إدارة الربح للاستشارات والتدريب',
+  description: 'تعرف على فريق إدارة الربح بقيادة د. محمد عمرية. خبرة 26+ عاماً في إدارة الربحية عبر الشرق الأوسط مع أعلى المعايير الأكاديمية والمهنية.',
   canonical: '/ar/about',
 };
 ---
 
-<RTLLayout metadata={metadata}>
+<RTLLayout lang="ar" dir="rtl" metadata={metadata}>
 
   <!-- Leadership -->
-  <section class="pt-32 pb-20 bg-gradient-to-br from-profit-light to-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('about.leadership')}</h2>
-        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
-          بقيادة الدكتور محمد عمرية، رائد إدارة الربح في الشرق الأوسط مع أكثر من 26 عامًا من الخبرة العملية في الصناعة.
+  <section class="relative pt-32 pb-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-[#C9A227]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h1 class="text-5xl md:text-6xl font-bold text-profit-navy font-heading mb-8 leading-tight text-center" style="text-align: center !important;">
+          قيادة <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">متميزة</span>
+        </h1>
+        <p class="text-2xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          بقيادة د. محمد عمرية، رائد إدارة الربحية في الشرق الأوسط مع أكثر من 26 عاماً من الخبرة العملية المتخصصة.
         </p>
       </div>
 
       <!-- Dr. Mohamed Amria Profile -->
       <div class="max-w-4xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-white/30">
           <div class="grid md:grid-cols-3 gap-8 items-center">
             <div class="md:col-span-1">
               <div class="w-48 h-56 mx-auto rounded-xl overflow-hidden shadow-lg">
                 <img 
                   src="/images/team/Dr_mohame_amria.png" 
-                  alt="الدكتور محمد عمرية - المؤسس والمدير العام"
+                  alt="د. محمد عمرية - المؤسس والمدير العام"
                   class="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>
             </div>
             <div class="md:col-span-2">
-              <h3 class="text-2xl md:text-3xl font-bold text-profit-navy font-heading mb-2">الدكتور محمد عمرية</h3>
+              <h3 class="text-2xl md:text-3xl font-bold text-profit-navy font-heading mb-2">د. محمد عمرية</h3>
               <p class="text-profit-gold font-semibold text-lg mb-4">المؤسس والمدير العام</p>
-              <p class="text-profit-text font-body mb-6 leading-relaxed">
+              <p class="text-profit-text font-body mb-6">
                 دكتوراه في المراجعة وكشف الاحتيال من جامعة عين شمس، ماجستير في التكلفة المستهدفة والنماذج الإحصائية المتكاملة. 
-                أكثر من 26 عامًا في إدارة الربحية عبر القطاعات الصناعية والخدمية في جميع أنحاء الشرق الأوسط.
+                أكثر من 26 عاماً في إدارة الربحية عبر القطاعات الصناعية والخدمية في الشرق الأوسط.
               </p>
               
               <div class="grid md:grid-cols-2 gap-4 mb-6">
-                <div class="bg-profit-light p-4 rounded-lg">
-                  <h4 class="font-semibold text-profit-navy font-heading mb-2">التميز الأكاديمي</h4>
-                  <ul class="text-sm text-profit-text font-body space-y-1 leading-relaxed">
+                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-white/30 shadow-lg">
+                  <h4 class="font-bold text-profit-navy font-heading mb-3 text-lg">التميز الأكاديمي</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1">
                     <li>• دكتوراه المراجعة وكشف الاحتيال</li>
                     <li>• ماجستير التكلفة المستهدفة</li>
                     <li>• خبير النماذج الإحصائية</li>
                   </ul>
                 </div>
-                <div class="bg-profit-light p-4 rounded-lg">
-                  <h4 class="font-semibold text-profit-navy font-heading mb-2">التأثير الصناعي</h4>
-                  <ul class="text-sm text-profit-text font-body space-y-1 leading-relaxed">
-                    <li>• أكثر من 60 قطاعًا</li>
-                    <li>• أكثر من 200 شركة</li>
+                <div class="bg-gradient-to-br from-amber-50 to-white p-6 rounded-2xl border border-white/30 shadow-lg">
+                  <h4 class="font-bold text-profit-navy font-heading mb-3 text-lg">الأثر الصناعي</h4>
+                  <ul class="text-sm text-profit-text font-body space-y-1">
+                    <li>• +60 قطاعاً مخدوماً</li>
+                    <li>• +200 شركة موجهة</li>
                     <li>• قيادة الشرق الأوسط</li>
                   </ul>
                 </div>
@@ -75,206 +80,157 @@ const metadata = {
   </section>
 
   <!-- Team Expertise -->
-  <Features
-    title={t('about.teamExpertise')}
-    subtitle="متخصصون متعددو التخصصات بمعرفة متخصصة عبر المالية والعمليات والإدارة الاستراتيجية."
-    columns={3}
-    classes={{
-      title: 'text-profit-navy font-heading',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: 'حملة الدكتوراه',
-        description: 'مؤهلات أكاديمية متقدمة في المحاسبة والمالية والمراجعة وإدارة الأعمال من الجامعات الرائدة.',
-        icon: 'tabler:school',
-      },
-      {
-        title: 'محاسبون معتمدون',
-        description: 'شهادات مهنية وتعليم مستمر في معايير المحاسبة والتحليل المالي والامتثال التنظيمي.',
-        icon: 'tabler:certificate',
-      },
-      {
-        title: 'متخصصون في الصناعة',
-        description: 'خبرة قطاعية عميقة عبر التصنيع والرعاية الصحية وتجهيز الأغذية والعقارات وصناعات الخدمات.',
-        icon: 'tabler:building',
-      },
-      {
-        title: 'استشاريو ERP',
-        description: 'خبرة تقنية في أنظمة تخطيط موارد المؤسسة والتحول الرقمي وأتمتة العمليات.',
-        icon: 'tabler:settings',
-      },
-      {
-        title: 'محللون ماليون',
-        description: 'مهارات متقدمة في النمذجة المالية وتحليل التكلفة وتخطيط الميزانية وأنظمة قياس الأداء.',
-        icon: 'tabler:chart-line',
-      },
-      {
-        title: 'متخصصو التدريب',
-        description: 'خبراء التطوير المهني الذين يبنون القدرات الداخلية وينقلون المعرفة بفعالية.',
-        icon: 'tabler:users',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white"></div>
-    </Fragment>
-  </Features>
-
-  <!-- Global Collaboration -->
-  <Content
-    title={t('about.globalStandards')}
-    tagline="التميز الدولي"
-    subtitle="يتعاون فريقنا مع خبراء أمريكيين لضمان أفضل الممارسات العالمية مع الحفاظ على فهم عميق لديناميكيات السوق الإقليمية وثقافة الأعمال."
-    classes={{
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: 'شبكة الخبراء الأمريكيين',
-        description: 'تعاون منتظم مع المهنيين الاستشاريين الأمريكيين والمؤسسات الأكاديمية لتبادل المعرفة.',
-      },
-      {
-        title: 'المعايير الدولية',
-        description: 'تطبيق أفضل الممارسات العالمية في الإدارة المالية والمراجعة وتحسين العمليات التجارية.',
-      },
-      {
-        title: 'التعلم المستمر',
-        description: 'التطوير المهني المستمر من خلال المؤتمرات الدولية والشهادات والشراكات البحثية.',
-      },
-      {
-        title: 'التكيف الثقافي',
-        description: 'القدرة على تكييف المنهجيات العالمية مع ثقافات الأعمال المحلية والبيئات التنظيمية.',
-      },
-    ]}
-    classes={{
-      items: {
-        title: 'text-profit-navy font-semibold',
-        description: 'text-profit-text font-body'
-      }
-    }}
-    image={{
-      src: '/images/global-collaboration.webp',
-      alt: 'التعاون الدولي وتبادل المعرفة في الاستشارات',
-      width: 800,
-      height: 600,
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Team Values -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('about.ourValues')}</h2>
-        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
-          المبادئ التي توجه عملنا وتحدد التزامنا بنجاح العملاء والتميز المهني.
+  <section class="relative py-24 bg-gradient-to-b from-white via-blue-50/30 to-white ">
+    <div class="absolute top-0 right-1/4 w-64 h-64 bg-gradient-to-r from-[#C9A227]/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight text-center" style="text-align: center !important;">
+          شبكة خبراء <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">دولية</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          نتعاون مع شبكة واسعة من الخبراء الدوليين والمؤسسات الأكاديمية الرائدة لضمان تطبيق أفضل الممارسات العالمية.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Icon name="tabler:target" class="w-8 h-8 text-white stroke-[1.5]" />
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <!-- International Collaboration -->
+        <div class="group relative bg-gradient-to-br from-white to-blue-50/50 p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:world" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.precision')}</h3>
-          <p class="text-profit-text font-body text-sm leading-relaxed">يتم تنفيذ كل تحليل وتوصية وتطبيق بعناية دقيقة للتفاصيل.</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">شبكة خبراء دولية</h3>
+          <p class="text-profit-text font-body leading-relaxed">تعاون منتظم مع مهنيين استشاريين ومؤسسات أكاديمية عالمية لتبادل المعرفة وأفضل الممارسات.</p>
         </div>
 
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Icon name="tabler:shield-check" class="w-8 h-8 text-white stroke-[1.5]" />
+        <!-- Global Standards -->
+        <div class="group relative bg-gradient-to-br from-white to-amber-50/50 p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:award" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.integrity')}</h3>
-          <p class="text-profit-text font-body text-sm leading-relaxed">التواصل الصادق والشفاف والممارسات التجارية الأخلاقية في جميع علاقات العملاء.</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">معايير دولية</h3>
+          <p class="text-profit-text font-body leading-relaxed">تطبيق أفضل الممارسات العالمية في الإدارة المالية والمراجعة وتحسين العمليات التجارية.</p>
         </div>
 
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Icon name="tabler:bulb" class="w-8 h-8 text-white stroke-[1.5]" />
+        <!-- Continuous Learning -->
+        <div class="group relative bg-gradient-to-br from-white to-blue-50/50 p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:book" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.innovation')}</h3>
-          <p class="text-profit-text font-body text-sm leading-relaxed">التحسين المستمر للمنهجيات واعتماد التقنيات الجديدة لتحقيق نتائج أفضل.</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التعلم المستمر</h3>
+          <p class="text-profit-text font-body leading-relaxed">التطوير المهني المستمر من خلال المؤتمرات الدولية والشهادات والشراكات البحثية.</p>
         </div>
 
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Icon name="tabler:users" class="w-8 h-8 text-white stroke-[1.5]" />
+        <!-- Cultural Adaptation -->
+        <div class="group relative bg-gradient-to-br from-white to-amber-50/50 p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:globe" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-lg font-bold text-profit-navy font-heading mb-3">{t('about.partnership')}</h3>
-          <p class="text-profit-text font-body text-sm leading-relaxed">علاقات تعاونية طويلة المدى تركز على النجاح المستدام والنمو المتبادل.</p>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التكيف الثقافي</h3>
+          <p class="text-profit-text font-body leading-relaxed">القدرة على تكييف المنهجيات العالمية مع الثقافات التجارية المحلية والبيئات التنظيمية.</p>
+        </div>
+      </div>
+
+      <!-- Core Team Expertise -->
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-profit-navy font-heading mb-4">خبرات الفريق الأساسي</h3>
+        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
+          مهنيون متعددو التخصصات بمعرفة متخصصة عبر المالية والعمليات والإدارة الاستراتيجية.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- PhD Holders -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:school" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">حملة الدكتوراه</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">مؤهلات أكاديمية متقدمة من الجامعات الرائدة</p>
+        </div>
+
+        <!-- Certified Professionals -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:certificate" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">مهنيون معتمدون</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">شهادات مهنية في المحاسبة والتحليل المالي</p>
+        </div>
+
+        <!-- Industry Specialists -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:building" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">متخصصون قطاعيون</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">خبرة عميقة عبر +60 قطاعاً صناعياً</p>
+        </div>
+
+        <!-- ERP Consultants -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:settings" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">خبراء ERP</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">تخصص في أنظمة تخطيط موارد المؤسسة</p>
+        </div>
+
+        <!-- Financial Analysts -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:chart-line" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">محللون ماليون</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">خبراء النمذجة المالية وتحليل التكاليف</p>
+        </div>
+
+        <!-- Training Specialists -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl border border-white/40 transition-all duration-300 hover:scale-105">
+          <div class="w-12 h-12 bg-gradient-to-br from-profit-navy to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:rotate-12 transition-all duration-300">
+            <Icon name="tabler:users" class="w-6 h-6 text-white stroke-[1.5]" />
+          </div>
+          <h4 class="text-lg font-bold text-profit-navy font-heading mb-3 group-hover:text-[#C9A227] transition-colors duration-300">خبراء التدريب</h4>
+          <p class="text-sm text-profit-text font-body leading-relaxed">متخصصون في بناء القدرات ونقل المعرفة</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Professional Development -->
-  <Content
-    isReversed
-    title="التطوير المهني المستمر"
-    tagline="التميز من خلال التعلم"
-    subtitle="نستثمر باستمرار في التدريب لدمج التميز الأكاديمي مع البصيرة الصناعية العملية، مما يضمن بقاء فريقنا في المقدمة في ابتكار إدارة الربح."
-    classes={{
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: 'الشهادات المتقدمة',
-        description: 'السعي المنتظم للحصول على شهادات مهنية في المحاسبة والمراجعة وأنظمة ERP والاستشارات الإدارية.',
-      },
-      {
-        title: 'البحث والتطوير',
-        description: 'المشاركة النشطة في البحث الأكاديمي وتطوير منهجيات جديدة لإدارة الربح.',
-      },
-      {
-        title: 'المؤتمرات الصناعية',
-        description: 'الحضور المنتظم للمؤتمرات الدولية للبقاء على اطلاع بالاتجاهات العالمية وأفضل الممارسات.',
-      },
-      {
-        title: 'تبادل المعرفة',
-        description: 'برامج التدريب الداخلي وجلسات تبادل المعرفة لضمان تطوير الخبرة على مستوى الفريق.',
-      },
-    ]}
-    classes={{
-      items: {
-        title: 'text-profit-navy font-semibold',
-        description: 'text-profit-text font-body'
-      }
-    }}
-    image={{
-      src: '/images/professional-development.webp',
-      alt: 'التعلم المستمر والتطوير المهني في الاستشارات',
-      width: 800,
-      height: 600,
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Content>
-
   <!-- Call to Action -->
-  <CallToAction
-    title="اعمل مع فريقنا الخبير"
-    subtitle="اختبر الفرق الذي يأتي من العمل مع محترفين متمرسين يجمعون بين الدقة الأكاديمية والخبرة العملية."
-    actions={[
-      {
-        variant: 'primary',
-        text: 'تعرف على فريقنا',
-        href: '/ar/contact',
-        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
-      },
-      {
-        text: 'تعلم عن منهجيتنا',
-        href: '/ar/about',
-      },
-    ]}
-  />
+  <section class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#C9A227]/10 to-profit-navy/10 rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+      <div class="bg-white rounded-3xl p-12 md:p-16 shadow-2xl border border-white/30">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight text-center" style="text-align: center !important;">
+          اعمل مع <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">شبكتنا العالمية</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body mb-10 max-w-3xl mx-auto leading-relaxed">
+          استفد من خبرة شبكة دولية من الخبراء والمستشارين الذين يجمعون بين المعايير العالمية والفهم العميق للأسواق المحلية.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="/ar/contact" 
+            class="group relative bg-gradient-to-r from-[#C9A227] via-amber-500 to-[#C9A227] bg-size-200 hover:bg-pos-100 text-white font-bold px-10 py-4 rounded-xl shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 "
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <Icon name="tabler:world" class="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <span class="relative z-10">تواصل معنا</span>
+          </a>
+          
+          <a 
+            href="/ar/services" 
+            class="group bg-white/80 hover:bg-white text-profit-navy font-semibold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl border border-gray-200 hover:border-[#C9A227] transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
+          >
+            <Icon name="tabler:briefcase" class="w-6 h-6 group-hover:text-[#C9A227] transition-colors duration-300" />
+            <span>استكشف خدماتنا</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </RTLLayout>

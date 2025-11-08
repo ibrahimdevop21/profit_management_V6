@@ -19,14 +19,14 @@ const {
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-4xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes} />
   
-  <div class="accordion-container space-y-4 mt-8">
+  <div class="accordion-container space-y-4 mt-8" data-accordion-id={id || 'faq'}>
     {items.map((item, index) => (
       <div class="accordion-item bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
         <button 
           class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[#01407a] focus:ring-opacity-50 rounded-lg"
-          data-accordion-target={`accordion-content-${index}`}
+          data-accordion-target={`accordion-content-${id || 'faq'}-${index}`}
           aria-expanded="false"
-          aria-controls={`accordion-content-${index}`}
+          aria-controls={`accordion-content-${id || 'faq'}-${index}`}
         >
           <h3 class="text-lg font-semibold text-gray-900 pr-4">{item.title}</h3>
           <div class="accordion-icon flex-shrink-0 transition-transform duration-200">
@@ -35,9 +35,9 @@ const {
         </button>
         
         <div 
-          id={`accordion-content-${index}`}
+          id={`accordion-content-${id || 'faq'}-${index}`}
           class="accordion-content overflow-hidden transition-all duration-300 ease-in-out max-h-0"
-          aria-labelledby={`accordion-header-${index}`}
+          aria-labelledby={`accordion-header-${id || 'faq'}-${index}`}
         >
           <div class="px-6 pb-4 pt-0">
             <div class="border-t border-gray-100 pt-4">
@@ -81,72 +81,98 @@ const {
   }
 </style>
 
-<script is:inline>
-  function initAccordion() {
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
+<script>
+  // Use a more robust initialization approach
+  function initializeAccordion() {
+    // Wait for both DOM and all resources to be ready
+    const accordionContainers = document.querySelectorAll('.accordion-container');
     
-    accordionHeaders.forEach(header => {
-      // Remove any existing listeners to prevent duplicates
-      const newHeader = header.cloneNode(true);
-      header.parentNode.replaceChild(newHeader, header);
-    });
-    
-    // Add event listeners to the new headers
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-accordion-target');
-        const content = document.getElementById(targetId);
-        const icon = this.querySelector('.accordion-icon');
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        
-        // Close all other accordion items
-        document.querySelectorAll('.accordion-header').forEach(otherHeader => {
-          if (otherHeader !== this) {
-            const otherTargetId = otherHeader.getAttribute('data-accordion-target');
-            const otherContent = document.getElementById(otherTargetId);
-            const otherIcon = otherHeader.querySelector('.accordion-icon');
+    accordionContainers.forEach(container => {
+      const accordionId = container.getAttribute('data-accordion-id') || 'default';
+      const accordionHeaders = container.querySelectorAll('.accordion-header');
+      
+      // Remove existing event listeners to prevent duplicates
+      accordionHeaders.forEach(header => {
+        const newHeader = header.cloneNode(true);
+        header.parentNode.replaceChild(newHeader, header);
+      });
+      
+      // Re-select headers after cloning
+      const newHeaders = container.querySelectorAll('.accordion-header');
+      
+      newHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const targetId = this.getAttribute('data-accordion-target');
+          if (!targetId) return;
+          
+          const content = document.getElementById(targetId);
+          const icon = this.querySelector('.accordion-icon');
+          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+          
+          if (!content) {
+            console.warn('Accordion content not found:', targetId);
+            return;
+          }
+          
+          // Close all other accordion items in this container
+          newHeaders.forEach(otherHeader => {
+            if (otherHeader !== this) {
+              const otherTargetId = otherHeader.getAttribute('data-accordion-target');
+              if (!otherTargetId) return;
+              
+              const otherContent = document.getElementById(otherTargetId);
+              
+              if (otherContent) {
+                otherHeader.setAttribute('aria-expanded', 'false');
+                otherContent.classList.remove('expanded');
+                otherContent.style.maxHeight = '0px';
+              }
+            }
+          });
+          
+          // Toggle current accordion item
+          if (isExpanded) {
+            this.setAttribute('aria-expanded', 'false');
+            content.classList.remove('expanded');
+            content.style.maxHeight = '0px';
+          } else {
+            this.setAttribute('aria-expanded', 'true');
+            content.classList.add('expanded');
             
-            otherHeader.setAttribute('aria-expanded', 'false');
-            otherContent.classList.remove('expanded');
-            otherContent.style.maxHeight = '0px';
+            // Force reflow before setting height
+            content.offsetHeight;
+            content.style.maxHeight = content.scrollHeight + 'px';
+            
+            // Optional smooth scroll with delay
+            setTimeout(() => {
+              if (this.scrollIntoView) {
+                this.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'nearest' 
+                });
+              }
+            }, 200);
           }
         });
-        
-        if (isExpanded) {
-          // Close this item
-          this.setAttribute('aria-expanded', 'false');
-          content.classList.remove('expanded');
-          content.style.maxHeight = '0px';
-        } else {
-          // Open this item
-          this.setAttribute('aria-expanded', 'true');
-          content.classList.add('expanded');
-          
-          // Calculate and set the max-height
-          const scrollHeight = content.scrollHeight;
-          content.style.maxHeight = scrollHeight + 'px';
-          
-          // Smooth scroll to the opened item
-          setTimeout(() => {
-            this.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'nearest' 
-            });
-          }, 150);
-        }
       });
     });
   }
   
-  // Initialize when DOM is ready
+  // Multiple initialization attempts to handle timing issues
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAccordion);
+    document.addEventListener('DOMContentLoaded', initializeAccordion);
   } else {
-    initAccordion();
+    initializeAccordion();
   }
   
-  // Also initialize on window load for better Astro compatibility
+  // Also initialize after window load for better compatibility
   window.addEventListener('load', () => {
-    setTimeout(initAccordion, 100);
+    setTimeout(initializeAccordion, 100);
   });
+  
+  // Initialize on Astro page transitions (if using view transitions)
+  document.addEventListener('astro:page-load', initializeAccordion);
 </script>

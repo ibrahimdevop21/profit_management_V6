@@ -4,176 +4,182 @@ import Features from '~/components/widgets/Features3.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { Icon } from 'astro-icon/components';
-import { useTranslations } from '~/utils/i18n';
 
-const t = useTranslations('ar');
+import { PAGE_METADATA } from '~/utils/metadata';
 
 const metadata = {
-  title: 'القطاعات - إدارة الربح للاستشارات والتدريب',
-  description: 'خبرتنا تمتد عبر أكثر من 60 قطاعًا صناعيًا بما في ذلك الصناعات الطبية وتجهيز الأغذية والتصنيع والعقارات والتجزئة والتكنولوجيا.',
+  title: 'القطاعات الصناعية | إدارة الربح للاستشارات والتدريب',
+  description: 'خبرة واسعة عبر أكثر من 60 قطاعاً صناعياً. من الصناعات الطبية إلى التصنيع والعقارات، نقدم حلول ربحية مخصصة لكل قطاع.',
   canonical: '/ar/industries',
 };
 ---
 
-<RTLLayout metadata={metadata}>
+<RTLLayout lang="ar" dir="rtl" metadata={metadata}>
 
   <!-- Major Industries -->
-  <section class="pt-32 pb-20 bg-gradient-to-br from-profit-light to-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">{t('industries.title')}</h2>
-        <p class="text-lg text-profit-text font-body max-w-2xl mx-auto leading-relaxed">
-          {t('industries.subtitle')}
+  <section class="relative pt-32 pb-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-[#C9A227]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h1 class="text-5xl md:text-6xl font-bold text-profit-navy font-heading mb-8 leading-tight text-center" style="text-align: center !important;">
+          القطاعات الصناعية <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">الرئيسية</span>
+        </h1>
+        <p class="text-2xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          كل شراكة تُظهر قدرتنا على تكييف المنهجيات المثبتة مع تحديات صناعية محددة وتحقيق نتائج قابلة للقياس.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Medical Industries -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
-            <Icon name="tabler:medical-cross" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:heart-handshake" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.medical')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">استشارات متخصصة لشركات الأدوية والرعاية الصحية ذات المتطلبات التنظيمية المعقدة.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>شركات الأدوية</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>المستشفيات والعيادات</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>الأجهزة الطبية</span>
-            </li>
-          </ul>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">الصناعات الطبية</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">استشارات متخصصة لشركات الأدوية والرعاية الصحية بما في ذلك حكمة فارما، EUP فارما، وUPM للأدوية.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل تكاليف الإنتاج الدوائي</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين سلاسل التوريد الطبية</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">إدارة التكاليف التنظيمية</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Food Processing -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
-            <Icon name="tabler:chef-hat" class="w-8 h-8 text-white stroke-[1.5]" />
+        <!-- Food & Agriculture -->
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:leaf" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.food')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">تحسين سلاسل التوريد وإدارة التكاليف في صناعة الأغذية والمشروبات.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>تجهيز الأغذية</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>المشروبات</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>التوزيع والتجزئة</span>
-            </li>
-          </ul>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">الأغذية والزراعة</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">حلول ربحية شاملة لشركات تجهيز الأغذية والأعمال الزراعية مثل الهجن مصر، دنيا سويتس، ومزارع عالم.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين عمليات التصنيع الغذائي</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">إدارة تكاليف المواد الخام</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل ربحية المنتجات</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Manufacturing -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
-            <Icon name="tabler:building-factory-2" class="w-8 h-8 text-white stroke-[1.5]" />
+        <!-- Manufacturing & Engineering -->
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:settings" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.manufacturing')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">تحسين العمليات الإنتاجية وإدارة التكاليف في القطاعات الصناعية المختلفة.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>الصناعات الثقيلة</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>النسيج والملابس</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>الإلكترونيات</span>
-            </li>
-          </ul>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التصنيع والهندسة</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">إدارة متقدمة للتكاليف وكفاءة تشغيلية لشركات التصنيع بما في ذلك مجموعة مصر الحجاز وصناعات العجمي المعدنية.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين خطوط الإنتاج</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">إدارة المخزون المتقدمة</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل الكفاءة التشغيلية</span>
+            </div>
+          </div>
         </div>
 
         <!-- Real Estate -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
-            <Icon name="tabler:building-skyscraper" class="w-8 h-8 text-white stroke-[1.5]" />
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:home" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.realEstate')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">استشارات مالية متخصصة لشركات التطوير العقاري وإدارة الأصول.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>التطوير العقاري</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>إدارة الأصول</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>الاستثمار العقاري</span>
-            </li>
-          </ul>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">العقارات</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">تخطيط مالي استراتيجي وتحليل استثماري لمشاريع التطوير العقاري وشركات إدارة الممتلكات.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل جدوى المشاريع</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">إدارة التدفقات النقدية</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين عوائد الاستثمار</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Retail & Commerce -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+        <!-- Technology & Services -->
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:device-desktop" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التكنولوجيا والخدمات</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">حلول مبتكرة لشركات التكنولوجيا وقطاع الخدمات بما في ذلك كلين إيج، بينتا ستوديو، ومؤسسات خدمية متنوعة.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">نماذج الإيرادات المتكررة</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل تكلفة الخدمات</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-gold rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين الكفاءة التشغيلية</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retail & Distribution -->
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
             <Icon name="tabler:shopping-cart" class="w-8 h-8 text-white stroke-[1.5]" />
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.retail')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">تحسين هوامش الربح وإدارة المخزون في قطاع التجزئة والتجارة الإلكترونية.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>التجزئة التقليدية</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>التجارة الإلكترونية</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-gold rounded-full"></div>
-              <span>سلاسل التوريد</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Technology -->
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20 hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-900 rounded-2xl flex items-center justify-center mb-6">
-            <Icon name="tabler:device-laptop" class="w-8 h-8 text-white stroke-[1.5]" />
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التجارة والتوزيع</h3>
+          <p class="text-profit-text font-body leading-relaxed mb-4">استراتيجيات ربحية متخصصة لشركات التجزئة والتوزيع لتحسين الهوامش وكفاءة سلسلة التوريد.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحليل ربحية المنتجات</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">تحسين إدارة المخزون</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-profit-navy rounded-full"></div>
+              <span class="text-sm text-profit-text">استراتيجيات التسعير</span>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4">{t('industries.technology')}</h3>
-          <p class="text-profit-text font-body mb-4 leading-relaxed">دعم شركات التكنولوجيا في تحسين نماذج الأعمال وإدارة النمو المستدام.</p>
-          <ul class="text-sm text-profit-text font-body space-y-2">
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>تطوير البرمجيات</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>الشركات الناشئة</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <div class="w-1.5 h-1.5 bg-profit-navy rounded-full"></div>
-              <span>الحلول الرقمية</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Industry Expertise -->
+  <!-- Industry Success Stories -->
   <Content
-    title="خبرة متعمقة عبر القطاعات"
-    tagline="التخصص الصناعي"
-    subtitle="نفهم التحديات الفريدة لكل قطاع ونقدم حلولاً مخصصة تتناسب مع طبيعة كل صناعة ومتطلباتها التنظيمية والتشغيلية."
+    title="قصص نجاح متنوعة"
+    tagline="النتائج المحققة"
+    subtitle="عبر أكثر من 60 قطاعاً، حققنا نتائج استثنائية تُظهر قدرتنا على التكيف مع التحديات الفريدة لكل صناعة وتقديم حلول مبتكرة تحقق نمواً مستداماً في الربحية."
     classes={{
       title: 'text-profit-navy font-heading',
       tagline: 'text-profit-gold',
@@ -181,20 +187,20 @@ const metadata = {
     }}
     items={[
       {
-        title: 'فهم عميق للقطاع',
-        description: 'معرفة شاملة بخصائص كل صناعة وتحدياتها الفريدة وفرص النمو المتاحة.',
+        title: 'تحسين 40% في الهوامش',
+        description: 'شركة تصنيع دوائي حققت تحسناً بنسبة 40% في هوامش الربح من خلال تحسين عمليات الإنتاج وإدارة التكاليف.',
       },
       {
-        title: 'حلول مخصصة',
-        description: 'تطوير استراتيجيات وحلول مصممة خصيصاً لتلبية احتياجات كل قطاع وشركة.',
+        title: 'خفض 8.5% في التكاليف التشغيلية',
+        description: 'مجموعة غذائية كبيرة نجحت في خفض التكاليف التشغيلية بنسبة 8.5% مع الحفاظ على جودة المنتجات.',
       },
       {
-        title: 'أفضل الممارسات',
-        description: 'تطبيق أفضل الممارسات العالمية المكيفة مع البيئة المحلية والثقافة التنظيمية.',
+        title: 'زيادة 35% في العائد على الاستثمار',
+        description: 'شركة عقارية حققت زيادة 35% في العائد على الاستثمار من خلال تحسين استراتيجيات التطوير والتسويق.',
       },
       {
-        title: 'نتائج مثبتة',
-        description: 'سجل حافل من النجاحات المحققة عبر مختلف القطاعات والشركات.',
+        title: 'تحسين 50% في كفاءة العمليات',
+        description: 'شركة تصنيع معدنية حققت تحسناً بنسبة 50% في كفاءة العمليات من خلال تطبيق أنظمة ERP متقدمة.',
       },
     ]}
     classes={{
@@ -204,70 +210,35 @@ const metadata = {
       }
     }}
     image={{
-      src: '/images/industry-expertise.webp',
-      alt: 'خبرة صناعية متخصصة في الاستشارات المالية',
+      src: '/images/industry-success.webp',
+      alt: 'قصص نجاح متنوعة عبر القطاعات الصناعية',
       width: 800,
       height: 600,
     }}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-white"></div>
+      <div class="absolute inset-0 bg-profit-light"></div>
     </Fragment>
   </Content>
 
-  <!-- Success Stories -->
-  <section class="py-20 bg-gradient-to-br from-profit-light to-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-profit-navy font-heading mb-4">قصص نجاح</h2>
-        <p class="text-lg text-profit-text font-body max-w-3xl mx-auto leading-relaxed">
-          أمثلة على التحسينات المحققة في الربحية والكفاءة عبر مختلف القطاعات الصناعية.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20">
-          <div class="text-center mb-6">
-            <div class="text-4xl font-bold text-profit-gold mb-2">35%</div>
-            <p class="text-profit-navy font-semibold">زيادة في الربحية</p>
-          </div>
-          <p class="text-profit-text font-body text-sm leading-relaxed">شركة تصنيع أغذية حققت تحسناً كبيراً في الهوامش من خلال تحسين العمليات وإدارة التكاليف.</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-navy/20">
-          <div class="text-center mb-6">
-            <div class="text-4xl font-bold text-profit-navy mb-2">50%</div>
-            <p class="text-profit-navy font-semibold">تقليل في التكاليف</p>
-          </div>
-          <p class="text-profit-text font-body text-sm leading-relaxed">مستشفى خاص حقق وفورات كبيرة في التكاليف التشغيلية مع تحسين جودة الخدمة.</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-profit-gold/20">
-          <div class="text-center mb-6">
-            <div class="text-4xl font-bold text-profit-gold mb-2">25%</div>
-            <p class="text-profit-navy font-semibold">تحسن في الكفاءة</p>
-          </div>
-          <p class="text-profit-text font-body text-sm leading-relaxed">شركة عقارية حسنت من كفاءة عملياتها وسرعة دوران المشاريع بشكل ملحوظ.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Call to Action -->
   <CallToAction
-    title="هل قطاعك يحتاج لخبرتنا؟"
-    subtitle="تواصل معنا لمناقشة كيف يمكن لخبرتنا المتخصصة أن تساعد شركتك في تحقيق أهدافها المالية والتشغيلية."
     actions={[
       {
-        variant: 'primary',
-        text: 'ناقش مشروعك معنا',
+        text: 'ناقش مشروعك',
         href: '/ar/contact',
-        class: 'bg-profit-gold hover:bg-profit-gold/90 text-black font-semibold px-8 py-3 text-lg',
-      },
-      {
-        text: 'تعرف على خدماتنا',
-        href: '/ar/services',
+        icon: 'tabler:message-circle',
+        class: 'bg-profit-gold text-profit-navy hover:bg-yellow-500 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300',
       },
     ]}
-  />
+  >
+    <Fragment slot="title">
+      قطاعك التالي؟
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      بغض النظر عن صناعتك، لدينا الخبرة والمنهجيات المثبتة لتحويل تحدياتك إلى فرص ربحية مستدامة.
+    </Fragment>
+  </CallToAction>
+
 </RTLLayout>

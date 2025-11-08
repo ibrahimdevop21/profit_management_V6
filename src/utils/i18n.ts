@@ -28,9 +28,15 @@ export const ui = {
     'common.aboutUs': 'About Us',
     
     // Hero Section
-    'hero.title': 'Profit Management Consulting & Training',
-    'hero.subtitle': 'Transforming financial performance with science, strategy, and precision.',
-    'hero.trustIndicator': 'Trusted by Leading Organizations',
+    'hero.title': 'We Engineer Profit That',
+    'hero.titleHighlight': 'Withstands Uncertainty',
+    'hero.subtitle': 'For over 26 years, Profit Management has helped organizations master cost accuracy, margin optimization, and long-term profitability.',
+    'hero.ctaPrimary': 'Book a Consultation',
+    'hero.ctaSecondary': 'Explore Our Approach',
+    'hero.stat1': 'Companies Served',
+    'hero.stat2': 'Industries',
+    'hero.stat3': 'Years Experience',
+    'hero.stat4': 'Avg. Profit Increase',
     
     // Home Page
     'home.tagline': 'About Us',
@@ -107,7 +113,7 @@ export const ui = {
     'footer.description': 'Empowering organizations across the Middle East to achieve sustainable profit growth through specialized consulting and training.',
     'footer.address': 'Cairo, Egypt',
     'footer.phone': '+20 XXX XXX XXXX',
-    'footer.email': 'info@profitmanagement.com',
+    'footer.email': 'info@profit-manage.com',
   },
   ar: {
     // Navigation
@@ -131,9 +137,15 @@ export const ui = {
     'common.aboutUs': 'من نحن',
     
     // Hero Section
-    'hero.title': 'إدارة الربح للاستشارات والتدريب',
-    'hero.subtitle': 'تحويل الأداء المالي بالعلم والاستراتيجية والدقة.',
-    'hero.trustIndicator': 'موثوق من قبل المؤسسات الرائدة',
+    'hero.title': 'نهندس أرباحاً',
+    'hero.titleHighlight': 'تصمد أمام عدم اليقين',
+    'hero.subtitle': 'لأكثر من 26 عاماً، ساعدت إدارة الربح المؤسسات على إتقان دقة التكاليف وتحسين الهوامش والربحية طويلة الأمد.',
+    'hero.ctaPrimary': 'احجز استشارة',
+    'hero.ctaSecondary': 'استكشف منهجيتنا',
+    'hero.stat1': 'شركة مخدومة',
+    'hero.stat2': 'قطاع',
+    'hero.stat3': 'عام خبرة',
+    'hero.stat4': 'متوسط زيادة الربح',
     
     // Home Page
     'home.tagline': 'من نحن',
@@ -210,7 +222,7 @@ export const ui = {
     'footer.description': 'تمكين المؤسسات في جميع أنحاء الشرق الأوسط لتحقيق نمو ربحي مستدام من خلال الاستشارات والتدريب المتخصص.',
     'footer.address': 'القاهرة، مصر',
     'footer.phone': '+20 XXX XXX XXXX',
-    'footer.email': 'info@profitmanagement.com',
+    'footer.email': 'info@profit-manage.com',
   },
 } as const;
 

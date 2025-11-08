@@ -1,132 +1,129 @@
 ---
 import RTLLayout from '~/layouts/RTLLayout.astro';
-import Features from '~/components/widgets/Features3.astro';
-import Content from '~/components/widgets/Content.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import { useTranslations } from '~/utils/i18n';
+import { Icon } from 'astro-icon/components';
+import { PAGE_METADATA } from '~/utils/metadata';
 
-const t = useTranslations('ar');
+import ExecutiveHero from '~/components/widgets/ExecutiveHero.astro';
+import Partners from '~/components/widgets/Partners.astro';
 
 const metadata = {
   title: 'إدارة الربح للاستشارات والتدريب | الربح كدقة',
-  description: 'شركة استشارية مصرية متخصصة في إدارة الربحية والتدريب. بقيادة الدكتور محمد عمرية، رائد إدارة الربح في الشرق الأوسط.',
+  description: 'شركة استشارية مصرية رائدة في إدارة الربحية والتدريب المتخصص. بقيادة د. محمد عمرية، نحول أداءك المالي بالعلم والاستراتيجية.',
   canonical: '/ar',
 };
 ---
 
-<RTLLayout metadata={metadata}>
+<RTLLayout lang="ar" dir="rtl" metadata={metadata}>
 
-  <!-- About Snapshot -->
-  <Content
-    tagline={t('home.tagline')}
-    title={t('home.title')}
-    classes={{
-      container: 'pt-20',
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold'
-    }}
-  >
-    <Fragment slot="content">
-      <p class="text-profit-text font-body text-lg mb-6 leading-relaxed">
-        {t('home.description')}
-      </p>
-      <div class="border-t border-profit-gold w-16 mb-6"></div>
-      <p class="text-profit-text font-body leading-relaxed">
-        {t('home.subtitle')}
-      </p>
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-profit-light"></div>
-    </Fragment>
-  </Content>
+  <!-- Executive Hero Section -->
+  <ExecutiveHero />
 
   <!-- Core Services Overview -->
-  <Features
-    id="services"
-    tagline={t('common.ourServices')}
-    title={t('home.servicesTitle')}
-    subtitle={t('home.servicesSubtitle')}
-    columns={3}
-    isDark={false}
-    classes={{
-      title: 'text-profit-navy font-heading',
-      tagline: 'text-profit-gold',
-      subtitle: 'text-profit-text font-body'
-    }}
-    items={[
-      {
-        title: t('services.profitGrowth'),
-        description: 'تحليل استراتيجي للربحية وتطوير القيادات لتحديد الفرص عالية الهامش وتحسين الأداء المالي عبر جميع وظائف الأعمال.',
-        icon: 'tabler:trending-up',
-      },
-      {
-        title: t('services.transformation'),
-        description: 'برامج التميز التشغيلي والتحول الرقمي لتحسين الكفاءة وخفض التكاليف وتعزيز القدرة التنافسية.',
-        icon: 'tabler:refresh',
-      },
-      {
-        title: t('services.decisionSupport'),
-        description: 'رؤى مدفوعة بالبيانات ونمذجة مالية متقدمة لدعم القرارات الاستراتيجية والتخطيط طويل المدى.',
-        icon: 'tabler:target',
-      },
-      {
-        title: t('services.training'),
-        description: 'برامج تدريبية متخصصة لبناء القدرات الداخلية في إدارة الربحية والتحليل المالي والقيادة الاستراتيجية.',
-        icon: 'tabler:school',
-      },
-      {
-        title: 'تحليل الأداء المالي',
-        description: 'تقييم شامل للأداء المالي وتحديد مجالات التحسين وفرص زيادة الربحية والكفاءة التشغيلية.',
-        icon: 'tabler:chart-line',
-      },
-      {
-        title: 'الاستشارات الإدارية',
-        description: 'حلول استشارية متكاملة لتطوير الاستراتيجيات وتحسين العمليات وإدارة المخاطر وتعزيز الحوكمة المؤسسية.',
-        icon: 'tabler:users',
-      },
-      {
-        title: 'التدريب المتخصص',
-        description: 'برامج تدريبية متقدمة في الإدارة المالية وتحليل الربحية.',
-        icon: 'tabler:school',
-      },
-      {
-        title: 'دراسات الجدوى',
-        description: 'تقييم شامل للمشاريع الاستثمارية وتحليل العائد المتوقع.',
-        icon: 'tabler:file-analytics',
-      },
-      {
-        title: 'تكامل أنظمة ERP',
-        description: 'تطبيق وتكامل أنظمة تخطيط موارد المؤسسة لتحسين الكفاءة.',
-        icon: 'tabler:network',
-      },
-      {
-        title: 'الاستشارات الرقمية',
-        description: 'تحويل رقمي للعمليات المالية وتطوير حلول تقنية مبتكرة.',
-        icon: 'tabler:device-desktop',
-      },
-    ]}
-  />
+  <section id="services" class="relative py-24 bg-gradient-to-b from-white via-blue-50/30 to-white ">
+    <div class="absolute top-0 right-1/4 w-64 h-64 bg-gradient-to-r from-[#C9A227]/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-gradient-to-l from-profit-navy/10 to-transparent rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#C9A227]/20 to-amber-600/20 rounded-full mb-6">
+          <span class="text-sm font-bold text-[#C9A227] uppercase tracking-wide">خدماتنا المتميزة</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight text-center" style="text-align: center !important;">
+          حلول شاملة <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">لإدارة الربحية</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body max-w-4xl mx-auto leading-relaxed">
+          خدمات استشارية وتدريبية متكاملة تغطي كافة جوانب الربحية المؤسسية، تربط بين المالية والعمليات والاستراتيجية بأسلوب علمي متطور.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:trending-up" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">قيادة الربحية المؤسسية</h3>
+          <p class="text-profit-text font-body leading-relaxed">تحليل استراتيجي متقدم للربحية وتطوير القيادات لاكتشاف الفرص عالية الهامش وتحسين الأداء المالي بشكل جذري.</p>
+        </div>
+
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:coin" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">إدارة التكاليف المتقدمة</h3>
+          <p class="text-profit-text font-body leading-relaxed">أنظمة رقابة تكاليف متطورة ومنهجيات التكلفة المستهدفة للقضاء على الهدر وتعظيم الهوامش التشغيلية.</p>
+        </div>
+
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:chart-pie" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">تطوير وإدارة الميزانيات</h3>
+          <p class="text-profit-text font-body leading-relaxed">تخطيط ميزانيات شامل وأنظمة رقابة ومراقبة أداء متقدمة تتماشى مع الأهداف الاستراتيجية للمؤسسة.</p>
+        </div>
+
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:search" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">دراسات الجدوى المتخصصة</h3>
+          <p class="text-profit-text font-body leading-relaxed">تحليل استثماري معمق مع نمذجة العائد وتقييم المخاطر لدعم عمليات اتخاذ القرارات الاستراتيجية الحاسمة.</p>
+        </div>
+
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#C9A227] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:settings" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">تكامل أنظمة ERP</h3>
+          <p class="text-profit-text font-body leading-relaxed">تطبيق شامل لأنظمة تخطيط موارد المؤسسة يربط الأنظمة المالية بسير العمل التشغيلي بسلاسة تامة.</p>
+        </div>
+
+        <div class="group relative bg-white p-8 rounded-3xl shadow-2xl hover:shadow-3xl border border-white/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-profit-navy to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg">
+            <Icon name="tabler:school" class="w-8 h-8 text-white stroke-[1.5]" />
+          </div>
+          <h3 class="text-xl font-bold text-profit-navy font-heading mb-4 group-hover:text-[#C9A227] transition-colors duration-300">التدريب والتطوير المهني</h3>
+          <p class="text-profit-text font-body leading-relaxed">برامج تطوير مهني متقدمة لبناء الخبرات المالية الداخلية وقدرات إدارة الربح على أعلى المستويات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <Partners />
 
   <!-- Call to Action -->
-  <CallToAction
-    actions={[
-      {
-        text: 'ابدأ رحلتك معنا',
-        href: '/ar/contact',
-        icon: 'tabler:arrow-left',
-        class: 'bg-profit-gold text-profit-navy hover:bg-yellow-500 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      جاهز لتحويل أعمالك؟
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      انضم إلى أكثر من 100 شركة حققت نموًا استثنائيًا في الربحية مع خبرتنا التي تمتد لأكثر من 26 عامًا.
-    </Fragment>
-  </CallToAction>
+  <section class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-amber-50 ">
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#C9A227]/10 to-profit-navy/10 rounded-full blur-3xl"></div>
+    
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+      <div class="bg-white rounded-3xl p-12 md:p-16 shadow-2xl border border-white/30">
+        <h2 class="text-4xl md:text-5xl font-bold text-profit-navy font-heading mb-6 leading-tight text-center">
+          لنصمم معاً <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-amber-600">خارطة طريق الربحية</span>
+        </h2>
+        <p class="text-xl text-profit-text font-body mb-10 max-w-3xl mx-auto leading-relaxed">
+          انضم إلى مئات الشركات الناجحة التي تثق في إدارة الربح لتحقيق نمو مستدام. ابدأ بالتشاور الاستراتيجي اليوم.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="/ar/contact" 
+            class="group relative bg-gradient-to-r from-[#C9A227] via-amber-500 to-[#C9A227] bg-size-200 hover:bg-pos-100 text-white font-bold px-10 py-4 rounded-xl shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 "
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <Icon name="tabler:calendar" class="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <span class="relative z-10">احجز استشارة</span>
+          </a>
+          
+          <a 
+            href="/ar/services" 
+            class="group bg-white/80 hover:bg-white text-profit-navy font-semibold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl border border-gray-200 hover:border-[#C9A227] transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
+          >
+            <Icon name="tabler:briefcase" class="w-6 h-6 group-hover:text-[#C9A227] transition-colors duration-300" />
+            <span>استكشف الخدمات</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </RTLLayout>

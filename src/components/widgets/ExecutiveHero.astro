@@ -6,6 +6,10 @@
  */
 
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!-- Hero Container: Dark charcoal background with geometric pattern overlay -->
@@ -36,16 +40,15 @@ import { Icon } from 'astro-icon/components';
     </div>
 
     <!-- Main Headline: Bold, confident, executive tone -->
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight animate-slide-up" style="font-family: 'Poppins', sans-serif; animation-delay: 0.1s;">
-      We Engineer Profit That<br />
+    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight animate-slide-up text-center" style="font-family: 'Poppins', sans-serif; animation-delay: 0.1s; text-align: center !important;">
+      {t('hero.title')}<br />
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#E5C56A] to-[#C9A227] bg-size-200 animate-gradient">
-        Withstands Uncertainty
+        {t('hero.titleHighlight')}
       </span>
     </h1>
 
     <!-- Subheadline: Credibility and value proposition -->
-    <p class="text-lg md:text-xl lg:text-2xl text-[#D1D1D1] mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="font-family: 'Poppins', sans-serif; animation-delay: 0.3s;">
-      For over <span class="text-[#C9A227] font-semibold">26 years</span>, Profit Management has helped organizations master cost accuracy, margin optimization, and long-term profitability.
+    <p class="text-lg md:text-xl lg:text-2xl text-[#D1D1D1] mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up text-center" style="font-family: 'Poppins', sans-serif; animation-delay: 0.3s; text-align: center !important;" set:html={t('hero.subtitle').replace(lang === 'ar' ? '26 عاماً' : '26 years', `<span class="text-[#C9A227] font-semibold">26 ${lang === 'ar' ? 'عاماً' : 'years'}</span>`)}>
     </p>
 
     <!-- CTA Buttons: Primary and secondary actions -->
@@ -53,22 +56,22 @@ import { Icon } from 'astro-icon/components';
       
       <!-- Primary CTA: Solid gold button with hover effects -->
       <a 
-        href="/contact" 
+        href={lang === 'ar' ? '/ar/contact' : '/contact'} 
         class="group bg-gradient-to-r from-[#C9A227] via-[#E5C56A] to-[#C9A227] bg-size-200 hover:bg-pos-100 text-[#0D0D0D] font-bold px-10 py-4 rounded-lg shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 w-full sm:w-auto sm:min-w-[240px] justify-center"
         style="font-family: 'Poppins', sans-serif;"
       >
         <Icon name="tabler:calendar" class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-        <span>Book a Consultation</span>
+        <span>{t('hero.ctaPrimary')}</span>
       </a>
 
       <!-- Secondary CTA: Outline button with subtle hover -->
       <a 
-        href="/about" 
+        href={lang === 'ar' ? '/ar/about' : '/about'} 
         class="group bg-transparent border-2 border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-[#0D0D0D] font-semibold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3 w-full sm:w-auto sm:min-w-[240px] justify-center"
         style="font-family: 'Poppins', sans-serif;"
       >
         <Icon name="tabler:arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-        <span>Explore Our Approach</span>
+        <span>{t('hero.ctaSecondary')}</span>
       </a>
     </div>
 
@@ -78,22 +81,22 @@ import { Icon } from 'astro-icon/components';
         
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">200+</div>
-          <div class="text-sm text-[#D1D1D1]">Companies Served</div>
+          <div class="text-sm text-[#D1D1D1]">{t('hero.stat1')}</div>
         </div>
 
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">60+</div>
-          <div class="text-sm text-[#D1D1D1]">Industries</div>
+          <div class="text-sm text-[#D1D1D1]">{t('hero.stat2')}</div>
         </div>
 
         <div class="text-center">
           <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">26+</div>
-          <div class="text-sm text-[#D1D1D1]">Years Experience</div>
+          <div class="text-sm text-[#D1D1D1]">{t('hero.stat3')}</div>
         </div>
 
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">25%</div>
-          <div class="text-sm text-[#D1D1D1]">Avg. Profit Increase</div>
+          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">8.5%</div>
+          <div class="text-sm text-[#D1D1D1]">{t('hero.stat4')}</div>
         </div>
 
       </div>

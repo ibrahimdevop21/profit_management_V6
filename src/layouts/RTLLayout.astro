@@ -28,12 +28,63 @@ const isRTL = currentLang === 'ar';
     flex-direction: row-reverse;
   }
 
+  /* Text alignment for RTL layout */
   .rtl-layout .text-left {
-    text-align: right;
+    text-align: right !important;
   }
 
   .rtl-layout .text-right {
-    text-align: left;
+    text-align: left !important;
+  }
+
+  .rtl-layout .text-center {
+    text-align: center !important;
+  }
+
+  /* Ensure all headings are centered in Arabic pages - High specificity */
+  .rtl-layout h1,
+  .rtl-layout h2,
+  .rtl-layout h3,
+  .rtl-layout .font-heading,
+  .rtl-layout .text-4xl,
+  .rtl-layout .text-5xl,
+  .rtl-layout .text-6xl,
+  .rtl-layout .text-7xl {
+    text-align: center !important;
+  }
+
+  /* Override text alignment for headings only */
+  .rtl-layout h1.text-left,
+  .rtl-layout h1.text-right,
+  .rtl-layout h2.text-left,
+  .rtl-layout h2.text-right,
+  .rtl-layout h3.text-left,
+  .rtl-layout h3.text-right {
+    text-align: center !important;
+  }
+
+  /* Specific override for heading elements with Tailwind classes */
+  .rtl-layout h1.font-heading,
+  .rtl-layout h2.font-heading,
+  .rtl-layout h3.font-heading {
+    text-align: center !important;
+  }
+
+  /* Exception: Keep accordion headers and form labels right-aligned for readability */
+  .rtl-layout .accordion-header,
+  .rtl-layout label,
+  .rtl-layout .text-content {
+    text-align: right !important;
+  }
+
+  /* Ultimate fallback - force all headings to center with maximum specificity */
+  .rtl-layout h1[class*="font-heading"],
+  .rtl-layout h2[class*="font-heading"],
+  .rtl-layout h3[class*="font-heading"],
+  .rtl-layout h1[class*="text-"],
+  .rtl-layout h2[class*="text-"],
+  .rtl-layout h3[class*="text-"] {
+    text-align: center !important;
   }
 
   .rtl-layout .ml-auto {

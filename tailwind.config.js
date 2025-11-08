@@ -25,6 +25,12 @@ export default {
         'gray-light': '#E5E7EB', // Borders and dividers
         'gray-bg': '#FAFAFA',    // Light background
         
+        // Profit Management Brand Colors (used in components)
+        'profit-navy': '#1A2E45',    // Deep Navy
+        'profit-gold': '#C9A227',    // Warm Gold
+        'profit-text': '#4B5563',    // Body text
+        'profit-light': '#F9F9F9',   // Light background
+        
         // Legacy support (will be phased out)
         finance: {
           charcoal: '#1A2E45',

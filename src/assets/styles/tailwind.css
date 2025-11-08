@@ -100,6 +100,40 @@
   stroke-width: 2.4;
 }
 
+/* Ensure icons are always visible with proper contrast */
+[astro-icon] {
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+/* Force icon visibility in card containers */
+.bg-gradient-to-br [astro-icon] {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+/* Ensure icons render properly in all contexts */
+[astro-icon] svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Specific fix for card icon containers */
+.rounded-2xl [astro-icon],
+.rounded-xl [astro-icon] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 [data-aw-toggle-menu] path {
   @apply transition;
 }

@@ -20,7 +20,7 @@ export const METADATA = {
     site_name: 'Profit Management Consulting & Training',
     images: [
       {
-        url: '/profit-stacked.svg', // Using stacked Profit Management logo
+        url: '/profit.png', // Using Profit Management logo
         width: 1200,
         height: 630,
         alt: 'Profit Management Consulting & Training | Profit as Precision',

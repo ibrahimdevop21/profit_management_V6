@@ -1,9 +1,9 @@
 import type { MetaData } from '~/types';
 import { SITE, METADATA } from '~/config';
 
-// Default OG image - using stacked Profit Management logo
+// Default OG image - using Profit Management logo
 const DEFAULT_OG_IMAGE = {
-  url: '/profit-stacked.svg', // Using stacked Profit Management logo
+  url: '/profit.png', // Using Profit Management logo
   width: 1200,
   height: 630,
 };
