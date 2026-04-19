@@ -27,9 +27,9 @@ export function createMetadata(pageData: PageMetadata = {}): MetaData {
     noindex = false
   } = pageData;
 
-  const fullTitle = title 
+  const fullTitle = title
     ? `${title} | Profit Management Consulting & Training`
-    : METADATA.title.default;
+    : undefined;
 
   const fullDescription = description || METADATA.description;
   
@@ -43,7 +43,7 @@ export function createMetadata(pageData: PageMetadata = {}): MetaData {
     : { url: image, width: 1200, height: 630 };
 
   return {
-    title: fullTitle,
+    ...(fullTitle ? { title: fullTitle } : {}),
     description: fullDescription,
     canonical: pageUrl,
     robots: {

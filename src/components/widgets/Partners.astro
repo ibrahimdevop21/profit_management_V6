@@ -64,50 +64,68 @@ const {
 } = Astro.props;
 ---
 
-<section class={`py-16 md:py-20 bg-gray-50 ${classes.container || ''}`}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
+<section class={`pm-section ${classes.container || ''}`}>
+  <div class="pm-container">
     <!-- Section Header -->
-    <div class="text-center mb-12 md:mb-16">
-      {tagline && (
-        <p class={`text-sm font-semibold uppercase tracking-wide text-gold mb-4 text-center ${classes.tagline || ''}`} style="text-align: center !important;">
-          {tagline}
-        </p>
-      )}
-      
-      {title && (
-        <h2 class={`text-3xl md:text-4xl font-bold text-charcoal font-heading mb-4 text-center ${classes.title || ''}`} style="text-align: center !important;">
-          {title}
-        </h2>
-      )}
-      
-      {subtitle && (
-        <p class={`text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed text-center ${classes.subtitle || ''}`} style="text-align: center !important;">
-          {subtitle}
-        </p>
-      )}
+    <div class="mb-12 text-center md:mb-16" data-pm-reveal data-pm-reveal-once>
+      {
+        tagline && (
+          <p
+            class={`pm-eyebrow mb-5 text-center ${classes.tagline || ''}`}
+            style="text-align: center !important;"
+          >
+            {tagline}
+          </p>
+        )
+      }
+
+      {
+        title && (
+          <h2
+            class={`font-heading pm-title-fluid mb-4 text-center text-[color:var(--pm-text-heading)] ${classes.title || ''}`}
+            style="text-align: center !important;"
+          >
+            {title}
+          </h2>
+        )
+      }
+
+      {
+        subtitle && (
+          <p
+            class={`pm-lead-fluid mx-auto max-w-3xl text-center leading-relaxed text-[color:var(--pm-text-body)] ${classes.subtitle || ''}`}
+            style="text-align: center !important;"
+          >
+            {subtitle}
+          </p>
+        )
+      }
     </div>
 
     <!-- Partners Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center">
-      {partners.map((partner, index) => (
-        <div 
-          class="flex items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group border border-gray-100"
-          style={`animation-delay: ${index * 0.1}s`}
-        >
-          <img
-            src={partner.logo}
-            alt={partner.alt}
-            class="max-h-12 md:max-h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      ))}
+    <div class="grid grid-cols-2 items-center gap-8 md:grid-cols-3 md:gap-12 lg:grid-cols-6">
+      {
+        partners.map((partner, index) => (
+          <div
+            class="partner-logo-cell group flex items-center justify-center rounded-xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] p-5 shadow-lg transition-all duration-[250ms] ease-out partner-card-enter hover:-translate-y-1 hover:border-[color:var(--pm-border-strong)] hover:shadow-xl"
+            style={`animation-delay: ${index * 0.1}s`}
+            data-pm-reveal
+            data-pm-reveal-once
+          >
+            <img
+              src={partner.logo}
+              alt={partner.alt}
+              class="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105 md:max-h-16"
+              loading="lazy"
+            />
+          </div>
+        ))
+      }
     </div>
 
     <!-- Trust Statement -->
-    <div class="text-center mt-12 md:mt-16">
-      <p class="text-gray-600 font-medium">
+    <div class="mt-12 text-center md:mt-16" data-pm-reveal data-pm-reveal-once>
+      <p class="font-medium text-[color:var(--pm-text-body)]">
         {t('partners.trustStatement')}
       </p>
     </div>
@@ -115,7 +133,6 @@ const {
 </section>
 
 <style>
-  /* Fade in animation for partner logos */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -127,14 +144,25 @@ const {
     }
   }
 
-  .grid > div {
-    animation: fadeInUp 0.6s ease-out forwards;
+  .partner-card-enter:not(.pm-is-visible) {
     opacity: 0;
+  }
+
+  .partner-card-enter.pm-is-visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partner-card-enter.pm-is-visible {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 
   /* Hover effects */
   .group:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
   }
 
   /* Ensure logos are always visible with proper contrast */

@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  icon: string;
+  color?: 'gold' | 'sage';
+  size?: number;
+  className?: string;
+}
+
+const { icon, color = 'gold', className = '' } = Astro.props;
+const badgeClass =
+  color === 'sage' ? `pm-badge pm-badge--sage ${className}`.trim() : `pm-badge pm-badge--gold ${className}`.trim();
+---
+
+<span class={badgeClass} aria-hidden="true">
+  <Icon name={icon} />
+</span>

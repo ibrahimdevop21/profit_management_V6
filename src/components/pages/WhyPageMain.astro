@@ -1,0 +1,162 @@
+---
+import PageHero from '~/components/widgets/PageHero.astro';
+import PmCard from '~/components/ui/PmCard.astro';
+import IconBadge from '~/components/ui/IconBadge.astro';
+import { getLangFromUrl } from '~/utils/i18n';
+import { whyPageCopy } from '~/utils/i18n-why-page';
+
+const lang = getLangFromUrl(Astro.url);
+const copy = lang === 'fr' ? whyPageCopy.fr : lang === 'ar' ? whyPageCopy.ar : whyPageCopy.en;
+const pageHeroLang = lang === 'fr' ? 'fr' : lang === 'ar' ? 'ar' : 'en';
+---
+
+<PageHero
+  lang={pageHeroLang}
+  heroImage="/6.avif"
+  eyebrow={copy.hero.eyebrow}
+  heading={copy.hero.heading}
+  headingAccent={copy.hero.headingAccent}
+  subtext={copy.hero.subtext}
+/>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <span class="pm-eyebrow">{copy.diffIntro.eyebrow}</span>
+      <h2 class="pm-section-title">
+        {copy.diffIntro.heading}
+        <span class="pm-gradient-text"> {copy.diffIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.diffIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid">
+      {
+        copy.differentiators.map((item, i) => (
+          <div data-pm-reveal data-pm-reveal-once>
+            <PmCard
+              icon={item.icon}
+              iconColor={i % 2 === 0 ? 'gold' : 'sage'}
+              title={item.title}
+              description={item.description}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <h2 class="pm-section-title">
+        {copy.challengesIntro.heading}{' '}
+        <span class="pm-gradient-text">{copy.challengesIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.challengesIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid pm-grid--4">
+      {
+        copy.challenges.map((item, i) => (
+          <div data-pm-reveal data-pm-reveal-once>
+            <PmCard
+              icon={item.icon}
+              iconColor={i % 2 === 0 ? 'gold' : 'sage'}
+              title={item.title}
+              description={item.description}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <div class="pm-split">
+      <div class="order-2 space-y-6 lg:order-1" data-pm-reveal data-pm-reveal-once>
+        <p class="pm-eyebrow">{copy.promiseEyebrow}</p>
+        <h2 class="pm-section-title text-left rtl:text-right">
+          {copy.promiseHeading}
+          <span class="pm-gradient-text"> {copy.promiseHeadingAccent}</span>
+        </h2>
+        <p class="pm-section-sub text-left rtl:text-right">{copy.promiseLead}</p>
+        <div class="space-y-4 pt-2">
+          {
+            copy.promiseItems.map((item, i) => (
+              <div class="pm-card pm-card--horizontal">
+                <IconBadge icon={item.icon} color={i % 2 === 0 ? 'gold' : 'sage'} />
+                <div class="min-w-0 flex-1">
+                  <h3 class="pm-card-title">{item.title}</h3>
+                  <p class="pm-card-desc">{item.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="order-1 lg:order-2" data-pm-reveal data-pm-reveal-once>
+        <div class="overflow-hidden rounded-2xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] p-3 shadow-lg">
+          <img
+            src="/images/our-promise.webp"
+            alt={copy.promiseImageAlt}
+            class="h-auto w-full rounded-xl object-cover"
+            width="800"
+            height="600"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <h2 class="pm-section-title">
+        {copy.methodologyIntro.heading}{' '}
+        <span class="pm-gradient-text">{copy.methodologyIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.methodologyIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid">
+      {
+        copy.methodologyItems.map((item, index) => (
+          <div class="pm-card" data-pm-reveal data-pm-reveal-once>
+            <IconBadge icon={item.icon} color={index % 2 === 0 ? 'gold' : 'sage'} />
+            <h3 class="pm-card-title">{item.name}</h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <h2 class="pm-section-title">
+        {copy.statsIntro.heading}
+        <span class="pm-gradient-text"> {copy.statsIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.statsIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid pm-grid--4">
+      {
+        copy.stats.map((s, i) => (
+          <div class="pm-card" data-pm-reveal data-pm-reveal-once>
+            <IconBadge icon={s.icon} color={i % 2 === 0 ? 'gold' : 'sage'} />
+            <p class="pm-num mb-2 text-3xl font-bold text-[color:var(--pm-accent)] md:text-4xl">{s.value}</p>
+            <h3 class="pm-card-title">{s.label}</h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

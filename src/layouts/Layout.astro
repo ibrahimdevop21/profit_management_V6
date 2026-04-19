@@ -1,7 +1,7 @@
 ---
 import '~/assets/styles/tailwind.css';
 import '~/assets/styles/base.css';
-import '~/styles/premium-consulting.css';
+import '~/assets/styles/global.css';
 
 // I18N removed - not using internationalization
 
@@ -13,19 +13,21 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
-
-// Comment the line below to disable View Transitions
+import SiteChrome from '~/components/SiteChrome.astro';
 import { ClientRouter } from 'astro:transitions';
-
 import type { MetaData as MetaDataType } from '~/types';
+import { getLangFromUrl } from '~/utils/i18n';
+
+/** View transitions swap the DOM on navigation; in dev this often feels stale until a hard refresh. Enable only for production builds. */
+const enableViewTransitions = import.meta.env.PROD;
 
 export interface Props {
   metadata?: MetaDataType;
 }
 
 const { metadata = {} } = Astro.props;
-const language = 'en';
-const textDirection = 'ltr';
+const language = getLangFromUrl(Astro.url);
+const textDirection = language === 'ar' ? 'rtl' : 'ltr';
 ---
 
 <!doctype html>
@@ -39,13 +41,14 @@ const textDirection = 'ltr';
     <SiteVerification />
     <Analytics />
 
-    <!-- Comment the line below to disable View Transitions -->
-    <ClientRouter fallback="swap" />
+    {enableViewTransitions ? <ClientRouter fallback="swap" /> : null}
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body class="pm-theme antialiased tracking-tight">
+    <div id="pm-scroll-progress" class="pm-scroll-progress" aria-hidden="true"></div>
     <slot />
 
+    <SiteChrome />
     <BasicScripts />
     
     <!-- Flowbite JavaScript -->

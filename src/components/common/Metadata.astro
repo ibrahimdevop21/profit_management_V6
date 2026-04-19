@@ -7,6 +7,7 @@ import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { SITE, METADATA } from '~/config';
 import type { MetaData } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
+import { getLangFromUrl, stripLocalePrefix } from '~/utils/i18n';
 // Using Profit Management logo from public folder
 const defaultOgImageUrl = '/profit.png';
 
@@ -23,6 +24,39 @@ const {
   openGraph = {},
   twitter = {},
 } = Astro.props;
+
+const currentLang = getLangFromUrl(Astro.url);
+const normalizedPath = stripLocalePrefix(Astro.url.pathname).replace(/\/+$/, '') || '/';
+
+const PAGE_NAME_BY_PATH: Record<string, { en: string; ar: string; fr: string }> = {
+  '/': { en: '', ar: '', fr: '' },
+  '/about': { en: 'About Us', ar: 'عن الشركة', fr: 'À Propos' },
+  '/services': { en: 'Services', ar: 'خدماتنا', fr: 'Services' },
+  '/industries': { en: 'Industries', ar: 'القطاعات', fr: 'Secteurs' },
+  '/why': { en: 'Why Choose Us', ar: 'لماذا نحن', fr: 'Pourquoi Nous' },
+  '/team': { en: 'Our Team', ar: 'فريقنا', fr: 'Notre Équipe' },
+  '/contact': { en: 'Contact Us', ar: 'تواصل معنا', fr: 'Contact' },
+  '/faq': { en: 'FAQ', ar: 'الأسئلة الشائعة', fr: 'FAQ' },
+  '/legal/privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية', fr: 'Politique de Confidentialité' },
+  '/legal/terms': { en: 'Terms of Service', ar: 'الشروط والأحكام', fr: "Conditions d'Utilisation" },
+  '/privacy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية', fr: 'Politique de Confidentialité' },
+  '/terms': { en: 'Terms of Service', ar: 'الشروط والأحكام', fr: "Conditions d'Utilisation" },
+  '/404': { en: 'Page Not Found', ar: 'الصفحة غير موجودة', fr: 'Page Introuvable' },
+};
+
+const localizedPageName = PAGE_NAME_BY_PATH[normalizedPath]?.[currentLang] ?? '';
+const computedShortTitle =
+  normalizedPath === '/'
+    ? 'Profit Management Consulting & Training'
+    : localizedPageName
+      ? `${localizedPageName} | Profit Management`
+      : 'Profit Management';
+
+/** Prefer explicit title from page metadata (e.g. createMetadata); otherwise localized path-based title. */
+const seoTitle = typeof title === 'string' && title.trim() !== '' ? title.trim() : computedShortTitle;
+
+const pageDescription = description ?? METADATA?.description;
+const ogLocale = currentLang === 'fr' ? 'fr_FR' : currentLang === 'ar' ? 'ar_EG' : 'en_US';
 
 // Process OpenGraph images - use default Profit Management logo or custom images if provided
 const processedOpenGraphImages = openGraph?.images?.length 
@@ -54,13 +88,14 @@ const seoProps: AstroSeoProps = merge(
     },
   },
   {
-    title: METADATA?.title?.default,
+    title: computedShortTitle || METADATA?.title?.default,
     titleTemplate: METADATA?.title?.template,
     noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
     nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
     description: METADATA?.description,
     openGraph: {
       ...METADATA?.openGraph,
+      description: METADATA?.openGraph?.description ?? METADATA?.description,
       images: processedOpenGraphImages, // Always use processed images
     },
     twitter: {
@@ -69,19 +104,23 @@ const seoProps: AstroSeoProps = merge(
     },
   },
   {
-    title: title,
-    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
+    title: seoTitle,
+    titleTemplate: '%s',
     canonical: canonical,
     noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
     nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
-    description: description,
-    openGraph: { 
-      url: canonical, 
+    description: pageDescription,
+    openGraph: {
+      title: seoTitle,
+      url: canonical,
+      description: pageDescription,
+      locale: ogLocale,
       ...openGraph,
       images: openGraph?.images?.length ? openGraph.images : processedOpenGraphImages,
     },
     twitter: {
       ...twitter,
+      description: pageDescription,
       cardType: 'summary_large_image', // Ensure Twitter always uses large image
     },
   }

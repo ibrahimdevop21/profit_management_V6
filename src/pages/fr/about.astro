@@ -1,0 +1,18 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import AboutPageMain from '~/components/pages/AboutPageMain.astro';
+import { createMetadata } from '~/utils/metadata';
+import { getLangFromUrl, defaultLang } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = lang === defaultLang ? '/about' : `/${lang}/about`;
+const metadata = createMetadata({
+  description:
+    'Découvrez Profit Management : le Dr Mohamed Amria et son équipe, 26+ ans d’expérience en rentabilité et accompagnement d’entreprises au Moyen-Orient et au-delà.',
+  canonical,
+});
+---
+
+<Layout metadata={metadata}>
+  <AboutPageMain />
+</Layout>

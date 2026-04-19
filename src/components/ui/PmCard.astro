@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon: string;
+  iconColor?: 'gold' | 'sage';
+  title: string;
+  description: string;
+  titleGold?: boolean;
+  href?: string;
+}
+
+const { icon, iconColor = 'gold', title, description, titleGold = false, href } = Astro.props;
+const badgeClass = iconColor === 'sage' ? 'pm-badge pm-badge--sage' : 'pm-badge pm-badge--gold';
+const titleClass = titleGold ? 'pm-card-title pm-card-title--gold' : 'pm-card-title';
+const isIconName = icon.includes(':');
+---
+
+{
+  href ? (
+    <a href={href} class="pm-card pm-card--link">
+      <div class={badgeClass}>
+        {isIconName ? (
+          <Icon name={icon} aria-hidden="true" />
+        ) : (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <Fragment set:html={icon} />
+          </svg>
+        )}
+      </div>
+      <h3 class={titleClass}>{title}</h3>
+      <p class="pm-card-desc">{description}</p>
+    </a>
+  ) : (
+    <div class="pm-card">
+      <div class={badgeClass}>
+        {isIconName ? (
+          <Icon name={icon} aria-hidden="true" />
+        ) : (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <Fragment set:html={icon} />
+          </svg>
+        )}
+      </div>
+      <h3 class={titleClass}>{title}</h3>
+      <p class="pm-card-desc">{description}</p>
+    </div>
+  )
+}
+
+<style>
+  .pm-card--link {
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  .pm-card-title--gold {
+    color: var(--pm-gold);
+  }
+</style>

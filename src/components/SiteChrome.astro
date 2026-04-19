@@ -1,0 +1,9 @@
+---
+/* Scroll progress, reveal, count-up, header state */
+---
+
+<script>
+  import { initPremiumChrome } from '~/scripts/pm-ui.ts';
+  initPremiumChrome();
+  document.addEventListener('astro:page-load', () => initPremiumChrome());
+</script>

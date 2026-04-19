@@ -1,0 +1,87 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PageHero from '~/components/widgets/PageHero.astro';
+import AccordionFAQ from '~/components/widgets/AccordionFAQ.astro';
+import { createMetadata } from '~/utils/metadata';
+import { getLangFromUrl, useTranslations, defaultLang } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const canonical = lang === defaultLang ? '/faq' : `/${lang}/faq`;
+const metadata = createMetadata({
+  title: 'FAQ',
+  description:
+    'Réponses aux questions courantes sur nos missions de conseil en gestion du profit, nos méthodes et notre façon de collaborer avec votre équipe.',
+  canonical,
+});
+
+const faqItems = [
+  {
+    title: "Qu'est-ce que le conseil en gestion du profit ?",
+    description:
+      "C'est une approche qui combine analyse financière, optimisation opérationnelle et planification stratégique pour maximiser la rentabilité. Nous appliquons des méthodes éprouvées pour identifier les leviers de marge et ancrer les améliorations dans la durée.",
+  },
+  {
+    title: 'Combien de temps dure une mission type ?',
+    description:
+      'En général de 3 à 12 mois selon la complexité et le périmètre. Nous définissons avec vous un calendrier réaliste et des jalons pour suivre des progrès mesurables.',
+  },
+  {
+    title: 'Intervenez-vous auprès des PME ?',
+    description:
+      'Oui. Nous adaptons nos missions à toutes les tailles d’entreprise grâce à des formats flexibles et des méthodes évolutives.',
+  },
+  {
+    title: 'Quels secteurs couvrez-vous ?',
+    description:
+      'Plus de 60 secteurs : santé, agroalimentaire, industrie, immobilier, commerce, technologie, services financiers, etc. Nous ajustons nos méthodes aux contraintes de chaque métier.',
+  },
+  {
+    title: 'Comment mesurez-vous le succès et le ROI ?',
+    description:
+      'Nous fixons des objectifs mesurables dès le départ et suivons des indicateurs adaptés. Les gains de rentabilité observés sont souvent de l’ordre de 15 à 40 %, avec reporting détaillé.',
+  },
+  {
+    title: 'En quoi votre approche est-elle différente ?',
+    description:
+      'Alliage de rigueur académique et d’expérience terrain, avec le Dr Mohamed Amria et plus de 26 ans de pratique, et une veille des bonnes pratiques internationales.',
+  },
+  {
+    title: 'Proposez-vous des formations aux équipes internes ?',
+    description:
+      'Oui. Nous renforçons vos équipes sur l’analyse financière, la gestion du profit et la décision stratégique pour pérenniser les résultats après la mission.',
+  },
+  {
+    title: 'À quel horizon voit-on les premiers résultats ?',
+    description:
+      'Souvent des premiers gains en 30 à 60 jours sur des chantiers ciblés, tout en construisant les bases d’une amélioration durable.',
+  },
+  {
+    title: 'De quelles informations avez-vous besoin pour démarrer ?',
+    description:
+      'États financiers, données opérationnelles et indicateurs clés. Lors du premier échange nous précisons les données nécessaires et les engagements de confidentialité.',
+  },
+  {
+    title: 'Comment démarrer une collaboration ?',
+    description:
+      'Contactez-nous pour un premier entretien : nous clarifions vos enjeux et vous transmettons une proposition détaillée (approche, calendrier, résultats attendus).',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <PageHero
+    lang="fr"
+    heroImage="/4.avif"
+    eyebrow={t('pageHero.faq.eyebrow')}
+    heading={t('pageHero.faq.heading')}
+    headingAccent={t('pageHero.faq.headingAccent')}
+    subtext={t('pageHero.faq.subtext')}
+  />
+
+  <section class="pm-section pm-section--mesh pm-section--sep pb-24 md:pb-28">
+    <div class="pm-container max-w-4xl">
+      <AccordionFAQ id="fr-faq" items={faqItems} />
+    </div>
+  </section>
+</Layout>

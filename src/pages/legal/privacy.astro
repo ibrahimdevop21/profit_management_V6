@@ -1,6 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import PageHero from '~/components/widgets/PageHero.astro';
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
 
 const metadata = {
   title: 'Privacy Policy - Profit Management Consulting & Training',
@@ -9,30 +13,32 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Privacy Policy Content -->
-  <section class="pt-32 md:pt-40 pb-16 md:pb-24 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Page Header -->
-      <div class="text-center mb-16">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-profit-navy font-heading mb-4">Privacy Policy</h1>
-        <p class="text-lg text-profit-gold font-medium tracking-wide mb-6">Your Privacy Matters</p>
-        <p class="text-xl text-profit-text leading-relaxed max-w-3xl mx-auto font-body">
-          We are committed to protecting your privacy and personal information. This policy explains how we collect, use, and safeguard your data.
-        </p>
-      </div>
-      
+  <PageHero
+    lang="en"
+    heroImage="/6.avif"
+    eyebrow={t('pageHero.privacy.eyebrow')}
+    heading={t('pageHero.privacy.heading')}
+    headingAccent={t('pageHero.privacy.headingAccent')}
+    subtext={t('pageHero.privacy.subtext')}
+  />
+
+  <section class="pm-section pm-section--mesh pm-section--sep pb-20 md:pb-24">
+    <div class="pm-container max-w-3xl">
       <!-- Last Updated -->
-      <div class="mb-12 p-6 bg-gradient-to-r from-profit-navy/5 to-profit-gold/5 rounded-xl border border-profit-gold/20">
-        <div class="flex items-center gap-3 mb-2">
-          <Icon name="tabler:calendar" class="w-5 h-5 text-profit-gold" />
-          <span class="text-sm font-semibold text-profit-navy font-heading tracking-wide">Last Updated</span>
+      <div
+        class="mb-12 rounded-2xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface-elevated)] p-6"
+      >
+        <div class="mb-2 flex items-center gap-3">
+          <Icon name="tabler:calendar" class="h-5 w-5 text-[color:var(--pm-accent)]" />
+          <span class="font-heading text-sm font-semibold tracking-wide text-[color:var(--pm-text-heading)]"
+            >Last Updated</span
+          >
         </div>
-        <p class="text-profit-text font-body">October 28, 2025</p>
+        <p class="font-body text-[color:var(--pm-text-body)]">October 28, 2025</p>
       </div>
 
       <!-- Content -->
-      <div class="prose prose-lg max-w-none">
+      <div class="pm-legal-doc max-w-none">
         
         <!-- Information We Collect -->
         <section class="mb-12">

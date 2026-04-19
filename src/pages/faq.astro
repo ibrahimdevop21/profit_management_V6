@@ -1,67 +1,80 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import PageHero from '~/components/widgets/PageHero.astro';
 import AccordionFAQ from '~/components/widgets/AccordionFAQ.astro';
 import { PAGE_METADATA } from '~/utils/metadata';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const faqItems = [
+  {
+    title: 'What is Profit Management Consulting?',
+    description:
+      'Profit Management Consulting is a specialized approach that combines financial analysis, operational optimization, and strategic planning to help organizations maximize profitability. We use proven methodologies to identify profit opportunities and implement sustainable improvements.',
+  },
+  {
+    title: 'How long does a typical consulting engagement last?',
+    description:
+      'Our consulting engagements typically range from 3-12 months, depending on the scope and complexity of your challenges. We work closely with your team to establish realistic timelines and milestones that ensure measurable progress throughout the project.',
+  },
+  {
+    title: 'Do you work with small and medium-sized businesses?',
+    description:
+      'Yes, we provide tailored solutions for organizations of all sizes. Our flexible engagement models and scalable methodologies allow us to deliver value to small businesses, mid-market companies, and large enterprises across various industries.',
+  },
+  {
+    title: 'What industries do you serve?',
+    description:
+      'We have extensive experience across 60+ industries including medical, food processing, manufacturing, real estate, retail, technology, and financial services. Our team adapts proven methodologies to meet the unique challenges of each sector.',
+  },
+  {
+    title: 'How do you measure success and ROI?',
+    description:
+      'We establish clear, measurable objectives at the project outset and track progress using key performance indicators. Our clients typically see 15-40% improvements in profitability, with detailed reporting and analysis provided throughout the engagement.',
+  },
+  {
+    title: 'What makes your approach different?',
+    description:
+      'Our approach combines academic rigor with practical experience. Led by Dr. Mohamed Amria with 26+ years of expertise, we apply research-based methodologies while collaborating with U.S. experts to ensure global best practices.',
+  },
+  {
+    title: 'Do you provide training for internal teams?',
+    description:
+      'Absolutely. We believe in building internal capabilities to ensure sustainable results. Our training programs cover financial analysis, profit management techniques, and strategic decision-making to empower your team long after our engagement ends.',
+  },
+  {
+    title: 'How quickly can we expect to see results?',
+    description:
+      'While comprehensive transformation takes time, many clients see initial improvements within 30-60 days. We focus on quick wins early in the engagement while building the foundation for long-term sustainable profit growth.',
+  },
+  {
+    title: 'What information do you need to get started?',
+    description:
+      "We typically require access to financial statements, operational data, and key performance metrics. During our initial consultation, we'll discuss specific data requirements and ensure confidentiality through appropriate agreements.",
+  },
+  {
+    title: 'How do we begin working together?',
+    description:
+      "Contact us for an initial consultation where we'll discuss your challenges and objectives. We'll then provide a customized proposal outlining our approach, timeline, and expected outcomes tailored to your specific needs.",
+  },
+];
 ---
 
 <Layout metadata={PAGE_METADATA.faq}>
+  <PageHero
+    lang={lang}
+    heroImage="/4.avif"
+    eyebrow={t('pageHero.faq.eyebrow')}
+    heading={t('pageHero.faq.heading')}
+    headingAccent={t('pageHero.faq.headingAccent')}
+    subtext={t('pageHero.faq.subtext')}
+  />
 
-  <!-- FAQ Section -->
-  <div class="section-padding">
-    <AccordionFAQ
-      id="en-faq"
-      title="Frequently Asked Questions"
-      subtitle="Find answers to common questions about our profit management consulting services, methodologies, and client engagement process."
-      tagline="FAQ"
-      classes={{
-        container: 'container-premium',
-        title: 'section-title text-navy',
-        tagline: 'section-tagline',
-        subtitle: 'section-subtitle'
-      }}
-    items={[
-      {
-        title: 'What is Profit Management Consulting?',
-        description: 'Profit Management Consulting is a specialized approach that combines financial analysis, operational optimization, and strategic planning to help organizations maximize profitability. We use proven methodologies to identify profit opportunities and implement sustainable improvements.',
-      },
-      {
-        title: 'How long does a typical consulting engagement last?',
-        description: 'Our consulting engagements typically range from 3-12 months, depending on the scope and complexity of your challenges. We work closely with your team to establish realistic timelines and milestones that ensure measurable progress throughout the project.',
-      },
-      {
-        title: 'Do you work with small and medium-sized businesses?',
-        description: 'Yes, we provide tailored solutions for organizations of all sizes. Our flexible engagement models and scalable methodologies allow us to deliver value to small businesses, mid-market companies, and large enterprises across various industries.',
-      },
-      {
-        title: 'What industries do you serve?',
-        description: 'We have extensive experience across 60+ industries including medical, food processing, manufacturing, real estate, retail, technology, and financial services. Our team adapts proven methodologies to meet the unique challenges of each sector.',
-      },
-      {
-        title: 'How do you measure success and ROI?',
-        description: 'We establish clear, measurable objectives at the project outset and track progress using key performance indicators. Our clients typically see 15-40% improvements in profitability, with detailed reporting and analysis provided throughout the engagement.',
-      },
-      {
-        title: 'What makes your approach different?',
-        description: 'Our approach combines academic rigor with practical experience. Led by Dr. Mohamed Amria with 26+ years of expertise, we apply research-based methodologies while collaborating with U.S. experts to ensure global best practices.',
-      },
-      {
-        title: 'Do you provide training for internal teams?',
-        description: 'Absolutely. We believe in building internal capabilities to ensure sustainable results. Our training programs cover financial analysis, profit management techniques, and strategic decision-making to empower your team long after our engagement ends.',
-      },
-      {
-        title: 'How quickly can we expect to see results?',
-        description: 'While comprehensive transformation takes time, many clients see initial improvements within 30-60 days. We focus on quick wins early in the engagement while building the foundation for long-term sustainable profit growth.',
-      },
-      {
-        title: 'What information do you need to get started?',
-        description: 'We typically require access to financial statements, operational data, and key performance metrics. During our initial consultation, we\'ll discuss specific data requirements and ensure confidentiality through appropriate agreements.',
-      },
-      {
-        title: 'How do we begin working together?',
-        description: 'Contact us for an initial consultation where we\'ll discuss your challenges and objectives. We\'ll then provide a customized proposal outlining our approach, timeline, and expected outcomes tailored to your specific needs.',
-      },
-    ]}
-    />
-  </div>
-
+  <section class="pm-section pm-section--mesh pm-section--sep pb-24 md:pb-28">
+    <div class="pm-container max-w-4xl">
+      <AccordionFAQ id="en-faq" items={faqItems} />
+    </div>
+  </section>
 </Layout>

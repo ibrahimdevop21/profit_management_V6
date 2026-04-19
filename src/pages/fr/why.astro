@@ -1,0 +1,19 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import WhyPageMain from '~/components/pages/WhyPageMain.astro';
+
+import { createMetadata } from '~/utils/metadata';
+import { getLangFromUrl, defaultLang } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = lang === defaultLang ? '/why' : `/${lang}/why`;
+const metadata = createMetadata({
+  description:
+    'Ce qui distingue Profit Management : excellence académique, plus de 26 ans d’expérience au Moyen-Orient et des méthodes éprouvées pour une rentabilité durable.',
+  canonical,
+});
+---
+
+<Layout metadata={metadata}>
+  <WhyPageMain />
+</Layout>

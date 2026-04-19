@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+import { useTranslations, localizePath, getLangFromUrl } from '~/utils/i18n';
+
+export interface Props {
+  lang?: 'en' | 'ar' | 'fr';
+  heading?: string;
+  subtext?: string;
+  primaryLabel?: string;
+  ghostLabel?: string;
+}
+
+const props = Astro.props;
+const resolvedLang = (props.lang ?? getLangFromUrl(Astro.url)) as 'en' | 'ar' | 'fr';
+const t = useTranslations(resolvedLang);
+
+const heading = props.heading ?? t('cta.heading');
+const headingAccent = t('cta.headingAccent');
+const subtext = props.subtext ?? t('cta.subtext');
+const primaryLabel = props.primaryLabel ?? t('cta.primaryBtn');
+const ghostLabel = props.ghostLabel ?? t('cta.ghostBtn');
+
+const contactHref = localizePath('/contact', resolvedLang);
+const telHref = 'tel:+201068970607';
+const mailHref = 'mailto:info@profit-manage.com';
+const phoneDisplay = t('cta.phone');
+---
+
+<section class="cta-section cta-banner" aria-labelledby="cta-banner-heading">
+  <div class="cta-inner">
+    <div class="cta-card">
+      <div class="cta-columns">
+        <div class="cta-left">
+          <h2 id="cta-banner-heading" class="cta-heading">
+            {heading}{' '}<span>{headingAccent}</span>
+          </h2>
+          <p class="cta-subtext">{subtext}</p>
+        </div>
+        <div class="cta-right">
+          <div class="cta-buttons">
+            <a href={contactHref} class="cta-btn cta-btn--primary">
+              <Icon name="tabler:calendar" class="cta-btn__icon" aria-hidden="true" />
+              <span>{primaryLabel}</span>
+            </a>
+            <a href={telHref} class="cta-btn cta-btn--ghost">
+              <Icon name="tabler:phone" class="cta-btn__icon" aria-hidden="true" />
+              <span>{ghostLabel}</span>
+            </a>
+          </div>
+          <div class="cta-contact-info">
+            <p class="cta-contact-label">{t('cta.directContact')}</p>
+            <a href={mailHref} class="cta-contact-email">info@profit-manage.com</a>
+            <a href={telHref} class="cta-contact-phone">{phoneDisplay}</a>
+            <p class="cta-contact-company">{t('cta.company')}</p>
+            <p class="cta-contact-location">{t('cta.location')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

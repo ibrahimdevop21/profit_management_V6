@@ -1,8 +1,6 @@
 ---
-// Updated mobile navigation - Oct 30, 2025
-import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations, getAlternateLanguage } from '~/utils/i18n';
 import MobileNavigation from '~/components/MobileNavigation.astro';
+import { getLangFromUrl, useTranslations, localizePath, languages } from '~/utils/i18n';
 
 interface Props {
   currentPath?: string;
@@ -12,186 +10,244 @@ const { currentPath = '/' } = Astro.props;
 const url = new URL(Astro.request.url);
 const currentLang = getLangFromUrl(url);
 const t = useTranslations(currentLang);
-const alternateLang = getAlternateLanguage(currentLang);
 
-// Language switcher shows TARGET language (not current)
-const targetLangDisplay = alternateLang === 'ar' 
-  ? { flag: '🇪🇬', text: 'العربية', code: 'AR' }
-  : { flag: '🇬🇧', text: 'English', code: 'EN' };
+const navItems = [
+  { key: 'nav.home', en: '/', ar: '/ar' },
+  { key: 'nav.about', en: '/about', ar: '/ar/about' },
+  { key: 'nav.services', en: '/services', ar: '/ar/services' },
+  { key: 'nav.industries', en: '/industries', ar: '/ar/industries' },
+  { key: 'nav.why', en: '/why', ar: '/ar/why' },
+  { key: 'nav.contact', en: '/contact', ar: '/ar/contact' },
+] as const;
 
-// Generate alternate URL
-const alternateUrl = alternateLang === 'en' 
-  ? currentPath.replace('/ar', '') || '/'
-  : '/ar' + currentPath;
+const localeOptions = [
+  { code: 'en', label: 'EN' },
+  { code: 'ar', label: 'AR' },
+  { code: 'fr', label: 'FR' },
+] as const;
+
 ---
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-charcoal shadow-premium-sm border-b border-gray-light/20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      
-      <!-- Logo Section -->
-      <div class="flex items-center">
-        <a href="/" class="flex items-center">
-          <img 
-            src="/profit.png" 
-            alt="Profit Management Logo" 
-            class="h-8 w-auto"
-          />
-        </a>
-      </div>
+<header id="header" data-aw-sticky-header class="pm-site-header">
+  <nav class="pm-container">
+    <div class="pm-nav-row">
+      <a href={localizePath('/', currentLang)} class="pm-brand" aria-label="Profit Management home">
+        <img src="/profit.png" alt="Profit Management Logo" class="h-8 w-auto" />
+      </a>
 
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center justify-center flex-1">
-        <ul class="flex items-center space-x-8 font-medium text-white">
-          <!-- Home -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar' : '/'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/' || currentPath === '/ar' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.home')}
-            </a>
-          </li>
+      <ul class="pm-desktop-nav" aria-label="Primary navigation">
+        {
+          navItems.map((item) => {
+            const href = currentLang === 'ar' ? item.ar : currentLang === 'fr' ? localizePath(item.en, 'fr') : item.en;
+            const isActive = currentPath === href;
+            return (
+              <li>
+                <a href={href} class={`pm-nav-link ${isActive ? 'is-active' : ''}`}>
+                  {t(item.key)}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
 
-          <!-- About -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar/about' : '/about'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/about' || currentPath === '/ar/about' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.about')}
-            </a>
-          </li>
+      <div class="pm-nav-actions">
 
-          <!-- Services -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar/services' : '/services'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/services' || currentPath === '/ar/services' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.services')}
-            </a>
-          </li>
+        <div class="pm-lang-switch" role="group" aria-label={t('lang.switch')}>
+          {
+            localeOptions.map((option) => {
+              const active = currentLang === option.code;
+              return (
+                <a
+                  href={localizePath(currentPath, option.code)}
+                  class:list={['pm-lang-seg', active && 'is-active']}
+                  aria-current={active ? 'true' : undefined}
+                  title={languages[option.code]}
+                  lang={option.code}
+                >
+                  <span class="pm-lang-seg__label">{option.label}</span>
+                </a>
+              );
+            })
+          }
+        </div>
 
-          <!-- Industries -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar/industries' : '/industries'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/industries' || currentPath === '/ar/industries' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.industries')}
-            </a>
-          </li>
-
-          <!-- Why Choose Us -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar/why' : '/why'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/why' || currentPath === '/ar/why' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.why')}
-            </a>
-          </li>
-
-          <!-- Contact -->
-          <li>
-            <a 
-              href={currentLang === 'ar' ? '/ar/contact' : '/contact'} 
-              class={`hover:text-gold transition-all duration-300 px-3 py-2 rounded-lg whitespace-nowrap font-medium ${
-                currentPath === '/contact' || currentPath === '/ar/contact' ? 'text-gold font-semibold' : 'text-white'
-              }`}
-            >
-              {t('nav.contact')}
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Language Toggle -->
-      <div class="hidden md:flex">
-        <a 
-          href={alternateUrl}
-          class="flex items-center space-x-2 px-3 py-2 rounded-lg text-white hover:text-gold hover:bg-white/10 transition-all duration-300"
-          title={`Switch to ${targetLangDisplay.text}`}
-        >
-          <span class="text-base">{targetLangDisplay.flag}</span>
-          <span class="font-medium text-sm">{targetLangDisplay.code}</span>
-        </a>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden">
-        <button 
-          data-collapse-toggle="mobile-menu" 
-          type="button" 
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-white rounded-lg hover:bg-white/10 hover:text-gold transition-all duration-300"
-          aria-controls="mobile-menu" 
+        <button
+          type="button"
+          class="pm-hamburger md:hidden"
+          aria-controls="mobile-menu"
           aria-expanded="false"
           id="mobile-menu-button"
         >
-          <span class="sr-only">Open main menu</span>
-          <div class="w-5 h-5 flex flex-col justify-center items-center">
-            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out"></span>
-            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out mt-1"></span>
-            <span class="hamburger-line block h-0.5 w-5 bg-current transition-all duration-300 ease-out mt-1"></span>
-          </div>
+          <span class="sr-only">{t('nav.openMenu')}</span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
         </button>
       </div>
     </div>
+  </nav>
+</header>
 
-  </div>
-</nav>
-
-<!-- Mobile Navigation Component -->
 <MobileNavigation currentPath={currentPath} />
 
 <style>
-  /* Premium navbar styling */
-  nav {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+  .pm-nav-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    min-height: var(--pm-header-offset);
+  }
+
+  .pm-brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .pm-desktop-nav {
+    display: none;
+  }
+
+  .pm-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-self: end;
+  }
+
+  .pm-hamburger {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid var(--pm-border);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--pm-text-heading);
+    transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+  }
+
+  .pm-hamburger:hover {
+    color: var(--pm-accent);
+    border-color: var(--pm-border-strong);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  .pm-hamburger.hamburger-active .hamburger-line:nth-child(2) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .pm-hamburger.hamburger-active .hamburger-line:nth-child(3) {
+    opacity: 0;
+  }
+
+  .pm-hamburger.hamburger-active .hamburger-line:nth-child(4) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
 
-  /* Smooth transitions for all interactive elements */
-  nav a,
-  nav button {
-    transition: all 0.2s ease-in-out;
+  .pm-lang-switch {
+    display: inline-flex;
+    align-items: stretch;
+    flex-shrink: 0;
+    padding: 3px;
+    border-radius: 12px;
+    border: 1px solid var(--pm-border);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
-  /* Remove old active link styling - using dynamic classes instead */
+  .pm-lang-seg {
+    position: relative;
+    z-index: 0;
+    min-width: 2.75rem;
+    min-height: 44px;
+    padding: 0 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #8a8f9a;
+    text-decoration: none;
+    transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
 
+  .pm-lang-seg:hover {
+    color: #e8e4dc;
+  }
 
-  /* Hover effects for desktop links */
+  .pm-lang-seg:focus-visible {
+    outline: 2px solid rgba(201, 168, 76, 0.65);
+    outline-offset: 2px;
+    z-index: 1;
+  }
+
+  .pm-lang-seg.is-active {
+    z-index: 1;
+    color: #0d0f14;
+    background: linear-gradient(165deg, #d4b45a 0%, #c9a84c 55%, #b8943a 100%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+
+  .pm-lang-seg__label {
+    pointer-events: none;
+  }
+
   @media (min-width: 768px) {
-    nav ul li a:hover {
-      transform: translateY(-1px);
+    .pm-desktop-nav {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    .pm-nav-link {
+      font-family: var(--pm-font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #a8a8a8;
+      text-decoration: none;
+      transition: color 200ms ease;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 0 0.35rem;
+    }
+
+    .pm-nav-link:hover,
+    .pm-nav-link.is-active {
+      color: #c9a84c;
+    }
+
+    .pm-lang-seg {
+      min-height: 36px;
+      min-width: 3rem;
+      padding: 0 0.65rem;
+      font-size: 0.72rem;
+    }
+
+    .pm-hamburger {
+      display: none;
     }
   }
-
-  /* Hamburger menu animation */
-  .hamburger-active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 3px);
-  }
-
-  .hamburger-active .hamburger-line:nth-child(2) {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  .hamburger-active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
-  }
-
 </style>
-

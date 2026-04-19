@@ -1,0 +1,56 @@
+---
+export interface Props {
+  eyebrow?: string;
+  heading: string;
+  headingAccent?: string;
+  subtext?: string;
+  lang?: 'en' | 'ar' | 'fr';
+  /** Optional full-bleed background (e.g. AVIF in /public) */
+  heroImage?: string;
+}
+
+const { eyebrow, heading, headingAccent, subtext, lang = 'en', heroImage } = Astro.props;
+---
+
+<section
+  class:list={['page-hero', 'page-hero--inner', heroImage && 'page-hero--has-media']}
+  aria-labelledby="page-hero-heading"
+  data-pm-reveal
+  data-pm-reveal-once
+  lang={lang}
+>
+  {
+    heroImage && (
+      <>
+        <div class="page-hero__media" aria-hidden="true">
+          <img src={heroImage} alt="" width="1920" height="1080" loading="eager" decoding="async" />
+        </div>
+        <div class="page-hero__scrim" aria-hidden="true"></div>
+      </>
+    )
+  }
+  <div class="pm-container page-hero__content">
+    <div class="page-hero__inner">
+      {
+        eyebrow && (
+          <>
+            <p class="page-hero__eyebrow">{eyebrow}</p>
+            <div class="page-hero__rule" aria-hidden="true" />
+          </>
+        )
+      }
+      <h1 id="page-hero-heading" class="page-hero__heading">
+        {heading}
+        {
+          headingAccent && (
+            <>
+              {' '}
+              <span class="page-hero__accent">{headingAccent}</span>
+            </>
+          )
+        }
+      </h1>
+      {subtext && <p class="page-hero__sub" set:html={subtext} />}
+    </div>
+  </div>
+</section>

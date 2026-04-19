@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations, getAlternateLanguage } from '~/utils/i18n';
+import { getLangFromUrl, useTranslations, localizePath } from '~/utils/i18n';
 
 interface Props {
   currentPath?: string;
@@ -9,316 +9,164 @@ const { currentPath = '/' } = Astro.props;
 const url = new URL(Astro.request.url);
 const currentLang = getLangFromUrl(url);
 const t = useTranslations(currentLang);
-const alternateLang = getAlternateLanguage(currentLang);
 
-// Language switcher shows TARGET language (not current)
-const targetLangDisplay = alternateLang === 'ar' 
-  ? { flag: '🇪🇬', text: 'العربية', code: 'AR' }
-  : { flag: '🇬🇧', text: 'English', code: 'EN' };
+const navItems = [
+  { key: 'nav.home', en: '/', ar: '/ar' },
+  { key: 'nav.about', en: '/about', ar: '/ar/about' },
+  { key: 'nav.services', en: '/services', ar: '/ar/services' },
+  { key: 'nav.industries', en: '/industries', ar: '/ar/industries' },
+  { key: 'nav.why', en: '/why', ar: '/ar/why' },
+  { key: 'nav.contact', en: '/contact', ar: '/ar/contact' },
+] as const;
 
-// Generate alternate URL
-const alternateUrl = alternateLang === 'en' 
-  ? currentPath.replace('/ar', '') || '/'
-  : '/ar' + currentPath;
 ---
 
-<!-- Mobile Menu Overlay -->
-<div class="hidden" id="mobile-menu">
-  <div class="fixed inset-0 top-0 z-50 bg-[#1C1C1E] text-white">
-    <!-- Mobile Menu Header -->
-    <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
-      <img 
-        src="/profit-horizintal.svg" 
-        alt="Profit Management Logo" 
-        class="h-8 w-auto"
-      />
-      <button 
-        class="mobile-close-btn p-2 text-white hover:text-gold transition-all duration-300 rounded-lg hover:bg-white/10"
-        aria-label="Close menu"
-        style="color: white !important;"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: inherit;">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-    
-    <!-- Mobile Menu Content -->
-    <div class="px-6 py-8 space-y-2">
-    
-      <!-- Mobile Navigation Links -->
-      <a 
-        href={currentLang === 'ar' ? '/ar' : '/'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/' || currentPath === '/ar' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.home')}
-      </a>
-    
-      <a 
-        href={currentLang === 'ar' ? '/ar/about' : '/about'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/about' || currentPath === '/ar/about' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.about')}
-      </a>
-
-      <a 
-        href={currentLang === 'ar' ? '/ar/services' : '/services'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/services' || currentPath === '/ar/services' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.services')}
-      </a>
-
-      <a 
-        href={currentLang === 'ar' ? '/ar/industries' : '/industries'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/industries' || currentPath === '/ar/industries' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.industries')}
-      </a>
-    
-      <a 
-        href={currentLang === 'ar' ? '/ar/why' : '/why'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/why' || currentPath === '/ar/why' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.why')}
-      </a>
-    
-      <a 
-        href={currentLang === 'ar' ? '/ar/contact' : '/contact'} 
-        class={`block px-6 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-          currentPath === '/contact' || currentPath === '/ar/contact' ? 'text-gold bg-gold/15 border border-gold/30' : 'text-white hover:text-gold hover:bg-white/10'
-        }`}
-      >
-        {t('nav.contact')}
-      </a>
-
-      <!-- Mobile Language Toggle -->
-      <div class="pt-4">
-        <a 
-          href={alternateUrl}
-          class="flex items-center space-x-3 px-6 py-4 rounded-xl text-white hover:text-gold hover:bg-white/10 transition-all duration-300 border border-white/20"
-          title={`Switch to ${targetLangDisplay.text}`}
-        >
-          <span class="text-xl">{targetLangDisplay.flag}</span>
-          <span class="font-medium text-lg">{targetLangDisplay.text}</span>
-        </a>
-      </div>
-    </div>
+<div id="mobile-menu" class="pm-mobile-menu" aria-hidden="true">
+  <div class="pm-mobile-menu-inner">
+    <ul class="pm-mobile-menu-list" aria-label="Mobile navigation">
+      {
+        navItems.map((item) => {
+          const href = currentLang === 'ar' ? item.ar : currentLang === 'fr' ? localizePath(item.en, 'fr') : item.en;
+          const isActive = currentPath === href;
+          return (
+            <li>
+              <a href={href} class={`pm-mobile-link ${isActive ? 'is-active' : ''}`}>
+                {t(item.key)}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
   </div>
 </div>
 
 <style>
-  /* Disable backdrop blur for mobile menu */
-  #mobile-menu,
-  #mobile-menu * {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  /* Mobile menu toggle */
-  #mobile-menu {
-    display: none;
-  }
-
-  #mobile-menu.show {
-    display: block;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  /* Mobile menu animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Mobile menu slide animation for links */
-  #mobile-menu.show a {
-    animation: slideInUp 0.4s ease-out forwards;
-    opacity: 0;
-  }
-
-  #mobile-menu.show a:nth-child(1) { animation-delay: 0.1s; }
-  #mobile-menu.show a:nth-child(2) { animation-delay: 0.15s; }
-  #mobile-menu.show a:nth-child(3) { animation-delay: 0.2s; }
-  #mobile-menu.show a:nth-child(4) { animation-delay: 0.25s; }
-  #mobile-menu.show a:nth-child(5) { animation-delay: 0.3s; }
-  #mobile-menu.show a:nth-child(6) { animation-delay: 0.35s; }
-
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Close button styling - force white color to prevent gold glitch */
-  .mobile-close-btn {
-    transition: all 0.3s ease;
-    color: white !important;
-  }
-
-  .mobile-close-btn svg {
-    color: white !important;
-  }
-
-  .mobile-close-btn:hover {
-    transform: rotate(90deg);
-    color: #C9A227 !important;
-  }
-
-  .mobile-close-btn:hover svg {
-    color: #C9A227 !important;
-  }
-
-  /* Prevent body scroll when mobile menu is open */
-  body.mobile-menu-open {
-    overflow: hidden;
+  .pm-mobile-menu {
     position: fixed;
-    width: 100%;
+    top: var(--pm-header-offset);
+    left: 0;
+    right: 0;
+    z-index: 998;
+    background: #0d0f14;
+    border-top: 1px solid var(--pm-border);
+    border-bottom: 1px solid var(--pm-border);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+
+  .pm-mobile-menu.show {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .pm-mobile-menu-inner {
+    padding: 0.75rem 1.25rem 1.1rem;
+  }
+
+  .pm-mobile-menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pm-mobile-link {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--pm-font-body);
+    font-size: 0.85rem;
+    color: #a8a8a8;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: color 200ms ease, background-color 200ms ease;
+  }
+
+  .pm-mobile-link:hover,
+  .pm-mobile-link.is-active {
+    color: #c9a84c;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  @media (min-width: 768px) {
+    .pm-mobile-menu {
+      display: none;
+    }
   }
 </style>
 
 <script>
-  // Mobile navigation with proper initialization
+  /** Abort previous listeners when setup runs again (DOMContentLoaded + astro:page-load). */
+  let mobileNavAbort: AbortController | null = null;
+
   function setupMobileNav() {
-    const mobileMenuButton = document.querySelector('[data-collapse-toggle="mobile-menu"]');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileCloseBtn = document.querySelector('.mobile-close-btn');
-    
-    if (!mobileMenuButton || !mobileMenu) {
-      return false;
-    }
-    
-    // Remove any existing event listeners to prevent duplicates
-    const newButton = mobileMenuButton.cloneNode(true) as HTMLElement;
-    mobileMenuButton.parentNode?.replaceChild(newButton, mobileMenuButton);
-    
-    const newCloseBtn = mobileCloseBtn ? (mobileCloseBtn.cloneNode(true) as HTMLElement) : null;
-    if (mobileCloseBtn && newCloseBtn && mobileCloseBtn.parentNode) {
-      mobileCloseBtn.parentNode.replaceChild(newCloseBtn, mobileCloseBtn);
-    }
-      
-    function openMobileMenu() {
-      if (mobileMenu && newButton) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('show');
-        newButton.classList.add('hamburger-active');
-        newButton.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('mobile-menu-open');
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    if (!button || !menu) return;
+
+    mobileNavAbort?.abort();
+    mobileNavAbort = new AbortController();
+    const { signal } = mobileNavAbort;
+
+    const closeMenu = () => {
+      menu.classList.remove('show');
+      button.classList.remove('hamburger-active');
+      button.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    };
+
+    const toggleMenu = (event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = menu.classList.contains('show');
+      if (open) {
+        closeMenu();
+        return;
       }
-    }
-    
-    function closeMobileMenu() {
-      if (mobileMenu && newButton) {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('show');
-        newButton.classList.remove('hamburger-active');
-        newButton.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('mobile-menu-open');
-      }
-    }
-      
-    // Toggle mobile menu
-    newButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const isHidden = mobileMenu.classList.contains('hidden');
-      if (isHidden) {
-        openMobileMenu();
-      } else {
-        closeMobileMenu();
-      }
+      menu.classList.add('show');
+      button.classList.add('hamburger-active');
+      button.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+    };
+
+    button.addEventListener('click', toggleMenu, { signal });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => closeMenu(), { signal });
     });
-    
-    // Close button functionality
-    if (newCloseBtn) {
-      newCloseBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeMobileMenu();
-      });
-    }
-      
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (e.target && e.target instanceof Element) {
-        if (!mobileMenu.contains(e.target) && !newButton.contains(e.target)) {
-          if (!mobileMenu.classList.contains('hidden')) {
-            closeMobileMenu();
-          }
-        }
-      }
-    });
-    
-    // Close menu when clicking on menu links
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        setTimeout(closeMobileMenu, 150);
-      });
-    });
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-        closeMobileMenu();
-      }
-    });
-    
-    // Handle window resize - close menu on desktop
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
-        closeMobileMenu();
-      }
-    });
-    
-    return true;
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    }, { signal });
+
+    window.addEventListener(
+      'resize',
+      () => {
+        if (window.innerWidth >= 768) closeMenu();
+      },
+      { signal }
+    );
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (menu.contains(target) || button.contains(target)) return;
+        closeMenu();
+      },
+      { signal }
+    );
   }
-  
-  // Initialize mobile navigation
-  function initMobileNav() {
-    if (setupMobileNav()) {
-      return; // Successfully initialized
-    }
-    
-    // Retry if elements not ready
-    let retries = 0;
-    const maxRetries = 10;
-    
-    function retry() {
-      if (retries < maxRetries && !setupMobileNav()) {
-        retries++;
-        setTimeout(retry, 100);
-      }
-    }
-    
-    retry();
-  }
-  
-  // Multiple initialization strategies
-  document.addEventListener('DOMContentLoaded', initMobileNav);
-  document.addEventListener('astro:page-load', initMobileNav);
-  
-  // Immediate initialization if DOM already ready
-  if (document.readyState !== 'loading') {
-    initMobileNav();
-  }
+
+  document.addEventListener('DOMContentLoaded', setupMobileNav);
+  document.addEventListener('astro:page-load', setupMobileNav);
+  if (document.readyState !== 'loading') setupMobileNav();
 </script>

@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface ServiceCardItem {
+  icon: string;
+  iconColor?: 'gold' | 'sage';
+  title: string;
+  description: string;
+  bullets?: string[];
+}
+
+interface Props {
+  sectionId?: string;
+  eyebrow?: string;
+  heading: string;
+  subheading?: string;
+  items: ServiceCardItem[];
+  separator?: boolean;
+}
+
+const { sectionId, eyebrow, heading, subheading, items, separator = true } = Astro.props;
+
+const gridClass =
+  items.length <= 1 ? 'pm-grid pm-grid--1' : items.length === 2 ? 'pm-grid pm-grid--2' : 'pm-grid pm-grid--3';
+---
+
+<section
+  class:list={['pm-section', 'service-section', separator && 'service-section--separator']}
+  id={sectionId}
+  aria-labelledby={sectionId ? `${sectionId}-heading` : undefined}
+>
+  <div class="pm-container">
+    <header class="pm-section-header">
+      {eyebrow && <span class="pm-eyebrow">{eyebrow}</span>}
+      <h2 class="pm-section-title" id={sectionId ? `${sectionId}-heading` : undefined}>
+        {heading}
+      </h2>
+      {subheading && <p class="pm-section-sub">{subheading}</p>}
+    </header>
+
+    <div class={gridClass}>
+      {
+        items.map((item, i) => {
+          const badgeVariant = item.iconColor ?? (i % 2 === 0 ? 'gold' : 'sage');
+          const badgeClass = badgeVariant === 'sage' ? 'pm-badge pm-badge--sage' : 'pm-badge pm-badge--gold';
+          return (
+            <article class="pm-card">
+              <div class={badgeClass}>
+                <Icon name={item.icon} class="service-section-card__icon" aria-hidden="true" />
+              </div>
+              <h3 class="pm-card-title">{item.title}</h3>
+              <p class="pm-card-desc">{item.description}</p>
+              {item.bullets && item.bullets.length > 0 && (
+                <ul class="service-section-card__bullets">
+                  {item.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

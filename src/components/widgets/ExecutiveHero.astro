@@ -1,170 +1,205 @@
 ---
 /**
- * ExecutiveHero Component
- * Premium hero section for Profit Management homepage
- * Features: Dark sophisticated design, animated entrance, geometric background pattern
+ * ExecutiveHero — full viewport editorial hero with animated mesh backdrop.
  */
 
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+import { getLangFromUrl, useTranslations, localizePath } from '~/utils/i18n';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const yearSpans: Record<string, { needle: string; label: string }> = {
+  en: { needle: '26 years', label: '26 years' },
+  fr: { needle: '26 ans', label: '26 ans' },
+  ar: { needle: '26 عاماً', label: '26 عاماً' },
+};
+const ys = yearSpans[lang] ?? yearSpans.en;
+const subtitleHtml = t('hero.subtitle').replace(
+  ys.needle,
+  `<span class="font-semibold text-[color:var(--pm-accent)]">${ys.label}</span>`
+);
+
+const contactHref = localizePath('/contact', lang);
+const aboutHref = localizePath('/about', lang);
 ---
 
-<!-- Hero Container: Dark charcoal background with geometric pattern overlay -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0D0D0D] via-[#1C1C1E] to-[#0D0D0D]">
-  
-  <!-- Geometric Background Pattern: Subtle grid for depth -->
-  <div class="absolute inset-0 opacity-[0.03]">
-    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<section
+  class="executive-hero relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-[color:var(--pm-bg-alt)]"
+>
+  <!-- Hero photography -->
+  <div class="pointer-events-none absolute inset-0 z-0">
+    <img
+      src="/1.avif"
+      alt=""
+      width="1920"
+      height="1080"
+      class="h-full w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <!-- Readability: darken photo (esp. bright coins / charts) — all locales -->
+  <div class="pm-hero-photo-scrim pointer-events-none absolute inset-0 z-[1]" aria-hidden="true"></div>
+  <div class="pm-hero-vignette pointer-events-none absolute inset-0 z-[1]" aria-hidden="true"></div>
+
+  <!-- Gradient mesh -->
+  <div
+    class="pm-mesh-layer pointer-events-none absolute -left-[20%] top-[15%] z-[2] h-[55vmin] w-[55vmin] rounded-full opacity-[0.42] blur-[100px]"
+    style="background: radial-gradient(circle, rgba(74, 124, 116, 0.35) 0%, transparent 68%);"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pm-mesh-layer pointer-events-none absolute -right-[15%] bottom-[10%] z-[2] h-[50vmin] w-[50vmin] rounded-full opacity-40 blur-[110px]"
+    style="background: radial-gradient(circle, rgba(201, 168, 76, 0.2) 0%, transparent 65%); animation-delay: -8s;"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 z-[2] opacity-[0.2]"
+    style="background-image: radial-gradient(rgba(240, 237, 230, 0.055) 1px, transparent 1px); background-size: 32px 32px;"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Fine line grid -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true">
+    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C9A227" stroke-width="0.5"/>
+        <pattern id="pm-hero-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="0.5"></path>
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
+      <rect width="100%" height="100%" fill="url(#pm-hero-grid)"></rect>
     </svg>
   </div>
 
-  <!-- Ambient Gold Glow Effects: Subtle accent lighting -->
-  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-[#C9A227] rounded-full blur-[120px] opacity-10 animate-pulse"></div>
-  <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#C9A227] rounded-full blur-[120px] opacity-10 animate-pulse" style="animation-delay: 2s;"></div>
-
-  <!-- Main Content Container: Centered with max-width constraint -->
-  <div class="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center">
-    
-    <!-- Gold Accent Line: Premium visual separator -->
-    <div class="inline-block mb-8 animate-fade-in">
-      <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-[#C9A227] to-transparent"></div>
+  <div
+    class="executive-hero__inner relative z-10 pm-container flex min-h-[100dvh] flex-col items-center justify-center py-28 text-center md:py-32"
+  >
+    <div class="pm-hero-anim pm-hero-anim--1 mb-10 inline-block">
+      <div class="mx-auto h-px w-24 bg-gradient-to-r from-transparent via-[color:var(--pm-accent)] to-transparent"></div>
     </div>
 
-    <!-- Main Headline: Bold, confident, executive tone -->
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight animate-slide-up text-center" style="font-family: 'Poppins', sans-serif; animation-delay: 0.1s; text-align: center !important;">
+    <h1
+      class="executive-hero__title pm-hero-anim pm-hero-anim--1 font-heading pm-heading-fluid mb-8 max-w-5xl font-bold leading-[1.08] tracking-tight text-[color:var(--pm-text-heading)]"
+    >
       {t('hero.title')}<br />
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#E5C56A] to-[#C9A227] bg-size-200 animate-gradient">
-        {t('hero.titleHighlight')}
-      </span>
+      <span class="pm-gradient-text">{t('hero.titleHighlight')}</span>
     </h1>
 
-    <!-- Subheadline: Credibility and value proposition -->
-    <p class="text-lg md:text-xl lg:text-2xl text-[#D1D1D1] mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up text-center" style="font-family: 'Poppins', sans-serif; animation-delay: 0.3s; text-align: center !important;" set:html={t('hero.subtitle').replace(lang === 'ar' ? '26 عاماً' : '26 years', `<span class="text-[#C9A227] font-semibold">26 ${lang === 'ar' ? 'عاماً' : 'years'}</span>`)}>
-    </p>
+    <p
+      class="executive-hero__lead pm-hero-anim pm-hero-anim--2 pm-lead-fluid mb-12 max-w-3xl font-body leading-relaxed text-[color:var(--pm-text)]"
+      set:html={subtitleHtml}
+    />
 
-    <!-- CTA Buttons: Primary and secondary actions -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up mb-20" style="animation-delay: 0.5s;">
-      
-      <!-- Primary CTA: Solid gold button with hover effects -->
-      <a 
-        href={lang === 'ar' ? '/ar/contact' : '/contact'} 
-        class="group bg-gradient-to-r from-[#C9A227] via-[#E5C56A] to-[#C9A227] bg-size-200 hover:bg-pos-100 text-[#0D0D0D] font-bold px-10 py-4 rounded-lg shadow-2xl hover:shadow-[#C9A227]/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 inline-flex items-center gap-3 w-full sm:w-auto sm:min-w-[240px] justify-center"
-        style="font-family: 'Poppins', sans-serif;"
+    <div class="pm-hero-anim pm-hero-anim--3 mb-24 flex w-full max-w-xl flex-col items-stretch justify-center gap-4 sm:max-w-none sm:flex-row sm:items-center">
+      <a
+        href={contactHref}
+        class="pm-btn pm-btn--primary inline-flex min-h-[48px] w-full justify-center sm:w-auto sm:min-w-[240px]"
       >
-        <Icon name="tabler:calendar" class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+        <Icon name="tabler:calendar" class="h-6 w-6" />
         <span>{t('hero.ctaPrimary')}</span>
       </a>
-
-      <!-- Secondary CTA: Outline button with subtle hover -->
-      <a 
-        href={lang === 'ar' ? '/ar/about' : '/about'} 
-        class="group bg-transparent border-2 border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-[#0D0D0D] font-semibold px-10 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3 w-full sm:w-auto sm:min-w-[240px] justify-center"
-        style="font-family: 'Poppins', sans-serif;"
+      <a
+        href={aboutHref}
+        class="pm-btn pm-btn--ghost inline-flex min-h-[48px] w-full justify-center border sm:w-auto sm:min-w-[240px]"
       >
-        <Icon name="tabler:arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+        <Icon name="tabler:arrow-right" class="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
         <span>{t('hero.ctaSecondary')}</span>
       </a>
     </div>
 
-    <!-- Trust Indicators: Quick stats for credibility -->
-    <div class="mt-16 pt-12 border-t border-[#C9A227]/20 animate-fade-in" style="animation-delay: 0.7s;">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-        
+    <div class="executive-hero__stats pm-hero-anim pm-hero-anim--3 w-full max-w-4xl px-4 py-10 md:px-8">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">200+</div>
-          <div class="text-sm text-[#D1D1D1]">{t('hero.stat1')}</div>
+          <div class="executive-hero__stat-num pm-num mb-2 text-3xl font-semibold text-[color:var(--pm-accent)] md:text-4xl">
+            200+
+          </div>
+          <div class="executive-hero__stat-label text-sm text-[color:var(--pm-text-muted)]">{t('hero.stat1')}</div>
         </div>
-
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">60+</div>
-          <div class="text-sm text-[#D1D1D1]">{t('hero.stat2')}</div>
+          <div class="executive-hero__stat-num pm-num mb-2 text-3xl font-semibold text-[color:var(--pm-accent)] md:text-4xl">
+            60+
+          </div>
+          <div class="executive-hero__stat-label text-sm text-[color:var(--pm-text-muted)]">{t('hero.stat2')}</div>
         </div>
-
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">26+</div>
-          <div class="text-sm text-[#D1D1D1]">{t('hero.stat3')}</div>
+          <div class="executive-hero__stat-num pm-num mb-2 text-3xl font-semibold text-[color:var(--pm-accent)] md:text-4xl">
+            26+
+          </div>
+          <div class="executive-hero__stat-label text-sm text-[color:var(--pm-text-muted)]">{t('hero.stat3')}</div>
         </div>
-
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-[#C9A227] mb-2" style="font-family: 'Poppins', sans-serif;">8.5%</div>
-          <div class="text-sm text-[#D1D1D1]">{t('hero.stat4')}</div>
+          <div class="executive-hero__stat-num pm-num mb-2 text-3xl font-semibold text-[color:var(--pm-accent)] md:text-4xl">
+            8.5%
+          </div>
+          <div class="executive-hero__stat-label text-sm text-[color:var(--pm-text-muted)]">{t('hero.stat4')}</div>
         </div>
-
       </div>
     </div>
-
   </div>
-
 </section>
 
-<!-- Custom Animations: Tailwind-based entrance effects -->
 <style>
-  /* Fade in animation for subtle elements */
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  /* Stronger base tint so light areas of the photo don’t wash out copy (EN/AR/FR). */
+  .pm-hero-photo-scrim {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--pm-bg-deep) 82%, transparent) 0%,
+      color-mix(in srgb, var(--pm-bg-deep) 58%, transparent) 42%,
+      color-mix(in srgb, var(--pm-bg-deep) 68%, transparent) 100%
+    );
   }
 
-  /* Slide up animation for main content */
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Extra darkening toward the bottom (stats sit over bright coins in the stock photo). */
+  .pm-hero-vignette {
+    background: radial-gradient(
+      ellipse 120% 85% at 50% 100%,
+      color-mix(in srgb, var(--pm-bg-deep) 72%, transparent) 0%,
+      transparent 58%
+    );
   }
 
-  /* Gradient animation for headline accent */
-  @keyframes gradient {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+  .executive-hero__title,
+  .executive-hero__lead {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.9),
+      0 2px 20px rgba(0, 0, 0, 0.55);
   }
 
-  .animate-fade-in {
-    animation: fade-in 1s ease-out forwards;
-    opacity: 0;
+  .executive-hero .pm-gradient-text {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.85)) drop-shadow(0 2px 16px rgba(0, 0, 0, 0.45));
   }
 
-  .animate-slide-up {
-    animation: slide-up 0.8s ease-out forwards;
-    opacity: 0;
+  html[dir='rtl'] .executive-hero__title,
+  html[dir='rtl'] .executive-hero__lead {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.92),
+      0 2px 22px rgba(0, 0, 0, 0.58);
   }
 
-  .animate-gradient {
-    animation: gradient 8s ease infinite;
+  .executive-hero__stats {
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--pm-border);
+    background: color-mix(in srgb, var(--pm-bg-deep) 88%, transparent);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
-  /* Utility classes for gradient buttons */
-  .bg-size-200 {
-    background-size: 200% 200%;
+  .executive-hero__stat-num {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   }
 
-  .bg-pos-100 {
-    background-position: 100% 50%;
+  .executive-hero__stat-label {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    font-weight: 500;
   }
 
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
+  html.pm-reduced-motion .pm-mesh-layer {
+    animation: none !important;
   }
 </style>

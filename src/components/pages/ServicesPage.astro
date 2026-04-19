@@ -1,0 +1,35 @@
+---
+import PageHero from '~/components/widgets/PageHero.astro';
+import ServiceSection from '~/components/widgets/ServiceSection.astro';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+import { getServicesPageGroups } from '~/utils/i18n-services-page';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const groups = getServicesPageGroups(lang);
+---
+
+<>
+  <PageHero
+    lang={lang}
+    heroImage="/2.avif"
+    eyebrow={t('pageHero.services.eyebrow')}
+    heading={t('pageHero.services.heading')}
+    headingAccent={t('pageHero.services.headingAccent')}
+    subtext={t('pageHero.services.subtext')}
+  />
+  <div class="services-page">
+  {
+    groups.map((g, i) => (
+      <ServiceSection
+        sectionId={g.id}
+        eyebrow={g.eyebrow}
+        heading={g.heading}
+        subheading={g.subheading}
+        items={g.items}
+        separator={i !== 0}
+      />
+    ))
+  }
+</div>
+</>

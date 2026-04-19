@@ -1,0 +1,99 @@
+---
+import PageHero from '~/components/widgets/PageHero.astro';
+import PmCard from '~/components/ui/PmCard.astro';
+import IconBadge from '~/components/ui/IconBadge.astro';
+import { getLangFromUrl } from '~/utils/i18n';
+import { industriesPageCopy } from '~/utils/i18n-industries-page';
+
+const lang = getLangFromUrl(Astro.url);
+const copy = lang === 'fr' ? industriesPageCopy.fr : lang === 'ar' ? industriesPageCopy.ar : industriesPageCopy.en;
+const pageHeroLang = lang === 'fr' ? 'fr' : lang === 'ar' ? 'ar' : 'en';
+---
+
+<PageHero
+  lang={pageHeroLang}
+  heroImage="/5.avif"
+  eyebrow={copy.hero.eyebrow}
+  heading={copy.hero.heading}
+  headingAccent={copy.hero.headingAccent}
+  subtext={copy.hero.subtext}
+/>
+
+<section class="pm-section pm-section--mesh pm-section--dots pm-section--sep">
+  <div class="pm-container">
+    <div class="pm-grid">
+      {
+        copy.sectors.map((sector, i) => (
+          <div class="pm-card group" data-pm-reveal data-pm-reveal-once>
+            <IconBadge icon={sector.icon} color={i % 2 === 0 ? 'gold' : 'sage'} />
+            <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+              {sector.title}
+            </h3>
+            <p class="pm-card-desc mb-4">{sector.description}</p>
+            <ul class="pm-client-list">
+              {sector.clients.map((c) => (
+                <li>{c}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <span class="pm-eyebrow">{copy.expertiseIntro.eyebrow}</span>
+      <h2 class="pm-section-title">
+        {copy.expertiseIntro.heading}
+        <span class="pm-gradient-text"> {copy.expertiseIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.expertiseIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid">
+      {
+        copy.expertiseCards.map((item, i) => (
+          <div data-pm-reveal data-pm-reveal-once>
+            <PmCard
+              icon={item.icon}
+              iconColor={i % 2 === 0 ? 'gold' : 'sage'}
+              title={item.title}
+              description={item.description}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--sep pb-20 md:pb-24">
+  <div class="pm-container">
+    <header class="pm-section-header" data-pm-reveal data-pm-reveal-once>
+      <h2 class="pm-section-title">
+        {copy.storiesIntro.heading}
+        <span class="pm-gradient-text"> {copy.storiesIntro.headingAccent}</span>
+      </h2>
+      <p class="pm-section-sub">{copy.storiesIntro.subtext}</p>
+    </header>
+
+    <div class="pm-grid">
+      {
+        copy.stories.map((story) => (
+          <div class="pm-card text-center" data-pm-reveal data-pm-reveal-once>
+            <p
+              class="pm-num mb-3 font-bold text-[color:var(--pm-accent)] [font-size:clamp(1.75rem,4vw,2.75rem)] [line-height:1.1]"
+            >
+              {story.value}
+            </p>
+            <h3 class="pm-card-title">{story.title}</h3>
+            <p class="pm-card-desc text-sm">{story.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -10,38 +10,43 @@ const {
   tagline = '',
   items = [],
   id,
-  isDark = false,
+  isDark = true,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-4xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes} />
-  
-  <div class="accordion-container space-y-4 mt-8" data-accordion-id={id || 'faq'}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-4xl mx-auto px-0 ${classes?.container ?? ''}`} bg={bg}>
+  {(title || subtitle || tagline) && (
+    <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes as Record<string, string>} />
+  )}
+
+  <div class="accordion-container space-y-4" data-accordion-id={id || 'faq'}>
     {items.map((item, index) => (
-      <div class="accordion-item bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-        <button 
-          class="accordion-header w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[#01407a] focus:ring-opacity-50 rounded-lg"
+      <div class="accordion-item pm-accordion-item rounded-2xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-[color:var(--pm-border-bright)]">
+        <button
+          type="button"
+          class="accordion-header flex w-full items-center justify-between gap-4 px-6 py-4 text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(201,168,76,0.35)] rounded-2xl min-h-[48px]"
           data-accordion-target={`accordion-content-${id || 'faq'}-${index}`}
           aria-expanded="false"
           aria-controls={`accordion-content-${id || 'faq'}-${index}`}
         >
-          <h3 class="text-lg font-semibold text-gray-900 pr-4">{item.title}</h3>
-          <div class="accordion-icon flex-shrink-0 transition-transform duration-200">
-            <Icon name="tabler:chevron-down" class="w-5 h-5 text-[#01407a]" />
+          <h3 class="accordion-title flex-1 font-heading text-lg font-semibold leading-snug text-[color:var(--pm-text-heading)]">
+            {item.title}
+          </h3>
+          <div class="accordion-icon flex-shrink-0 text-[color:var(--pm-accent)] transition-transform duration-200">
+            <Icon name="tabler:chevron-down" class="h-5 w-5" aria-hidden="true" />
           </div>
         </button>
-        
-        <div 
+
+        <div
           id={`accordion-content-${id || 'faq'}-${index}`}
           class="accordion-content overflow-hidden transition-all duration-300 ease-in-out max-h-0"
           aria-labelledby={`accordion-header-${id || 'faq'}-${index}`}
         >
-          <div class="px-6 pb-4 pt-0">
-            <div class="border-t border-gray-100 pt-4">
-              <p class="text-gray-700 leading-relaxed" set:html={item.description} />
+          <div class="border-t border-[color:var(--pm-border)] px-6 pb-5 pt-0">
+            <div class="pt-4">
+              <p class="font-body text-[0.95rem] leading-relaxed text-[color:var(--pm-text-body)]" set:html={item.description} />
             </div>
           </div>
         </div>
@@ -51,80 +56,62 @@ const {
 </WidgetWrapper>
 
 <style>
-  .accordion-item {
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .accordion-header:hover {
-    background-color: #f8fafc;
-  }
-  
   .accordion-content {
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+      max-height 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
     opacity: 0;
   }
-  
+
   .accordion-content.expanded {
     opacity: 1;
   }
-  
-  .accordion-icon {
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .accordion-header[aria-expanded="true"] .accordion-icon {
+
+  .accordion-header[aria-expanded='true'] .accordion-icon {
     transform: rotate(180deg);
   }
-  
-  .accordion-header[aria-expanded="true"] {
-    background-color: #f1f5f9;
+
+  .accordion-header[aria-expanded='true'] {
+    background: rgba(201, 168, 76, 0.06);
   }
 </style>
 
 <script>
-  // Use a more robust initialization approach
   function initializeAccordion() {
-    // Wait for both DOM and all resources to be ready
     const accordionContainers = document.querySelectorAll('.accordion-container');
-    
-    accordionContainers.forEach(container => {
-      const accordionId = container.getAttribute('data-accordion-id') || 'default';
+
+    accordionContainers.forEach((container) => {
       const accordionHeaders = container.querySelectorAll('.accordion-header');
-      
-      // Remove existing event listeners to prevent duplicates
-      accordionHeaders.forEach(header => {
+
+      accordionHeaders.forEach((header) => {
         const newHeader = header.cloneNode(true);
-        header.parentNode.replaceChild(newHeader, header);
+        header.parentNode?.replaceChild(newHeader, header);
       });
-      
-      // Re-select headers after cloning
+
       const newHeaders = container.querySelectorAll('.accordion-header');
-      
-      newHeaders.forEach(header => {
-        header.addEventListener('click', function(e) {
+
+      newHeaders.forEach((header) => {
+        header.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          
+
           const targetId = this.getAttribute('data-accordion-target');
           if (!targetId) return;
-          
+
           const content = document.getElementById(targetId);
-          const icon = this.querySelector('.accordion-icon');
           const isExpanded = this.getAttribute('aria-expanded') === 'true';
-          
+
           if (!content) {
-            console.warn('Accordion content not found:', targetId);
             return;
           }
-          
-          // Close all other accordion items in this container
-          newHeaders.forEach(otherHeader => {
+
+          newHeaders.forEach((otherHeader) => {
             if (otherHeader !== this) {
               const otherTargetId = otherHeader.getAttribute('data-accordion-target');
               if (!otherTargetId) return;
-              
+
               const otherContent = document.getElementById(otherTargetId);
-              
+
               if (otherContent) {
                 otherHeader.setAttribute('aria-expanded', 'false');
                 otherContent.classList.remove('expanded');
@@ -132,8 +119,7 @@ const {
               }
             }
           });
-          
-          // Toggle current accordion item
+
           if (isExpanded) {
             this.setAttribute('aria-expanded', 'false');
             content.classList.remove('expanded');
@@ -141,38 +127,23 @@ const {
           } else {
             this.setAttribute('aria-expanded', 'true');
             content.classList.add('expanded');
-            
-            // Force reflow before setting height
             content.offsetHeight;
             content.style.maxHeight = content.scrollHeight + 'px';
-            
-            // Optional smooth scroll with delay
-            setTimeout(() => {
-              if (this.scrollIntoView) {
-                this.scrollIntoView({ 
-                  behavior: 'smooth', 
-                  block: 'nearest' 
-                });
-              }
-            }, 200);
           }
         });
       });
     });
   }
-  
-  // Multiple initialization attempts to handle timing issues
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeAccordion);
   } else {
     initializeAccordion();
   }
-  
-  // Also initialize after window load for better compatibility
+
   window.addEventListener('load', () => {
     setTimeout(initializeAccordion, 100);
   });
-  
-  // Initialize on Astro page transitions (if using view transitions)
+
   document.addEventListener('astro:page-load', initializeAccordion);
 </script>

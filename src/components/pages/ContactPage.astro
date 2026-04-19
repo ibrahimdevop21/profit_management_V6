@@ -1,0 +1,442 @@
+---
+import IconBadge from '~/components/ui/IconBadge.astro';
+import PageHero from '~/components/widgets/PageHero.astro';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const faqItems = Array.from({ length: 11 }, (_, index) => ({
+  title: t(`contact.pg.faq${index}Title`),
+  description: t(`contact.pg.faq${index}Body`),
+}));
+
+const sendingText = t('contact.pg.sending');
+const sendErrorText = t('contact.pg.sendError');
+---
+
+<PageHero
+  lang={lang}
+  heroImage="/3.avif"
+  eyebrow={t('contact.pg.heroEyebrow')}
+  heading={t('contact.pg.heroTitle')}
+  headingAccent={t('contact.pg.heroTitleHi')}
+  subtext={`${t('contact.pg.heroLeadBefore')} <span class="font-semibold text-[color:var(--pm-text-heading)]">${t('contact.pg.heroLeadBold')}</span>.`}
+/>
+
+<!-- Contact Form & FAQ Section -->
+<section id="contact-form" class="pm-section pm-section--mesh pm-section--sep overflow-x-clip pb-20 md:pb-24">
+  <div class="pm-container">
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+      <!-- Contact Form -->
+      <div
+        class="pm-soft-panel group h-fit p-8 transition-all duration-300 hover:border-[color:var(--pm-border-strong)] md:p-12"
+      >
+        <div class="mb-8 flex items-center">
+          <div
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface-elevated)] rtl:mr-0 rtl:ml-3"
+          >
+            <svg class="h-4 w-4 text-[color:var(--pm-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading text-lg font-bold text-[color:var(--pm-text-heading)]">{t('contact.pg.formPanelTitle')}</h3>
+            <p class="text-xs text-[color:var(--pm-text-body)]">{t('contact.pg.formPanelSub')}</p>
+          </div>
+        </div>
+        <form action="https://formspree.io/f/xnnladzw" method="POST" class="space-y-5">
+          <div class="grid gap-5 md:grid-cols-2">
+            <div class="pm-field">
+              <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" />
+              <label for="name">{t('contact.pg.labelName')}</label>
+            </div>
+            <div class="pm-field">
+              <input type="text" id="company" name="company" required placeholder=" " autocomplete="organization" />
+              <label for="company">{t('contact.pg.labelCompany')}</label>
+            </div>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <div class="pm-field">
+              <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+              <label for="email">{t('contact.pg.labelEmail')}</label>
+            </div>
+            <div class="pm-field">
+              <input type="tel" id="phone" name="phone" placeholder=" " autocomplete="tel" />
+              <label for="phone">{t('contact.pg.labelPhone')}</label>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="industry" class="text-xs font-semibold uppercase tracking-wider text-[color:var(--pm-accent)]">
+              {t('contact.pg.industryLabel')}
+            </label>
+            <select
+              id="industry"
+              name="industry"
+              class="w-full min-h-[48px] rounded-lg border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] px-3 py-3 font-body text-[color:var(--pm-text-heading)] transition-all duration-200 focus:border-[color:var(--pm-accent)] focus:outline-none focus:ring-2 focus:ring-[rgba(201,168,76,0.25)]"
+            >
+              <option value="">{t('contact.pg.industryPlaceholder')}</option>
+              <option value="medical">{t('contact.pg.optMedical')}</option>
+              <option value="food">{t('contact.pg.optFood')}</option>
+              <option value="manufacturing">{t('contact.pg.optManufacturing')}</option>
+              <option value="real-estate">{t('contact.pg.optRealEstate')}</option>
+              <option value="technology">{t('contact.pg.optTechnology')}</option>
+              <option value="services">{t('contact.pg.optServices')}</option>
+              <option value="other">{t('contact.pg.optOther')}</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="service" class="text-xs font-semibold uppercase tracking-wider text-[color:var(--pm-accent)]">
+              {t('contact.pg.serviceLabel')}
+            </label>
+            <select
+              id="service"
+              name="service"
+              class="w-full min-h-[48px] rounded-lg border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] px-3 py-3 font-body text-[color:var(--pm-text-heading)] transition-all duration-200 focus:border-[color:var(--pm-accent)] focus:outline-none focus:ring-2 focus:ring-[rgba(201,168,76,0.25)]"
+            >
+              <option value="">{t('contact.pg.servicePlaceholder')}</option>
+              <option value="profit-growth">{t('contact.pg.svcProfitGrowth')}</option>
+              <option value="transformation">{t('contact.pg.svcTransformation')}</option>
+              <option value="strategic-support">{t('contact.pg.svcStrategic')}</option>
+              <option value="training">{t('contact.pg.svcTraining')}</option>
+              <option value="consultation">{t('contact.pg.svcConsultation')}</option>
+            </select>
+          </div>
+
+          <div class="pm-field">
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder=" "
+              title={t('contact.pg.messagePlaceholder')}
+            ></textarea>
+            <label for="message">{t('contact.pg.labelMessage')}</label>
+          </div>
+
+          <input type="hidden" name="language" value={t('contact.pg.hiddenLangValue')} />
+          <input type="hidden" name="_subject" value={t('contact.pg.hiddenSubject')} />
+          <input type="hidden" name="_next" value="#success" />
+
+          <div
+            id="form-success-message"
+            class="mb-4 hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 px-6 py-4 text-emerald-100"
+          >
+            <div class="flex items-center gap-3">
+              <svg class="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="font-semibold">{t('contact.pg.successTitle')}</span>
+            </div>
+            <p class="mt-2 text-sm text-emerald-200/90">{t('contact.pg.successBody')}</p>
+          </div>
+
+          <div>
+            <button type="submit" class="pm-btn pm-btn--primary group w-full min-h-[48px] sm:w-auto">
+              <svg
+                class="h-5 w-5 transition-transform duration-200 group-hover:rotate-12"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <span>{t('contact.send')}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- FAQ Section -->
+      <div
+        class="pm-soft-panel group h-fit p-8 transition-all duration-300 hover:border-[color:var(--pm-border-strong)] md:p-12"
+      >
+        <div class="mb-6 flex items-center">
+          <div
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface-elevated)] rtl:mr-0 rtl:ml-3"
+          >
+            <svg class="h-4 w-4 text-[color:var(--pm-accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading text-lg font-bold text-[color:var(--pm-text-heading)]">{t('contact.pg.faqSectionTitle')}</h3>
+            <p class="text-xs text-[color:var(--pm-text-body)]">{t('contact.pg.faqSectionSub')}</p>
+          </div>
+        </div>
+
+        <div class="accordion-container mt-4 space-y-2">
+          {
+            faqItems.map((item, index) => (
+              <div class="accordion-item group/item rounded-2xl border border-[color:var(--pm-border)] bg-[color:var(--pm-surface)] shadow-sm transition-all duration-300 hover:border-[color:var(--pm-border-strong)] hover:shadow-lg">
+                <button
+                  class="accordion-header flex w-full items-center justify-between rounded-2xl px-6 py-4 text-start transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[rgba(201,168,76,0.35)] group-hover/item:bg-[color:var(--pm-surface-elevated)]"
+                  data-accordion-target={`accordion-content-${index}`}
+                  aria-expanded="false"
+                  aria-controls={`accordion-content-${index}`}
+                  type="button"
+                >
+                  <h3 class="pr-4 text-sm font-bold text-[color:var(--pm-text-heading)] transition-colors duration-200 group-hover/item:text-[color:var(--pm-accent)] rtl:pr-0 rtl:pl-4">
+                    {item.title}
+                  </h3>
+                  <div class="accordion-icon flex-shrink-0 transition-transform duration-200">
+                    <svg
+                      class="h-5 w-5 text-[color:var(--pm-text-heading)] transition-colors duration-200 group-hover/item:text-[color:var(--pm-accent)]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+
+                <div
+                  id={`accordion-content-${index}`}
+                  class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  aria-labelledby={`accordion-header-${index}`}
+                >
+                  <div class="px-6 pb-4 pt-0">
+                    <div class="border-t border-[color:var(--pm-border)] pt-4">
+                      <p class="text-sm leading-relaxed text-[color:var(--pm-text-body)]">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Information -->
+<section class="pm-section pm-section--dots overflow-x-clip pb-24">
+  <div class="pm-container">
+    <div class="mb-14 text-center md:mb-16" data-pm-reveal data-pm-reveal-once>
+      <h2 class="font-heading pm-title-fluid mb-6 leading-tight text-[color:var(--pm-text-heading)]">{t('contact.pg.reachTitle')}</h2>
+      <p class="pm-lead-fluid mx-auto max-w-4xl font-body leading-relaxed text-[color:var(--pm-text-body)] md:text-xl">
+        {t('contact.pg.reachLead')}
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3 lg:gap-12">
+      <div class="pm-card group text-center" data-pm-reveal data-pm-reveal-once>
+        <div class="mx-auto mb-6 flex justify-center">
+          <IconBadge icon="tabler:map-pin" color="sage" />
+        </div>
+        <h3
+          class="font-heading mb-5 text-2xl font-bold tracking-tight text-[color:var(--pm-text-heading)] transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('contact.pg.officeTitle')}
+        </h3>
+        <div class="space-y-3 font-body">
+          <p
+            class="text-base font-bold leading-relaxed text-[color:var(--pm-text-heading)] transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+          >
+            {t('contact.pg.officeBrand')}
+          </p>
+          <p class="text-sm font-medium leading-relaxed text-[color:var(--pm-text-body)]">{t('contact.pg.officeLine1')}</p>
+          <p class="text-sm leading-relaxed text-[color:var(--pm-text-body)]">{t('contact.pg.officeLine2')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card group text-center" data-pm-reveal data-pm-reveal-once>
+        <div class="mx-auto mb-6 flex justify-center">
+          <IconBadge icon="tabler:phone" color="gold" />
+        </div>
+        <h3
+          class="font-heading mb-5 text-2xl font-bold tracking-tight text-[color:var(--pm-text-heading)] transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('contact.pg.phoneTitle')}
+        </h3>
+        <div class="space-y-3 font-body">
+          <p class="pm-num text-xl font-semibold tracking-wider text-[color:var(--pm-accent)]" dir="ltr">
+            +201068970607
+          </p>
+          <p class="mt-4 text-sm font-medium text-[color:var(--pm-text-body)]">{t('contact.pg.phoneHours')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card group text-center" data-pm-reveal data-pm-reveal-once>
+        <div class="mx-auto mb-6 flex justify-center">
+          <IconBadge icon="tabler:mail" color="sage" />
+        </div>
+        <h3
+          class="font-heading mb-5 text-2xl font-bold tracking-tight text-[color:var(--pm-text-heading)] transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('contact.pg.emailCardTitle')}
+        </h3>
+        <div class="space-y-3 font-body">
+          <p class="break-all text-lg font-bold text-[color:var(--pm-accent)] transition-colors duration-300">
+            info@profit-manage.com
+          </p>
+          <p class="mt-4 text-sm font-medium text-[color:var(--pm-text-body)]">{t('contact.pg.emailResponseNote')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ sendingText, sendErrorText }}>
+  function initializeContactAccordion() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach((header) => {
+      const newHeader = header.cloneNode(true);
+      header.parentNode?.replaceChild(newHeader, header);
+    });
+
+    const newHeaders = document.querySelectorAll('.accordion-header');
+
+    newHeaders.forEach((header) => {
+      header.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const targetId = this.getAttribute('data-accordion-target');
+        if (!targetId) return;
+
+        const content = document.getElementById(targetId);
+        const icon = this.querySelector('.accordion-icon svg');
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+        if (!content) {
+          return;
+        }
+
+        newHeaders.forEach((otherHeader) => {
+          if (otherHeader !== this) {
+            const otherTargetId = otherHeader.getAttribute('data-accordion-target');
+            if (!otherTargetId) return;
+
+            const otherContent = document.getElementById(otherTargetId);
+            const otherIcon = otherHeader.querySelector('.accordion-icon svg');
+
+            if (otherContent) {
+              otherHeader.setAttribute('aria-expanded', 'false');
+              otherContent.classList.remove('expanded');
+              otherContent.style.maxHeight = '0px';
+            }
+
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        if (isExpanded) {
+          this.setAttribute('aria-expanded', 'false');
+          content.classList.remove('expanded');
+          content.style.maxHeight = '0px';
+
+          if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+          }
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          content.classList.add('expanded');
+
+          content.offsetHeight;
+          content.style.maxHeight = content.scrollHeight + 'px';
+
+          if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeContactAccordion);
+  } else {
+    initializeContactAccordion();
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(initializeContactAccordion, 100);
+  });
+
+  document.addEventListener('astro:page-load', initializeContactAccordion);
+
+  function initializeFormHandling() {
+    const form = document.querySelector('form[action*="formspree"]');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const buttonText = submitButton?.querySelector('span');
+    const successMessage = document.getElementById('form-success-message');
+
+    if (form && submitButton && buttonText) {
+      const originalText = buttonText.textContent;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.classList.add('opacity-75', 'cursor-not-allowed');
+        buttonText.textContent = sendingText;
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (response.ok) {
+            if (successMessage) {
+              successMessage.classList.remove('hidden');
+              successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            form.reset();
+
+            setTimeout(() => {
+              if (successMessage) {
+                successMessage.classList.add('hidden');
+              }
+            }, 10000);
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert(sendErrorText);
+        } finally {
+          submitButton.disabled = false;
+          submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
+          buttonText.textContent = originalText;
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeFormHandling);
+  } else {
+    initializeFormHandling();
+  }
+</script>

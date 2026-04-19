@@ -1,0 +1,359 @@
+---
+import { Icon } from 'astro-icon/components';
+import IconBadge from '~/components/ui/IconBadge.astro';
+import PmCard from '~/components/ui/PmCard.astro';
+import ExecutiveHero from '~/components/widgets/ExecutiveHero.astro';
+import Partners from '~/components/widgets/Partners.astro';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ExecutiveHero />
+
+<section id="services" class="pm-section pm-section--mesh pm-section--dots">
+  <div class="pm-container">
+    <header class="pm-section-header pm-section-header--wide" data-pm-reveal data-pm-reveal-once>
+      <span class="pm-eyebrow">{t('home.servicesEyebrow')}</span>
+      <h2 class="pm-section-title">
+        {t('home.servicesTitle')} <span class="pm-gradient-text">{t('home.servicesTitleHi')}</span>
+      </h2>
+      <p class="pm-section-sub">{t('home.servicesLead')}</p>
+    </header>
+
+    <div class="pm-grid-services gap-8">
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:trending-up"
+          iconColor="gold"
+          title={t('home.card.profit.title')}
+          description={t('home.card.profit.desc')}
+        />
+      </div>
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:coin"
+          iconColor="sage"
+          title={t('home.card.cost.title')}
+          description={t('home.card.cost.desc')}
+        />
+      </div>
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:chart-pie"
+          iconColor="gold"
+          title={t('home.card.budget.title')}
+          description={t('home.card.budget.desc')}
+        />
+      </div>
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:search"
+          iconColor="sage"
+          title={t('home.card.feasibility.title')}
+          description={t('home.card.feasibility.desc')}
+        />
+      </div>
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:settings"
+          iconColor="gold"
+          title={t('home.card.erp.title')}
+          description={t('home.card.erp.desc')}
+        />
+      </div>
+      <div data-pm-reveal data-pm-reveal-once>
+        <PmCard
+          icon="tabler:school"
+          iconColor="sage"
+          title={t('home.card.training.title')}
+          description={t('home.card.training.desc')}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh">
+  <div class="pm-container">
+    <header class="pm-section-header pm-section-header--wide" data-pm-reveal data-pm-reveal-once>
+      <span class="pm-eyebrow">{t('home.industriesEyebrow')}</span>
+      <h2 class="pm-section-title">
+        {t('home.industriesTitle')} <span class="pm-gradient-text">{t('home.industriesTitleHi')}</span>
+      </h2>
+      <p class="pm-section-sub">{t('home.industriesLead')}</p>
+    </header>
+
+    <div class="pm-grid">
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:medical-cross" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.industry.medical.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.industry.medical.desc')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:leaf" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.industry.food.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.industry.food.desc')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:building-factory" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.industry.mfg.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.industry.mfg.desc')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:building" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.industry.realestate.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.industry.realestate.desc')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:briefcase" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.industry.other.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.industry.other.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--dots">
+  <div class="pm-container">
+    <header class="pm-section-header pm-section-header--wide" data-pm-reveal data-pm-reveal-once>
+      <span class="pm-eyebrow">{t('home.whyEyebrow')}</span>
+      <h2 class="pm-section-title">
+        {t('home.whyTitle')} <span class="pm-gradient-text">{t('home.whyTitleHi')}</span>
+      </h2>
+      <p class="pm-section-sub">{t('home.whyLead')}</p>
+    </header>
+
+    <div class="mb-16 pm-grid pm-grid--2">
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:trending-down" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.why1.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.why1.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:dashboard" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.why2.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.why2.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:coin" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.why3.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.why3.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:chart-bar" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.why4.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.why4.body')}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pm-soft-panel text-center" data-pm-reveal data-pm-reveal-once>
+      <p class="font-body text-xl font-semibold text-[color:var(--pm-text-heading)]">{t('home.whyPanel')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--dots">
+  <div class="pm-container">
+    <div class="pm-grid pm-grid--2">
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:chart-dots" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.approach1.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.approach1.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:world" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.approach2.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.approach2.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:bulb" color="gold" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.approach3.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.approach3.body')}</p>
+        </div>
+      </div>
+
+      <div class="pm-card pm-card--horizontal group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:award" color="sage" />
+        <div class="min-w-0 flex-1">
+          <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+            {t('home.approach4.title')}
+          </h3>
+          <p class="pm-card-desc">{t('home.approach4.body')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section">
+  <div class="pm-container">
+    <header class="pm-section-header pm-section-header--wide" data-pm-reveal data-pm-reveal-once>
+      <h2 class="pm-section-title">
+        {t('home.stepsTitle')} <span class="pm-gradient-text">{t('home.stepsTitleHi')}</span>
+      </h2>
+    </header>
+
+    <div class="pm-grid pm-grid--3">
+      <div class="pm-card group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:search" color="gold" />
+        <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+          {t('home.step1.title')}
+        </h3>
+        <p class="pm-card-desc">{t('home.step1.body')}</p>
+      </div>
+
+      <div class="pm-card group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:settings" color="sage" />
+        <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+          {t('home.step2.title')}
+        </h3>
+        <p class="pm-card-desc">{t('home.step2.body')}</p>
+      </div>
+
+      <div class="pm-card group" data-pm-reveal data-pm-reveal-once>
+        <IconBadge icon="tabler:trending-up" color="gold" />
+        <h3 class="pm-card-title transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]">
+          {t('home.step3.title')}
+        </h3>
+        <p class="pm-card-desc">{t('home.step3.body')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section pm-section--mesh pm-section--dots" id="stats">
+  <div class="pm-container">
+    <div class="pm-grid pm-grid--4">
+      <div class="pm-stat-tile group" data-pm-reveal data-pm-reveal-once>
+        <div class="pm-icon-well mx-auto mb-6">
+          <Icon name="tabler:building" class="h-8 w-8 text-[color:var(--pm-accent)]" />
+        </div>
+        <div
+          class="pm-num mb-3 font-medium text-[color:var(--pm-accent)] [font-size:clamp(2rem,4.5vw,3.25rem)] [line-height:1.1]"
+          data-pm-count="200"
+          data-pm-suffix="+"
+        >
+          0
+        </div>
+        <h3
+          class="pm-card-title text-center transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('home.stat.companies')}
+        </h3>
+      </div>
+
+      <div class="pm-stat-tile group" data-pm-reveal data-pm-reveal-once>
+        <div class="pm-icon-well pm-icon-well--sage mx-auto mb-6">
+          <Icon name="tabler:briefcase" class="h-8 w-8 text-[color:var(--pm-accent-secondary)]" />
+        </div>
+        <div
+          class="pm-num mb-3 font-medium text-[color:var(--pm-accent)] [font-size:clamp(2rem,4.5vw,3.25rem)] [line-height:1.1]"
+          data-pm-count="60"
+          data-pm-suffix="+"
+        >
+          0
+        </div>
+        <h3
+          class="pm-card-title text-center transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('home.stat.industries')}
+        </h3>
+      </div>
+
+      <div class="pm-stat-tile group" data-pm-reveal data-pm-reveal-once>
+        <div class="pm-icon-well mx-auto mb-6">
+          <Icon name="tabler:calendar" class="h-8 w-8 text-[color:var(--pm-accent)]" />
+        </div>
+        <div
+          class="pm-num mb-3 font-medium text-[color:var(--pm-accent)] [font-size:clamp(2rem,4.5vw,3.25rem)] [line-height:1.1]"
+          data-pm-count="26"
+          data-pm-suffix="+"
+        >
+          0
+        </div>
+        <h3
+          class="pm-card-title text-center transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('home.stat.years')}
+        </h3>
+      </div>
+
+      <div class="pm-stat-tile group" data-pm-reveal data-pm-reveal-once>
+        <div class="pm-icon-well pm-icon-well--sage mx-auto mb-6">
+          <Icon name="tabler:trending-up" class="h-8 w-8 text-[color:var(--pm-accent-secondary)]" />
+        </div>
+        <div
+          class="pm-num mb-3 font-medium text-[color:var(--pm-accent)] [font-size:clamp(2rem,4.5vw,3.25rem)] [line-height:1.1]"
+          data-pm-count="8.5%"
+        >
+          0
+        </div>
+        <h3
+          class="pm-card-title text-center transition-colors duration-300 group-hover:text-[color:var(--pm-accent)]"
+        >
+          {t('home.stat.avgProfit')}
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Partners />

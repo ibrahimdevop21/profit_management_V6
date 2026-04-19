@@ -74,7 +74,5 @@ export const footerData = {
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/profit-management-consulting-and-training/posts/?feedView=all' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/profile.php?id=61580536481958' },
   ],
-  footNote: `
-    © ${new Date().getFullYear()} Profit Management Consulting & Training. All rights reserved.
-  `,
+  footNote: '',
 };

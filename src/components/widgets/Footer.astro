@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+import { getLangFromUrl, useTranslations, localizePath } from '~/utils/i18n';
 
 interface Link {
   text?: string;
@@ -9,172 +9,260 @@ interface Link {
   icon?: string;
 }
 
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
-
 export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
   socialLinks: Array<Link>;
   footNote?: string;
-  theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
-
-// Get current language and translations
-const currentLang = getLangFromUrl(Astro.url);
+const { socialLinks = [], footNote = '' } = Astro.props;
+const currentLang = getLangFromUrl(new URL(Astro.request.url));
 const t = useTranslations(currentLang);
+const year = new Date().getFullYear();
+const resolvedFootNote =
+  footNote.trim() !== '' ? footNote : t('footer.copyright').replaceAll('{year}', String(year));
+
+const localizeHref = (href: string) => {
+  if (!href.startsWith('/')) return href;
+  if (href.startsWith('/legal/')) return href;
+  const [path, hash = ''] = href.split('#');
+  const localized = localizePath(path || '/', currentLang);
+  return hash ? `${localized}#${hash}` : localized;
+};
+
+const servicesLinks = [
+  { key: 'footer.allServices', href: '/services' },
+  { key: 'footer.corpProfitGrowth', href: '/services#profit-growth' },
+  { key: 'footer.businessTransformation', href: '/services#transformation' },
+  { key: 'footer.strategicSupport', href: '/services#strategic-support' },
+  { key: 'footer.trainingDev', href: '/services#training' },
+];
+
+const companyLinks = [
+  { key: 'footer.aboutUs', href: '/about' },
+  { key: 'footer.ourTeam', href: '/team' },
+  { key: 'footer.industriesServed', href: '/industries' },
+  { key: 'footer.whyChooseUs', href: '/why' },
+];
+
+const supportLinks = [
+  { key: 'footer.contactUs', href: '/contact' },
+  { key: 'footer.bookConsultation', href: '/contact' },
+  { key: 'footer.trainingPrograms', href: '/services#training' },
+];
+
+const legalLinks = [
+  { key: 'footer.privacy', href: '/legal/privacy' },
+  { key: 'footer.terms', href: '/legal/terms' },
+];
 ---
 
-<footer class="bg-charcoal relative not-prose">
-  <div class="border-t border-gray-light/20"></div>
-  <div class="relative max-w-7xl mx-auto px-6 md:px-12 text-white py-12 md:py-16">
-    
-    <!-- Main Footer Content Grid -->
-    <div class="grid grid-cols-12 gap-8 md:gap-12 mb-12">
-      
-      <!-- Brand Column -->
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-6">
-          <a class="inline-block" href="/">
-            <img
-              src="/profit.png"
-              alt="Profit Management Consulting & Training"
-              class="h-10 w-auto"
-              loading="lazy"
-              width={200}
-              height={40}
-            />
-          </a>
-        </div>
-        <div class="text-sm text-gray-400 flex flex-wrap gap-2">
+<footer class="pm-footer not-prose">
+  <div class="pm-container">
+    <div class="pm-footer-grid">
+      <div class="pm-footer-brand">
+        <a class="inline-block" href={localizePath('/', currentLang)}>
+          <img
+            src="/profit.png"
+            alt="Profit Management Consulting & Training"
+            class="h-10 w-auto"
+            loading="lazy"
+            width={200}
+            height={40}
+          />
+        </a>
+
+        <p class="pm-footer-tagline">{t('footer.description')}</p>
+
+        <ul class="pm-footer-social-row">
           {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? <span class="text-gray-600">·</span> : ''}
-                <a
-                  class="text-gray-400 hover:text-gold transition-all duration-300 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
+            socialLinks.map(({ ariaLabel, href, icon }) => (
+              <li>
+                <a aria-label={ariaLabel} href={href} class="pm-social-circle">
+                  {icon && <Icon name={icon} class="h-4 w-4" />}
+                </a>
+              </li>
             ))
           }
-        </div>
+        </ul>
       </div>
 
-      <!-- Navigation Links -->
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <h3 class="text-gold font-semibold mb-4 text-sm uppercase tracking-wider">{title}</h3>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm space-y-3">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li>
-                    <a
-                      class="text-gray-300 hover:text-gold transition-all duration-300 ease-in-out inline-block"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
+      <div class="pm-footer-links-col">
+        <h3 class="pm-footer-heading">{t('footer.services')}</h3>
+        <ul class="pm-footer-links-list">
+          {servicesLinks.map(({ key, href }) => <li><a href={localizeHref(href)}>{t(key)}</a></li>)}
+        </ul>
+      </div>
 
-    <!-- Bottom Bar: Social Links & Copyright -->
-    <div class="pt-8 border-t border-gray-light/10">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        
-        <!-- Copyright Text -->
-        <div class="text-sm text-gray-400 order-2 md:order-1">
-          <Fragment set:html={footNote} />
+      <div class="pm-footer-links-col">
+        <h3 class="pm-footer-heading">{t('footer.company')}</h3>
+        <ul class="pm-footer-links-list">
+          {companyLinks.map(({ key, href }) => <li><a href={localizeHref(href)}>{t(key)}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="pm-footer-links-col pm-footer-links-col--stacked">
+        <div>
+          <h3 class="pm-footer-heading">{t('footer.support')}</h3>
+          <ul class="pm-footer-links-list">
+            {supportLinks.map(({ key, href }) => <li><a href={localizeHref(href)}>{t(key)}</a></li>)}
+          </ul>
         </div>
 
-        <!-- Social Links -->
+        <div>
+          <h3 class="pm-footer-heading">{t('footer.legal')}</h3>
+          <ul class="pm-footer-links-list">
+            {legalLinks.map(({ key, href }) => <li><a href={href}>{t(key)}</a></li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pm-footer-bottom">
+      <div class="pm-footer-copyright">
+        <Fragment set:html={resolvedFootNote} />
+      </div>
+
+      <ul class="pm-footer-social-bottom">
         {
-          socialLinks?.length ? (
-            <ul class="flex gap-2 order-1 md:order-2">
-              {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-                <li>
-                  <a
-                    class="text-gray-400 hover:bg-gold/20 hover:text-gold hover:shadow-lg hover:shadow-gold/20 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-gold/20 rounded-lg text-sm p-2.5 inline-flex items-center transition-all duration-300 ease-in-out"
-                    aria-label={ariaLabel}
-                    href={href}
-                  >
-                    {icon && <Icon name={icon} class="w-5 h-5" />}
-                    <Fragment set:html={text} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            ''
-          )
+          socialLinks.map(({ ariaLabel, href, icon }) => (
+            <li>
+              <a aria-label={ariaLabel} href={href} class="pm-social-circle pm-social-circle--small">
+                {icon && <Icon name={icon} class="h-4 w-4" />}
+              </a>
+            </li>
+          ))
         }
-      </div>
+      </ul>
     </div>
-
   </div>
 </footer>
 
 <style>
-  /* Premium Consulting Footer Styling */
-  footer {
-    background: #1C1C1E;
+  .pm-footer {
+    background: #080d18;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+    padding: 4rem 0 2rem;
   }
 
-  /* RTL Support for Footer */
-  [dir="rtl"] footer {
-    text-align: right;
+  .pm-footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2rem;
   }
-  
-  [dir="rtl"] footer .flex {
+
+  .pm-footer-brand {
+    padding-right: 1rem;
+  }
+
+  .pm-footer-tagline {
+    margin-top: 0.85rem;
+    margin-bottom: 1rem;
+    color: #a8a8a8;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .pm-footer-social-row,
+  .pm-footer-social-bottom {
+    display: flex;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pm-social-circle {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    color: #a8a8a8;
+    background: transparent;
+    transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .pm-social-circle:hover {
+    color: #c9a84c;
+    background: rgba(201, 168, 76, 0.1);
+    border-color: rgba(201, 168, 76, 0.45);
+  }
+
+  .pm-social-circle--small {
+    width: 34px;
+    height: 34px;
+  }
+
+  .pm-footer-heading {
+    margin: 0 0 0.75rem;
+    font-family: var(--pm-font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    color: #c9a84c;
+  }
+
+  .pm-footer-links-col--stacked {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .pm-footer-links-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .pm-footer-links-list a {
+    color: #a8a8a8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 200ms ease;
+  }
+
+  .pm-footer-links-list a:hover {
+    color: #c9a84c;
+  }
+
+  .pm-footer-bottom {
+    margin-top: 2.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pm-footer-copyright {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  @media (max-width: 1023px) {
+    .pm-footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+    }
+
+    .pm-footer-brand {
+      grid-column: 1 / -1;
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pm-footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  [dir='rtl'] .pm-footer-bottom {
     flex-direction: row-reverse;
-  }
-  
-  [dir="rtl"] footer .grid {
-    direction: rtl;
-  }
-
-  /* Professional hover effects */
-  footer a:hover {
-    transform: translateY(-1px);
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  }
-
-  /* Professional link styling */
-  footer a {
-    position: relative;
-  }
-
-  footer a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: #C9A227;
-    transition: width 0.3s ease-in-out;
-  }
-
-  footer a:hover::after {
-    width: 100%;
-  }
-
-  /* Professional typography */
-  footer h3,
-  footer .font-semibold {
-    letter-spacing: 0.025em;
   }
 </style>

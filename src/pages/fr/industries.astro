@@ -1,0 +1,18 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import IndustriesPageMain from '~/components/pages/IndustriesPageMain.astro';
+import { createMetadata } from '~/utils/metadata';
+import { getLangFromUrl, defaultLang } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = lang === defaultLang ? '/industries' : `/${lang}/industries`;
+const metadata = createMetadata({
+  description:
+    'Secteurs industriels accompagnés par Profit Management : santé, agroalimentaire, industrie, immobilier, services et innovation, avec résultats mesurables.',
+  canonical,
+});
+---
+
+<Layout metadata={metadata}>
+  <IndustriesPageMain />
+</Layout>

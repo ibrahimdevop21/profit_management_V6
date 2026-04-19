@@ -2,16 +2,24 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
+import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 import { headerData, footerData } from '~/navigation';
 
 import type { MetaData } from '~/types';
+
+import { getLangFromUrl, stripLocalePrefix } from '~/utils/i18n';
 
 export interface Props {
   metadata?: MetaData;
 }
 
 const { metadata } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const basePath = stripLocalePrefix(pathname);
+const isContactPage = basePath === '/contact';
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <Layout metadata={metadata}>
@@ -21,6 +29,7 @@ const { metadata } = Astro.props;
   <main>
     <slot />
   </main>
+  {!isContactPage && <CtaBanner lang={lang} />}
   <slot name="footer">
     <Footer {...footerData} />
   </slot>

@@ -1,0 +1,18 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import TeamPageMain from '~/components/pages/TeamPageMain.astro';
+import { createMetadata } from '~/utils/metadata';
+import { getLangFromUrl, defaultLang } from '~/utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = lang === defaultLang ? '/team' : `/${lang}/team`;
+const metadata = createMetadata({
+  description:
+    'L’équipe Profit Management : excellence académique, certifications, expertise sectorielle et collaboration internationale au service de votre rentabilité.',
+  canonical,
+});
+---
+
+<Layout metadata={metadata}>
+  <TeamPageMain />
+</Layout>

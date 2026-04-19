@@ -17,7 +17,12 @@ export default {
         
         // Core Brand Colors
         navy: '#1A2E45',         // Deep Navy for headings
-        gold: '#C9A227',         // Warm Gold accent
+        gold: '#C9A84C',         // Warm gold (aligned with --pm-accent)
+        'pm-accent': '#C9A84C',
+        'pm-surface': '#131926',
+        'pm-surface-elevated': '#1A2235',
+        'pm-muted': '#A8A8A8',
+        'pm-cream': '#F0EDE6',
         'gold-hover': '#A68B1F', // Gold hover state
         'off-white': '#F9F9F9',  // Off-white background
         charcoal: '#1C1C1E',     // Muted charcoal for nav/footer
@@ -48,10 +53,12 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
-        serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
-        heading: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
-        body: ['Inter', 'DM Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['DM Sans', 'Cairo', 'Inter', ...defaultTheme.fontFamily.sans],
+        serif: ['Playfair Display', 'Cairo', 'Georgia', 'Times New Roman', 'serif'],
+        heading: ['Playfair Display', 'Cairo', 'Georgia', 'serif'],
+        body: ['DM Sans', 'Cairo', ...defaultTheme.fontFamily.sans],
+        mono: ['DM Mono', 'Cairo', 'ui-monospace', 'monospace'],
+        arabic: ['Cairo', ...defaultTheme.fontFamily.sans],
       },
       fontWeight: {
         'heading': '600',

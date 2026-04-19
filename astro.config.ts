@@ -21,10 +21,15 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   site: 'https://www.profitmanagement.com',
+
+  redirects: {
+    '/privacy': '/legal/privacy',
+    '/terms': '/legal/terms',
+  },
   
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ar'],
+    locales: ['en', 'ar', 'fr'],
     routing: {
       prefixDefaultLocale: false
     }

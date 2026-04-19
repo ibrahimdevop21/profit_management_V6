@@ -19,17 +19,17 @@ html, body {
 }
 
 [dir="rtl"] body {
-  font-family: 'Inter', 'Noto Sans Arabic', 'Cairo', 'Arial', sans-serif;
+  font-family: inherit;
 }
 
-/* RTL Typography adjustments */
-[dir="rtl"] h1, 
-[dir="rtl"] h2, 
-[dir="rtl"] h3, 
-[dir="rtl"] h4, 
-[dir="rtl"] h5, 
+/* RTL Typography adjustments — Arabic fonts come from global.css (html[lang="ar"]) */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
 [dir="rtl"] h6 {
-  font-family: 'Inter', 'Noto Sans Arabic', 'Cairo', sans-serif;
+  font-family: inherit;
   text-align: right;
   line-height: 1.4;
 }
